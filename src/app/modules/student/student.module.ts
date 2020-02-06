@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentRoutingModule } from './student-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MatCardModule, MatDividerModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -10,7 +12,10 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     StudentRoutingModule,
-    SharedModule
+    SharedModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatDividerModule,
   ]
 })
 export class StudentModule { }

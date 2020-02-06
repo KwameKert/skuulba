@@ -12,7 +12,8 @@ import { PieComponent } from './widgets/pie/pie.component';
     HighchartsChartModule
   ],
   exports: [
-    AreaComponent
+    AreaComponent,
+    PieComponent
   ]
 })
 export class SharedModule { }

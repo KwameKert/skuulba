@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import Drilldown from 'highcharts/modules/drilldown';
+Drilldown(Highcharts);
 import HC_exporting from 'highcharts/modules/exporting';
 
 @Component({
@@ -19,57 +21,236 @@ export class AreaComponent implements OnInit {
         type: 'column'
     },
     title: {
-        text: 'Age Statistics'
+        text: 'Browse finance starts'
     },
-  
+    subtitle: {
+        text: 'Click the columns to view details.'
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
     xAxis: {
-        categories: [
-            '10',
-            '11',
-            '12',
-            '13',
-            '14',
-            '15',
-            '16',
-            '17',
-            '18',
-            '19',
-            '20',
-            '21'
-        ],
-        crosshair: true
+        type: 'category'
     },
     yAxis: {
-        min: 0,
         title: {
-            text: 'Age (yrs)'
+            text: 'Total percent market share'
         }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'Boys',
-        data: [40, 70, 100, 32, 12, 90, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
 
-    }, {
-        name: 'Girls',
-        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-    }],
+    },
+    legend: {
+        enabled: false
+    },
     credits: {
       enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "Chart",
+            colorByPoint: true,
+            data: [
+                {
+                    name: "Fully Paid",
+                    y: 62.74,
+                    drilldown: "Fully Paid"
+                },
+                {
+                    name: "Partially Paid",
+                    y: 10.57,
+                    drilldown: "Partially Paid"
+                },
+                {
+                    name: "Debtors",
+                    y: 7.23,
+                    drilldown: "Debtors"
+                }
+              
+            ]
+        }
+    ],
+    drilldown: {
+        series: [
+            {
+                name: "Fully Paid",
+                id: "Fully Paid",
+                data: [
+                    [
+                        "Nurs.",
+                        0.1
+                    ],
+                    [
+                        "Chrc.1",
+                        1.3
+                    ],
+                    [
+                        "Chrc.2",
+                        53.02
+                    ],
+                    [
+                        "P.1",
+                        1.4
+                    ],
+                    [
+                        "P.2",
+                        0.88
+                    ],
+                    [
+                        "P.3",
+                        0.56
+                    ],
+                    [
+                        "P.4",
+                        0.45
+                    ],
+                    [
+                        "P.5",
+                        0.49
+                    ],
+                    [
+                        "P.6",
+                        0.32
+                    ],
+                    [
+                        "JHS.1",
+                        0.29
+                    ],
+                    [
+                        "JHS.2",
+                        0.79
+                    ],
+                    [
+                        "JHS.3",
+                        0.18
+                    ]
+                ]
+            },
+            {
+                name: "Partially Paid",
+                id: "Partially Paid",
+                data:[
+                  [
+                      "Nurs.",
+                      0.1
+                  ],
+                  [
+                      "Chrc.1",
+                      1.3
+                  ],
+                  [
+                      "Chrc.2",
+                      53.02
+                  ],
+                  [
+                      "P.1",
+                      1.4
+                  ],
+                  [
+                      "P.2",
+                      0.88
+                  ],
+                  [
+                      "P.3",
+                      0.56
+                  ],
+                  [
+                      "P.4",
+                      0.45
+                  ],
+                  [
+                      "P.5",
+                      0.49
+                  ],
+                  [
+                      "P.6",
+                      0.32
+                  ],
+                  [
+                      "JHS.1",
+                      0.29
+                  ],
+                  [
+                      "JHS.2",
+                      0.79
+                  ],
+                  [
+                      "JHS.3",
+                      0.18
+                  ]
+              ]
+            },
+            {
+                name: "Debtors",
+                id: "Debtors",
+                data: [
+                  [
+                      "Nurs.",
+                      0.1
+                  ],
+                  [
+                      "Chrc.1",
+                      1.3
+                  ],
+                  [
+                      "Chrc.2",
+                      53.02
+                  ],
+                  [
+                      "P.1",
+                      1.4
+                  ],
+                  [
+                      "P.2",
+                      0.88
+                  ],
+                  [
+                      "P.3",
+                      0.56
+                  ],
+                  [
+                      "P.4",
+                      0.45
+                  ],
+                  [
+                      "P.5",
+                      0.49
+                  ],
+                  [
+                      "P.6",
+                      0.32
+                  ],
+                  [
+                      "JHS.1",
+                      0.29
+                  ],
+                  [
+                      "JHS.2",
+                      0.79
+                  ],
+                  [
+                      "JHS.3",
+                      0.18
+                  ]
+              ]
+            }
+            
+        ]
     }
     }
     HC_exporting(Highcharts);
@@ -77,7 +258,7 @@ export class AreaComponent implements OnInit {
       window.dispatchEvent(
         new Event('resize')
       );
-    }, 300);
+    }, 2000);
   }
 
 }

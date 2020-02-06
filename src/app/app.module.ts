@@ -13,6 +13,7 @@ import {  MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule,
 import { MatSidenavModule,  MatCardModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './modules/shared/shared.module';
+import { TableComponent } from './shared/widgets/table/table.component';
 
 
 
@@ -24,6 +25,7 @@ import { SharedModule } from './modules/shared/shared.module';
     SidebarComponent,
     FooterComponent,
     DefaultComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
