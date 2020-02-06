@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import {AreaComponent}  from  './index';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { PieComponent } from './widgets/pie/pie.component';
+import {MatTableModule} from '@angular/material/table';
+import { ColumnComponent } from './widgets/column/column.component';
 
 
 @NgModule({
-  declarations: [AreaComponent, PieComponent],
+  declarations: [AreaComponent, PieComponent, ColumnComponent],
   imports: [
     CommonModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatTableModule
   ],
   exports: [
     AreaComponent,
-    PieComponent
+    PieComponent,
+    ColumnComponent
   ]
 })
 export class SharedModule { }
