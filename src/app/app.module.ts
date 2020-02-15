@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import {  MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, 
-  MatMenuModule, MatListModule } from '@angular/material';
+  MatMenuModule, MatListModule, MatExpansionModule } from '@angular/material';
   
 import { MatSidenavModule,  MatCardModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +34,7 @@ import { TableComponent } from './shared/widgets/table/table.component';
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,
+    MatExpansionModule,
     FlexLayoutModule,
     MatMenuModule,
     MatButtonModule,

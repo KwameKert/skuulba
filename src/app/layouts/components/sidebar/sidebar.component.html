@@ -1,4 +1,4 @@
-<mat-nav-list>
+ <mat-nav-list>
     <div class="row " >
         <div class="col-md-6 offset-md-3">
             <img src="../../../../assets/images/blue.jpg" alt="skuulba admin" class="rounded-circle " width="100px" height="100px">
@@ -9,10 +9,12 @@
     <br>
     <mat-divider></mat-divider>
     
-<a  mat-list-item  routerLinkActive="list-item-active" routerLink="/"> Dashboard</a>
-<a  mat-list-item  routerLinkActive="list-item-active" routerLink="/posts"> Posts</a>
-<a  mat-list-item  routerLinkActive="list-item-active" routerLink="/articles"> Articles</a>
-
+<a  mat-list-item  routerLinkActive="list-item-active"   active   routerLink="/dashboard">  <mat-icon class="sidebar-icon">home</mat-icon  > Dashboard</a>
+<a  mat-list-item  routerLinkActive="list-item-active" (click)="showStudentLinks()"  data-toggle="collapse" href="#studentLinks"><mat-icon  class="sidebar-icon">account_box</mat-icon> Students <mat-icon class="li-icon" [style.display]="studentLinks ? 'none':'block'"  >keyboard_arrow_right</mat-icon>  <mat-icon class="li-icon" [style.display]="studentLinks ? 'block':'none'" >keyboard_arrow_down</mat-icon></a>
+<div class="collapse" id="studentLinks">
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/addStudent"> <mat-icon>add</mat-icon>  Add Student</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/addStudent"> <mat-icon>add</mat-icon>  Search Student</a></li>
+  </div>
 <mat-divider></mat-divider>
     
 <h2 matSubheader> Tools </h2>
@@ -23,5 +25,5 @@
         <mat-icon>contact_phone</mat-icon> Leads</a>
 
 <mat-divider></mat-divider>
-</mat-nav-list>
+</mat-nav-list>  
 

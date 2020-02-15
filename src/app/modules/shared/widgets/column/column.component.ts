@@ -47,7 +47,7 @@ export class ColumnComponent implements OnInit {
     yAxis: {
         min: 0,
         title: {
-            text: 'Age (yrs)'
+            text: 'Number'
         }
     },
     tooltip: {
