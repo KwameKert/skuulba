@@ -3,6 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Student} from '../student';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search-student',
@@ -10,11 +12,11 @@ import {Student} from '../student';
   styleUrls: ['./search-student.component.scss']
 })
 export class SearchStudentComponent implements OnInit {
-  displayedColumns = ['full name', 'class', 'age', 'gender'];
+  displayedColumns = ['full name', 'class', 'age', 'gender','action'];
   dataSource = new MatTableDataSource(STUDENT_DATA);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -29,6 +31,10 @@ export class SearchStudentComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  viewStudent(){
+    this.router.navigate(['student/viewStudent']);
   }
 
 }

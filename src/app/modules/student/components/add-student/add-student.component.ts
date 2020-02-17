@@ -109,7 +109,7 @@ const formData = new FormData();
 
 
 finishStudentForm(){
-  this.router.navigate(['addStudentDetails']);
+  this.router.navigate(['student/addStudentDetails']);
 }
 
 }

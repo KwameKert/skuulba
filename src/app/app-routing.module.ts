@@ -12,7 +12,7 @@ const routes: Routes= [
 },
 
 {
-  path:'', 
+  path:'student', 
   component: DefaultComponent,
   loadChildren: () => import('./modules/student/student.module')
                      .then(m => m.StudentModule)

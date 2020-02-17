@@ -17,9 +17,10 @@ import {MatTabsModule} from '@angular/material/tabs'
 import {MatIconModule} from '@angular/material/icon';
 import { SearchStudentComponent } from './components/search-student/search-student.component'
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ViewStudentComponent } from './components/view-student/view-student.component';
 
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
