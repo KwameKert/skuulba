@@ -14,10 +14,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatButtonModule} from '@angular/material/button';
 import { AddStudentDetailsComponent } from './components/add-student-details/add-student-details.component';
 import {MatTabsModule} from '@angular/material/tabs'
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { SearchStudentComponent } from './components/search-student/search-student.component'
 
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

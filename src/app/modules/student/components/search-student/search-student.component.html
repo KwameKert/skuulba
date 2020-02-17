@@ -1,0 +1,34 @@
+<mat-card class="mat-elevation-z3" style="margin-bottom:300px">
+
+    <div fxLayout="row"  fxLayoutAlign="center center">
+        <div fxFlex="15">
+
+        </div>
+        <div fxFlex="20">
+            <mat-form-field    appearance="outline">
+                <mat-label>-- Select --</mat-label>
+                <mat-select   >
+                  <mat-option value="surname">Surname</mat-option>
+                  <mat-option value="otherNames">OtherNames</mat-option>
+                  <mat-option value="studentId">Student ID</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              
+            <div fxFlex="50">
+                <mat-form-field appearance="outline" style="width:400px">
+                    <mat-label>Student Name</mat-label>
+                    <input matInput placeholder="Enter value" >
+                  </mat-form-field>
+            </div>
+             
+            <div fxFlex="25" class="mb-4">
+
+                <button mat-raised-button color="primary"><mat-icon>search</mat-icon> Search</button>
+            </div>
+
+        
+
+    </div>
+
+    </mat-card>
