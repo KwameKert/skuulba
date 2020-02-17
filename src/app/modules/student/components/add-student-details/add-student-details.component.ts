@@ -40,16 +40,16 @@ export class AddStudentDetailsComponent implements OnInit {
         this.fb.control('',[Validators.required])
       ]),
       traits: this.fb.array([
-        this.fb.control('',[Validators.required])
+        this.fb.control('')
       ]),
       classes: this.fb.array([
-        this.fb.control('',[Validators.required])
+        this.fb.control('')
       ]),
       scores: this.fb.array([
-        this.fb.control('',[Validators.required])
+        this.fb.control('')
       ]),
       personality_remarks: this.fb.array([
-        this.fb.control('',[Validators.required])
+        this.fb.control('')
       ]),
 
     });
@@ -139,7 +139,7 @@ export class AddStudentDetailsComponent implements OnInit {
     return this.studentInfoForm.get('classes') as FormArray;
   }
 
-  addClasses() {
+  addClass() {
     this.classes.push(this.fb.control(''));
   }
 
@@ -151,10 +151,22 @@ export class AddStudentDetailsComponent implements OnInit {
     this.scores.push(this.fb.control(''));
   }
 
+  get personality_remarks() {
+    return this.studentInfoForm.get('personality_remarks') as FormArray;
+  }
+
+  addPersonalityRemark() {
+    this.personality_remarks.push(this.fb.control(''));
+  }
+
+
 
 
   addPersonality(){
-
+    this.addTrait();
+    this.addScore();
+    this.addPersonalityRemark();
+    this.addClass();
   }
 
 }

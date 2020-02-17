@@ -32,13 +32,14 @@
     </div>
 
 
-
+    <form  [formGroup]="studentInfoForm" >
     <div fxLayout="row" fxLayoutAligin=" start">
+        
         <div fxFlex="100">
-            <mat-tab-group color="primary" backgroundColor="primary" [formGroup]="studentInfoForm">
+            <mat-tab-group color="primary" backgroundColor="primary">
+               
                 <mat-tab label="Physical Development"> 
-                    
-                <div fxLayout="row" fxLayoutAlign="end" class="mt-3"  >
+                <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
                     <div fxFlex="30" class="text-center" >
                         <div formArrayName="dates">
                             <b> Date</b>
@@ -90,7 +91,7 @@
                 </mat-tab>
                 <mat-tab label="Education Info"> 
 
-                    <div fxLayout="row" fxLayoutAlign="end" class="mt-3"  >
+                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
                         <div fxFlex="30" class="text-center" >
                             <div formArrayName="schoolNames">
                                 <b> School </b>
@@ -131,8 +132,60 @@
                         </div>
                     </div> 
                 </mat-tab>
-                <mat-tab label="Third"> Content 3 </mat-tab>
+                <mat-tab label="Personality Info">
+                    
+                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
+                        <div fxFlex="20" class="text-center" >
+                            <div formArrayName="traits">
+                                <b> Trait </b>
+                                <div *ngFor="let alias of traits.controls; let i=index">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput placeholder="Enter trait" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+                        <div fxFlex="20"  class="text-center">
+                            <b>Class </b>
+                            <div formArrayName="classes">
+                                <div *ngFor="let alias of classes.controls; let i=index">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput placeholder="Enter Class" [formControlName]="i" >
+                                      </mat-form-field>
+                            </div>
+                            </div>
+                        </div>
+                        <div fxFlex="20"  class="text-center">
+                            <b>Score</b>
+                            <div formArrayName="scores">
+                                <div *ngFor="let alias of scores.controls; let i=index">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput  placeholder="Enter score" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex="20"  class="text-center">
+                            <b>Remark</b>
+                            <div formArrayName="personality_remarks">
+                                <div *ngFor="let alias of personality_remarks.controls; let i=index">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput  placeholder="Enter remarks" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div fxFlex="10"  class="text-center">
+                            <button mat-button color="primary" (click)="addPersonality()"><mat-icon>add</mat-icon> Add</button>
+                        </div>
+                    </div> 
+                </mat-tab>
+            
               </mat-tab-group>
         </div>
+        
     </div>
+</form>
 </mat-card>
