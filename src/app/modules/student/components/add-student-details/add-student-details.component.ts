@@ -55,9 +55,33 @@ export class AddStudentDetailsComponent implements OnInit {
       scores: this.fb.array([
         this.fb.control('')
       ]),
-      personality_remarks: this.fb.array([
+      personalityRemarks: this.fb.array([
         this.fb.control('')
       ]),
+      handicapParts: this.fb.array([
+        this.fb.control('')
+      ]),
+      handicapDescriptions: this.fb.array([
+        this.fb.control('')
+      ]),
+      specialTalentDates: this.fb.array([
+        this.fb.control('')
+      ]),
+      specialTalentParticulars: this.fb.array([
+        this.fb.control('')
+      ]),
+      awardDates: this.fb.array([
+        this.fb.control('')
+      ]),
+      awardNames: this.fb.array([
+        this.fb.control('')
+      ]),
+      awardRemarks: this.fb.array([
+        this.fb.control('')
+      ]),
+
+      
+
 
     });
   
@@ -158,16 +182,13 @@ export class AddStudentDetailsComponent implements OnInit {
     this.scores.push(this.fb.control(''));
   }
 
-  get personality_remarks() {
-    return this.studentInfoForm.get('personality_remarks') as FormArray;
+  get personalityRemarks() {
+    return this.studentInfoForm.get('personalityRemarks') as FormArray;
   }
 
   addPersonalityRemark() {
-    this.personality_remarks.push(this.fb.control(''));
+    this.personalityRemarks.push(this.fb.control(''));
   }
-
-
-
 
   addPersonality(){
     this.addTrait();
@@ -175,5 +196,95 @@ export class AddStudentDetailsComponent implements OnInit {
     this.addPersonalityRemark();
     this.addClass();
   }
+
+
+  get handicapParts() {
+    return this.studentInfoForm.get('handicapParts') as FormArray;
+  }
+
+  addHandicapPart() {
+    this.handicapParts.push(this.fb.control(''));
+  }
+
+
+  get handicapDescriptions() {
+    return this.studentInfoForm.get('handicapDescriptions') as FormArray;
+  }
+
+  addHandicapDescription() {
+    this.handicapDescriptions.push(this.fb.control(''));
+  }
+
+  addHandicap(){
+    this.addHandicapPart();
+    this.addHandicapDescription();
+  }
+
+
+  
+  get specialTalentDates() {
+    return this.studentInfoForm.get('specialTalentDates') as FormArray;
+  }
+
+  addSpecialTalentDate() {
+    this.specialTalentDates.push(this.fb.control(''));
+  }
+
+
+  get specialTalentParticulars() {
+    return this.studentInfoForm.get('specialTalentParticulars') as FormArray;
+  }
+
+  addSpecialTalentParticulars() {
+    this.specialTalentParticulars.push(this.fb.control(''));
+  }
+
+
+  addSpecialTalent(){
+    this.addSpecialTalentDate();
+    this.addSpecialTalentParticulars();
+  }
+
+
+  get awardDates() {
+    return this.studentInfoForm.get('awardDates') as FormArray;
+  }
+
+  addAwardDate() {
+    this.awardDates.push(this.fb.control(''));
+  }
+
+
+  get awardNames() {
+    return this.studentInfoForm.get('awardNames') as FormArray;
+  }
+
+  addAwardName() {
+    this.awardNames.push(this.fb.control(''));
+  }
+
+  get awardRemarks() {
+    return this.studentInfoForm.get('awardRemarks') as FormArray;
+  }
+
+  addAwardRemark() {
+    this.awardRemarks.push(this.fb.control(''));
+  }
+
+
+  addAward(){
+    this.addAwardDate();
+    this.addAwardName();
+    this.addAwardRemark();
+  }
+
+
+
+
+
+
+
+
+
 
 }

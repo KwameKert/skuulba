@@ -168,8 +168,8 @@
 
                         <div fxFlex="20"  class="text-center">
                             <b>Remark</b>
-                            <div formArrayName="personality_remarks">
-                                <div *ngFor="let alias of personality_remarks.controls; let i=index">
+                            <div formArrayName="personalityRemarks">
+                                <div *ngFor="let alias of personalityRemarks.controls; let i=index">
                                     <mat-form-field  appearance="outline" >
                                         <input matInput  placeholder="Enter remarks" [formControlName]="i" >
                                       </mat-form-field>
@@ -203,7 +203,7 @@
                 </div>    
 
 
-                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                <div fxLayout="row" fxLayoutAlign="space-around center"   >
                     <div fxFlex="30">
                         <mat-form-field appearance="outline" style="width:300px"  >
                             <mat-label>Insurance</mat-label>
@@ -257,6 +257,118 @@
                 
                 </mat-tab>
             
+                <mat-tab label="Handicap Info">
+
+                    <div fxLayout="row" fxLayoutAlign="start"  class="mt-4">
+                        <div fxFlex="50" class="text-center">
+                            <div formArrayName="handicapParts">
+                                <b>Handicap Part</b>
+                                <div *ngFor="let alias of handicapParts.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px">
+                                        <input matInput  placeholder="Enter part" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div fxFlex="50" class="text-center">
+                            <div formArrayName="handicapDescriptions">
+                                <b>Handicap Description</b>
+                                <div *ngFor="let alias of handicapDescriptions.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px">
+                                        <input matInput  placeholder="Enter Description" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex="10"  class="text-center">
+                            <button mat-button color="primary" (click)="addHandicap()"><mat-icon>add</mat-icon> Add</button>
+                        </div>
+    
+                     
+                    </div> 
+                </mat-tab>
+
+                <mat-tab label="Special Talents">
+                    <div fxLayout="row" fxLayoutAlign="start"  class="mt-4">
+                        <div fxFlex="50" class="text-center">
+                            <div formArrayName="specialTalentDates">
+                                <b>Date</b>
+                                <div *ngFor="let alias of specialTalentDates.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px">
+                                        <input matInput [matDatepicker]="picker" placeholder="Enter Date" [formControlName]="i" >
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex="50"  class="text-center">
+                            <div formArrayName="specialTalentParticulars">
+                                <b> Particulars </b>
+                                <div *ngFor="let alias of specialTalentParticulars.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px" >
+                                        <input matInput placeholder="Enter talent" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div fxFlex="10"  class="text-center">
+                            <button mat-button color="primary" (click)="addSpecialTalent()"><mat-icon>add</mat-icon> Add</button>
+                        </div>
+
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab label="Award">
+                    <div fxLayout="row" fxLayoutAlign="start"  class="mt-4">
+                        <div fxFlex="30" class="text-center">
+                            <div formArrayName="awardDates">
+                                <b>Award Date</b>
+                                <div *ngFor="let alias of awardDates.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px">
+                                        <input matInput [matDatepicker]="picker" placeholder="Enter Date" [formControlName]="i" >
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex="30"  class="text-center">
+                            <div formArrayName="awardNames">
+                                <b> Award </b>
+                                <div *ngFor="let alias of awardNames.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px" >
+                                        <input matInput placeholder="Enter award" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div fxFlex="30"  class="text-center">
+                            <div formArrayName="awardRemarks">
+                                <b> Remarks </b>
+                                <div *ngFor="let alias of awardRemarks.controls; let i=index">
+                                    <mat-form-field  appearance="outline"  style="width:300px" >
+                                        <input matInput placeholder="Enter remark" [formControlName]="i" >
+                                      </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div fxFlex="10"  class="text-center">
+                            <button mat-button color="primary" (click)="addAward()"><mat-icon>add</mat-icon> Add</button>
+                        </div>
+
+                    </div>
+
+
+                </mat-tab>    
               </mat-tab-group>
         </div>
         
