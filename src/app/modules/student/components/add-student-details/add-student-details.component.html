@@ -134,7 +134,7 @@
                 </mat-tab>
                 <mat-tab label="Personality Info">
                     
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
+                    <div fxLayout="row" fxLayoutAlign=" start" class="mt-3"  >
                         <div fxFlex="20" class="text-center" >
                             <div formArrayName="traits">
                                 <b> Trait </b>
@@ -181,6 +181,80 @@
                             <button mat-button color="primary" (click)="addPersonality()"><mat-icon>add</mat-icon> Add</button>
                         </div>
                     </div> 
+                </mat-tab>
+
+                <mat-tab label="Health Info">
+                <div fxLayout="row" fxLayoutAlign="space-around center" class="mt-4" >
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Primary Care Physician</mat-label>
+                            <input matInput placeholder="John"  formControlName="primaryCarePhysician" >
+                            <mat-error *ngIf="studentInfoForm.get('primaryCarePhysician').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Preffered Medical Facility</mat-label>
+                            <input matInput placeholder="Holy Trinity"  formControlName="preferredMedicalFacility" >
+                            <mat-error *ngIf="studentInfoForm.get('preferredMedicalFacility').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>    
+
+
+                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Insurance</mat-label>
+                            <input matInput placeholder="Health Insurance"  formControlName="insuranceName" >
+                            <mat-error *ngIf="studentInfoForm.get('insuranceName').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Insurance Number</mat-label>
+                            <input matInput placeholder="123"  formControlName="insuranceNumber" >
+                            <mat-error *ngIf="studentInfoForm.get('insuranceNumber').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>  
+
+
+
+                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Policy Holder Name</mat-label>
+                            <input matInput placeholder="John"  formControlName="policyHolderName" >
+                            <mat-error *ngIf="studentInfoForm.get('policyHolderName').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>Policy Number</mat-label>
+                            <input matInput placeholder="8912312"  formControlName="policyNumber" >
+                            <mat-error *ngIf="studentInfoForm.get('policyNumber').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>  
+
+                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" style="width:300px"  >
+                            <mat-label>PCP Number</mat-label>
+                            <input matInput placeholder="John"  formControlName="pcpNumber" >
+                            <mat-error *ngIf="studentInfoForm.get('pcpNumber').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+
+                    <div fxFlex="30"></div>
+
+                 
+                </div>  
+                
                 </mat-tab>
             
               </mat-tab-group>

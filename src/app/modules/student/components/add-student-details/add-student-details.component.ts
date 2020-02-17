@@ -18,6 +18,13 @@ export class AddStudentDetailsComponent implements OnInit {
   ngOnInit() {
 
     this.studentInfoForm = this.fb.group({
+      primaryCarePhysician: ['',Validators.pattern('[a-zA-Z]*')],
+      pcpNumber: ['',Validators.pattern('[0-9]*$')],
+      insuranceNumber: ['',Validators.pattern('[0-9]*$')],
+      preferredMedicalFacility: ['',Validators.pattern('[a-zA-Z]*')],
+      policyHolderName: ['',Validators.pattern('[a-zA-Z]*')],
+      insuranceName: ['',Validators.pattern('[a-zA-Z]*')],
+      policyNumber: ['',Validators.pattern('[0-9]*$')],
       dates: this.fb.array([
         this.fb.control('')
       ]),
