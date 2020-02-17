@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     <div>
-                      <button   mat-raised-button color="primary" class="float-right" matStepperNext>Next</button>
+                      <button   mat-stroked-button color="primary" class="float-right" matStepperNext>Next</button>
                     </div>
                   </form>
                 </mat-step>
@@ -241,8 +241,8 @@
         
         
                     <div class="float-right">
-                      <button mat-raised-button color="accent" matStepperPrevious  class="mr-2">Back</button>
-                      <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                      <button mat-stroked-button color="accent" matStepperPrevious  class="mr-2">Back</button>
+                      <button  mat-stroked-button color="primary" matStepperNext>Next</button>
                     </div>
                   </form>
                 </mat-step>
@@ -348,17 +348,19 @@
           
           
                       <div class="float-right">
-                        <button mat-raised-button color="accent" matStepperPrevious class="mr-2">Back</button>
-                        <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                        <button mat-stroked-button color="accent" matStepperPrevious class="mr-2">Back</button>
+                        <button  mat-stroked-button color="primary" matStepperNext>Next</button>
                       </div>
                     </form>
                   </mat-step>
                 <mat-step>
                   <ng-template matStepLabel>Done</ng-template>
-                  <p>You are now done.</p>
+                  <div class="alert alert-success" role="alert">
+                    <p class="lead">Student Information added successfully. Click on  <b>Finish</b> to add academic, physical and  personality details</p>
+                  </div>
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button color="warn" class="mr-3" (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button color="primary" (click)="finishStudentForm()">Finish</button>
                   </div>
                 </mat-step>
               </mat-horizontal-stepper>

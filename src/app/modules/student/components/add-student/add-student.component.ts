@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
 
 @Component({
@@ -25,7 +26,7 @@ export class AddStudentComponent implements OnInit {
   languageList: string[] = ['Twi', 'Ewe', 'Ga', 'Dagomba', 'Talensi', 'Fante','French','Other'];
  // email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
 
@@ -107,6 +108,8 @@ const formData = new FormData();
 }
 
 
-
+finishStudentForm(){
+  this.router.navigate(['addStudentDetails']);
+}
 
 }

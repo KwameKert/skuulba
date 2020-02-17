@@ -12,8 +12,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatButtonModule} from '@angular/material/button';
+import { AddStudentDetailsComponent } from './components/add-student-details/add-student-details.component';
+import {MatTabsModule} from '@angular/material/tabs'
+import {MatIconModule} from '@angular/material/icon'
+
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
@@ -30,7 +34,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatIconModule
     
   ],
   providers: [  
