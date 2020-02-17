@@ -9,11 +9,12 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { DefaultComponent } from './layouts/default/default.component';
 import {  MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, 
   MatMenuModule, MatListModule, MatExpansionModule } from '@angular/material';
-  
+  import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatSidenavModule,  MatCardModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './modules/shared/shared.module';
 import { TableComponent } from './shared/widgets/table/table.component';
+
 
 
 
@@ -43,7 +44,9 @@ import { TableComponent } from './shared/widgets/table/table.component';
     MatCardModule, 
     MatTableModule, 
     MatPaginatorModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,
+   
     
   ],
   providers: [],
