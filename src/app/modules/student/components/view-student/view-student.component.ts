@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {Student} from '../student';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-view-student',
   templateUrl: './view-student.component.html',
@@ -106,12 +108,14 @@ export class ViewStudentComponent implements OnInit {
   studentAward: any = [
     [new Date(),'Best Student','Overall Best']
   ]
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
- 
+  editStudent(){
+    this.router.navigate(['student/editStudentInfo'])
+  }
 
 }
 

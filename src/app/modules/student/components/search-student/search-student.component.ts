@@ -37,6 +37,10 @@ export class SearchStudentComponent implements OnInit {
     this.router.navigate(['student/viewStudent']);
   }
 
+  editStudent(){
+    this.router.navigate(['student/editStudentInfo']);
+  }
+
 }
 
 const STUDENT_DATA: Student[] = [

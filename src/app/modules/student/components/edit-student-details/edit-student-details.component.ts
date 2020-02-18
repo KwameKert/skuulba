@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray , FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+
 @Component({
-  selector: 'app-add-student-details',
-  templateUrl: './add-student-details.component.html',
-  styleUrls: ['./add-student-details.component.scss']
+  selector: 'app-edit-student-details',
+  templateUrl: './edit-student-details.component.html',
+  styleUrls: ['./edit-student-details.component.scss']
 })
-export class AddStudentDetailsComponent implements OnInit {
+export class EditStudentDetailsComponent implements OnInit {
 
   studentInfoForm: any;
   
 
 
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -81,11 +83,9 @@ export class AddStudentDetailsComponent implements OnInit {
         this.fb.control('')
       ]),
 
-      
-
-
     });
   
+    this.weights.setValue([0]);
   }
 
   get dates() {
@@ -280,16 +280,15 @@ export class AddStudentDetailsComponent implements OnInit {
   }
 
 
+  editStudentInfo(){
+    this.router.navigate(['student/editStudentInfo']);
+  }
 
   saveDetails(){
     this._snackBar.open("Student Details Saved", "", {
       duration: 3000,
     });
   }
-
-
-
-
 
 
 

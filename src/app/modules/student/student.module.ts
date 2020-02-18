@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentRoutingModule } from './student-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule, MatTableModule } from '@angular/material';
+import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule, MatTableModule,  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import {MatInputModule} from '@angular/material/input';
@@ -18,9 +18,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { SearchStudentComponent } from './components/search-student/search-student.component'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ViewStudentComponent } from './components/view-student/view-student.component';
-
+import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
+import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
@@ -41,7 +43,8 @@ import { ViewStudentComponent } from './components/view-student/view-student.com
     MatTabsModule,
     MatIconModule,
     MatTableModule,
-    MatPaginatorModule  
+    MatPaginatorModule,
+    MatSnackBarModule
   ],
   providers: [  
     MatDatepickerModule,  

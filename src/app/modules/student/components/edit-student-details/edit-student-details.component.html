@@ -1,8 +1,9 @@
 
 <mat-card class="mat-elevation-z3" style="margin-bottom:300px">
-    <div fxLayout="row" fxLayoutAlign="space-between start">
+    <div fxLayout="row" fxLayoutAlign="space-between start"  fxLayoutGap="20px">
         <div fxFlex="20" class="text-center">
-            <img src="assets/images/headshot.png" class="img-rounded " height="100" />  
+            <img src="assets/images/profile.jpg" class="img-thumbnail " height="100" />  <br>
+            <button mat-raised-button color="primary" (click)="editStudentInfo()" style="width:100px;margin:10px 0 10px 0; height: 30px;">Edit Info</button>
         </div>
 
         <div fxFlex="80">
@@ -29,17 +30,20 @@
                
             </div>
         </div>
+        
     </div>
+   
+<div class="row " style="margin-top:-40px">
+    <div class="col-md-2 offset-md-10 mb-1 ">
+        <button class="btn btn-success float-right  btn-sm" (click)="saveDetails()">Save Details</button>
+    </div>
+</div>
 
-    <div class="row " style="margin-top:-40px">
-        <div class="col-md-2 offset-md-10 mb-1 ">
-            <button class="btn btn-success float-right  btn-sm" (click)="saveDetails()">Save Details</button>
-        </div>
-    </div>
     <form  [formGroup]="studentInfoForm" >
     <div fxLayout="row" fxLayoutAligin=" start">
-        
+    
         <div fxFlex="100">
+           
             <mat-tab-group color="primary" backgroundColor="primary">
                
                 <mat-tab label="Physical Development"> 
