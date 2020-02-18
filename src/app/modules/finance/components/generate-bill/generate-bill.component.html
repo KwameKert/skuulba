@@ -1,1 +1,122 @@
-<p>generate-bill works!</p>
+
+<div fxLayout="row" fxLayoutAlign="start ">
+    <div fxFlex="80">
+        <mat-card class="mat-elevation-z6" style="margin-bottom:300px">
+            <div class="row">
+                <div class="col-md-2 ">
+                    <img src="assets/images/logo.png" class="img-thumbnail" alt="">
+                    <p class="text-muted" style="font-size:15px">SkuulBa</p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Bill To</mat-label>
+                        <mat-select (selectionChange)="generateID()">
+                          <mat-option value="option">Class 4</mat-option>
+                          <mat-option value="option">Class 5</mat-option>
+                          <mat-option value="option">Class 6</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+
+                <div class="col-md-3 offset-md-6">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>InvoiceID </mat-label>
+                        <input matInput disabled value="{{invoiceID}}">
+                      </mat-form-field> 
+
+                      <mat-form-field  appearance="outline" style="margin-top:-10px">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker"  required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+<!-- 
+                        <mat-error *ngIf="studentForm.get('dob').invalid"> Invalid input</mat-error>
+                         -->
+                      </mat-form-field>
+
+                      <mat-form-field  appearance="outline" style="margin-top:-38px">
+                        <mat-label>Date Due</mat-label>
+                        <input matInput [matDatepicker]="picker1"  required>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+<!-- 
+                        <mat-error *ngIf="studentForm.get('dob').invalid"> Invalid input</mat-error>
+                         -->
+                      </mat-form-field>
+
+                      <mat-form-field  appearance="outline">
+                        <mat-label>Balance Due </mat-label>
+                        <input matInput disabled value="2345">
+                      </mat-form-field> 
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="button" (click)="addItem()">Add</button>
+                <table class="table" >
+                    <thead class="thead-dark" >
+                      <tr>
+                        <th  scope="col" style="width:460px" class="text-center">Item</th>
+                        <th scope="col" class="text-center" style="width:120px" >Quantity</th>
+                        <th  scope="col" class="text-center" style="width:100px" >Rate</th>
+                        <th  scope="col" class="" >Amount</th>
+                      </tr>
+                    </thead>
+                
+            </table>
+
+           
+        </div>
+
+    
+            
+            <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+
+                <div formArrayName="items">
+                  <div *ngFor="let item of items.controls; let i=index">
+                    <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px ">
+
+                      <div fxFlex="1">
+
+                      </div>
+
+                      <div fxFlex=50>
+                        <input type="text" formControlName="name" class="form-control">
+                      </div>
+
+                      <div fxFlex=10>
+                        <input type="text" formControlName="quantity" class="form-control">
+                      </div>
+
+                      <div fxFlex=10>
+                        <input type="text" formControlName="rate" class="form-control">
+                      </div>
+
+                      <div fxFlex=10>
+                        <input type="text" formControlName="amount" class="form-control">
+                      </div>
+
+                     <div fxFlex="3">
+                      <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="removeItem(i)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      </div> 
+
+              
+                  
+                    </div>
+                  </div>
+                </div>
+              
+                <p>
+                  <button type="submit">Submit</button>
+                </p>
+              
+              </form>
+       
+        </mat-card>
+    </div>
+
+    <div fxFlex="20">
+
+    </div>
+
+</div>
