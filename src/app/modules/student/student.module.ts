@@ -3,51 +3,26 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentRoutingModule } from './student-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule, MatTableModule,  } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddStudentComponent } from './components/add-student/add-student.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatCheckboxModule} from '@angular/material/checkbox'
-import {MatButtonModule} from '@angular/material/button';
 import { AddStudentDetailsComponent } from './components/add-student-details/add-student-details.component';
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatIconModule} from '@angular/material/icon';
 import { SearchStudentComponent } from './components/search-student/search-student.component'
-import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { ViewStudentComponent } from './components/view-student/view-student.component';
 import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
 import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+
+
+
 @NgModule({
   declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
     SharedModule,
-    MatCardModule,
-    FlexLayoutModule,
-    MatDividerModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatDatepickerModule,
-    MatNativeDateModule ,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatIconModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSnackBarModule
+    
   ],
   providers: [  
-    MatDatepickerModule,  
+   // MatDatepickerModule,  
   ],
   exports: [
     DashboardComponent

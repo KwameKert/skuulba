@@ -17,7 +17,14 @@ const routes: Routes= [
   loadChildren: () => import('./modules/student/student.module')
                      .then(m => m.StudentModule)
 },
-//{path: "**", redirectTo: "login"}
+
+{
+  path:'finance', 
+  component: DefaultComponent,
+  loadChildren: () => import('./modules/finance/finance.module')
+                     .then(m => m.FinanceModule)
+},
+{path: "**", redirectTo: "login"}
 ];
 
 @NgModule({

@@ -13,16 +13,16 @@
 
 <a  mat-list-item  routerLinkActive="list-item-active" (click)="showStudentLinks()"  data-toggle="collapse" href="#studentLinks"><mat-icon  class="sidebar-icon">account_box</mat-icon> Students <mat-icon class="li-icon" [style.display]="studentLinks ? 'none':'block'"  >keyboard_arrow_right</mat-icon>  <mat-icon class="li-icon" [style.display]="studentLinks ? 'block':'none'" >keyboard_arrow_down</mat-icon></a>
 <div class="collapse" id="studentLinks">
-    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="addStudent"> <mat-icon>add</mat-icon>  Add Student</a></li>
-    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="searchStudent"> <mat-icon>add</mat-icon>  Search Student</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/student/addStudent"> <mat-icon>add</mat-icon>  Add Student</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/student/searchStudent"> <mat-icon>add</mat-icon>  Search Student</a></li>
   </div>
 
 
   <a  mat-list-item  routerLinkActive="list-item-active" (click)="showFinanceLinks()"  data-toggle="collapse" href="#financeLinks"><mat-icon  class="sidebar-icon">money</mat-icon> Finance <mat-icon class="li-icon" [style.display]="financeLinks ? 'none':'block'"  >keyboard_arrow_right</mat-icon>  <mat-icon class="li-icon" [style.display]="financeLinks ? 'block':'none'" >keyboard_arrow_down</mat-icon></a>
 <div class="collapse" id="financeLinks">
-    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/generateBill"> <mat-icon>add</mat-icon>  Generate Bill</a></li>
-    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/addStudent"> <mat-icon>add</mat-icon>  Daily Fees</a></li>
-    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/addStudent"> <mat-icon>add</mat-icon>  Collect Fees</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/finance/generateBill"> <mat-icon>add</mat-icon>  Generate Bill</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/finance/dailyFees"> <mat-icon>add</mat-icon>  Daily Fees</a></li>
+    <li><a  mat-list-item  routerLinkActive="list-item-active" routerLink="/finance/collectFees"> <mat-icon>add</mat-icon>  Collect Fees</a></li>
   </div>
 
 

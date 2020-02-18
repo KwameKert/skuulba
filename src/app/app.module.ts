@@ -16,9 +16,6 @@ import { SharedModule } from './modules/shared/shared.module';
 import { TableComponent } from './shared/widgets/table/table.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
