@@ -1,6 +1,6 @@
 
-<div fxLayout="row" fxLayoutAlign="start ">
-    <div fxFlex="80">
+<div fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="40px">
+    <div fxFlex="80" fxLayout="collumn">
         <mat-card class="mat-elevation-z6" style="margin-bottom:300px">
             <div class="row">
                 <div class="col-md-2 ">
@@ -50,14 +50,13 @@
             </div>
 
             <div class="row">
-                <button type="button" (click)="addItem()">Add</button>
                 <table class="table" >
                     <thead class="thead-dark" >
                       <tr>
                         <th  scope="col" style="width:460px" class="text-center">Item</th>
                         <th scope="col" class="text-center" style="width:120px" >Quantity</th>
-                        <th  scope="col" class="text-center" style="width:100px" >Rate</th>
-                        <th  scope="col" class="" >Amount</th>
+                        <th  scope="col" class="text-center" style="width:80px" >Rate</th>
+                        <th  scope="col" class="" > <span style="margin-left:20px">Amount ($)</span></th>
                       </tr>
                     </thead>
                 
@@ -69,7 +68,7 @@
     
             
             <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
-
+              
                 <div formArrayName="items">
                   <div *ngFor="let item of items.controls; let i=index">
                     <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px ">
@@ -83,19 +82,19 @@
                       </div>
 
                       <div fxFlex=10>
-                        <input type="text" formControlName="quantity" class="form-control">
+                        <input type="number" formControlName="quantity" class="form-control">
                       </div>
 
                       <div fxFlex=10>
-                        <input type="text" formControlName="rate" class="form-control">
+                        <input type="number" formControlName="rate" class="form-control">
                       </div>
 
                       <div fxFlex=10>
-                        <input type="text" formControlName="amount" class="form-control">
+                        <input type="number" formControlName="amount" class="form-control"  disabled >
                       </div>
 
                      <div fxFlex="3">
-                      <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="removeItem(i)">
+                      <button mat-icon-button color="warn"  (click)="removeItem(i)">
                         <mat-icon>delete</mat-icon>
                       </button>
                       </div> 
@@ -104,19 +103,36 @@
                   
                     </div>
                   </div>
+
+                  <button mat-stroked-button color="accent"  (click)="addItem()" style="margin-left:15px" aria-label="Example icon-button with a heart icon">Add Item</button>
+                </div>  
+                
+                
+                <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="30px" style="margin-left:15px">
+
+                  <div fxFlex="80">
+
+                    <mat-form-field appearance="outline" style="width:600px; margin-top:30px">
+                      <mat-label>Notes</mat-label>
+                      <textarea matInput></textarea>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" style="width:600px">
+                      <mat-label>Terms</mat-label>
+                      <textarea matInput></textarea>
+                    </mat-form-field>
+                  </div>
                 </div>
-              
-                <p>
-                  <button type="submit">Submit</button>
-                </p>
-              
               </form>
        
         </mat-card>
     </div>
 
     <div fxFlex="20">
+      <button mat-raised-button color="primary"  (click)="addItem()" aria-label="Example icon-button with a heart icon">Send Bill</button> <br>
 
+      <button mat-raised-button color="accent"  (click)="addItem()" aria-label="Example icon-button with a heart icon">Download</button>
     </div>
 
 </div>
