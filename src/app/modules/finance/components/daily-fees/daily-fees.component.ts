@@ -1,9 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Student} from '../../../student/components/student';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+declare var $: any;
 @Component({
   selector: 'app-daily-fees',
   templateUrl: './daily-fees.component.html',
@@ -19,14 +21,34 @@ export class DailyFeesComponent implements OnInit {
   classes: String[] = [
     'Class 1','Class 2','Class 3','Class 4','Class 5', 'Class 6','Form 1', 'Form 2','Form 3'
   ]
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
    }
+
+   openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(DialogContent, {
+  //     width: '550px',
+  //   //  data: {name: this.name, animal: this.animal}
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     //this.animal = result;
+  //   });
+  // }
 
 
   applyFilter(event: Event) {
@@ -47,6 +69,12 @@ export class DailyFeesComponent implements OnInit {
 
   }
 
+
+  makePayment(studentId){
+    console.log(studentId);
+   this.openDialog();
+  }
+
 }
 
 
@@ -63,3 +91,11 @@ const STUDENT_DATA: Student[] = [
   {studentId: 6, surname: 'Annan', otherNames: 'Kwabena Sean',age:12,class:2,gender:'M'},
   
 ];
+
+
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog {}

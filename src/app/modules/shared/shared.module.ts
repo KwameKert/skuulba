@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} from '@angular/material';
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} f
     MatDividerModule,
     MatSelectModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
   ],
   providers: [  
     MatDatepickerModule,  
@@ -66,7 +68,8 @@ import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} f
     MatCardModule,
     MatDividerModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }
