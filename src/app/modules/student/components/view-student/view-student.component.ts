@@ -9,10 +9,20 @@ import {Student} from '../student';
 export class ViewStudentComponent implements OnInit {
   physicalColumns = ['date', 'weight', 'height', 'remark'];
   physicalSource = new MatTableDataSource(PHYSICAL_DATA);
+
+  personalityColumns = ['trait', 'class', 'score', 'remark'];
   personalitySource = new MatTableDataSource(PERSONALITY_DATA);
+
+  educationColumns = ['school', 'admissionDate', 'lastAdmissionDate'];
   educationSource = new MatTableDataSource(EDUCATION_DATA);
+
+  talentColumns = ['date', 'particulars'];
   talentSource = new MatTableDataSource(TALENT_DATA);
+
+  awardColumns = ['date', 'award', 'remark'];
   awardSource = new MatTableDataSource(AWARD_DATA);
+
+  handicapColumns = ['part', 'description',];
   handicapSource = new MatTableDataSource(HANDICAP_DATA)
 
 
@@ -126,9 +136,9 @@ const PERSONALITY_DATA = [
 ]
 
 const HANDICAP_DATA = [
-  {part: 'hand',descrption: 'weak hand'},
-  {part: 'hand',descrption: 'weak hand'},
-  {part: 'hand',descrption: 'weak hand'},
+  {part: 'hand',description: 'weak hand'},
+  {part: 'hand',description: 'weak hand'},
+  {part: 'hand',description: 'weak hand'},
 ]
 
 const TALENT_DATA = [
@@ -137,8 +147,8 @@ const TALENT_DATA = [
 ]
 
 const AWARD_DATA = [
-  {date: new Date(),name: 'Best Student', remark: 'Overall best student'},
-  {date: new Date(),name: 'Best Student', remark: 'Overall best student'},
+  {date: new Date(),award: 'Best Student', remark: 'Overall best student'},
+  {date: new Date(),award: 'Best Student', remark: 'Overall best student'},
 ]
 
 
