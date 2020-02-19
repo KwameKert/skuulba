@@ -10,11 +10,12 @@ import { SearchStudentComponent } from './components/search-student/search-stude
 import { ViewStudentComponent } from './components/view-student/view-student.component';
 import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
 import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
+import { StudentAttendanceComponent } from './components/student-attendance/student-attendance.component';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent, StudentAttendanceComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

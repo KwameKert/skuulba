@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormArray, FormBuilder } from '@angular/forms';
 import {Finance} from '../../finance';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class GenerateBillComponent implements OnInit {
   //items: FormArray;
   invoiceForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -34,13 +34,11 @@ export class GenerateBillComponent implements OnInit {
       name: '',
       quantity: '',
       rate: '',
-      amount: ''
+      amount:  new FormControl({value: '', disabled: true}),
     })
   }
  
-  addItem() {
-    console.log("Adding item",this.newItem());
-    console.log("Items", this.items)  
+  addItem() { 
     this.items.push(this.newItem());
   }
  
@@ -61,7 +59,19 @@ export class GenerateBillComponent implements OnInit {
 
 
 
+  downloadBill(){
+    this._snackBar.open(  `Bill downloaded successfully`, "", {
+      duration: 3000,
+    });
+  }
 
+
+  sendBill(){
+    this._snackBar.open(  `Bill sent successfully`, "", {
+      duration: 3000,
+    });
+
+  }
   
 
 

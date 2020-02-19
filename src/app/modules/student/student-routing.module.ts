@@ -7,6 +7,7 @@ import { SearchStudentComponent } from './components/search-student/search-stude
 import { ViewStudentComponent } from './components/view-student/view-student.component';
 import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
 import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
+import { StudentAttendanceComponent } from './components/student-attendance/student-attendance.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'viewStudent', component:ViewStudentComponent},
   {path:'editStudentInfo', component:EditStudentInfoComponent},
   {path:'editStudentDetails', component:EditStudentDetailsComponent},
+  {path:'studentAttendance', component:StudentAttendanceComponent},
 ]
 
 @NgModule({
