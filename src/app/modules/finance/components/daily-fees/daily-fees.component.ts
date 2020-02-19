@@ -7,6 +7,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 import { MatDialogConfig} from "@angular/material";
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 
 declare var $: any;
@@ -25,7 +27,7 @@ export class DailyFeesComponent implements OnInit {
   classes: String[] = [
     'Class 1','Class 2','Class 3','Class 4','Class 5', 'Class 6','Form 1', 'Form 2','Form 3'
   ]
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,  private _snackBar: MatSnackBar) {
 
    }
 
@@ -34,13 +36,16 @@ export class DailyFeesComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(DialogContentComponent,  {
+      width: '550px',
       data: student,
     });
 
     console.log(student);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this._snackBar.open("Payment saved", "", {
+        duration: 3000,
+      });
       
     });
 }
