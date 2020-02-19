@@ -4,6 +4,10 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Student} from '../../../student/components/student';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogContentComponent } from '../dialog-content/dialog-content.component';
+import { MatDialogConfig} from "@angular/material";
+
+
 
 declare var $: any;
 @Component({
@@ -21,34 +25,29 @@ export class DailyFeesComponent implements OnInit {
   classes: String[] = [
     'Class 1','Class 2','Class 3','Class 4','Class 5', 'Class 6','Form 1', 'Form 2','Form 3'
   ]
-  constructor(public dialog: MatDialog) {
+  constructor(private dialog: MatDialog) {
 
    }
 
-   openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+   openDialog(student) {
+
+
+    const dialogRef = this.dialog.open(DialogContentComponent,  {
+      data: student,
+    });
+
+    console.log(student);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      
     });
-  }
-
+}
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogContent, {
-  //     width: '550px',
-  //   //  data: {name: this.name, animal: this.animal}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     //this.animal = result;
-  //   });
-  // }
 
 
   applyFilter(event: Event) {
@@ -70,9 +69,8 @@ export class DailyFeesComponent implements OnInit {
   }
 
 
-  makePayment(studentId){
-    console.log(studentId);
-   this.openDialog();
+  makePayment(student){
+   this.openDialog(student);
   }
 
 }
@@ -94,8 +92,3 @@ const STUDENT_DATA: Student[] = [
 
 
 
-@Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'dialog-content-example-dialog.html',
-})
-export class DialogContentExampleDialog {}
