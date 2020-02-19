@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Collect School Fee</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Name: {{data.surname}}</p>
+    <p>Class: {{data.class}}</p>
+    <div fxLayout="row" fxLayoutAlign="center center " fxLayoutGap="5px">
+
+        <div fxFlex="60">
+            <mat-form-field appearance="outline" >
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="Enter value"   [(ngModel)]="amount">
+              </mat-form-field>
+        </div>
+    </div>
+
+
+ 
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" color="warn">Cancel</button>
+  <button mat-button  [mat-dialog-close]="onSuccess()" cdkFocusInitial color="primary">Recieve</button>
+</mat-dialog-actions>
