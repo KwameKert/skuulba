@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService} from '../../service/auth.service';
 import { User} from '../../auth';
+import { ToastrService } from 'ngx-toastr';
 
 import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
 
@@ -12,7 +13,7 @@ import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private _authService: AuthService) { }
+  constructor(private router: Router, private _authService: AuthService, private _toastr: ToastrService) { }
 
   public response: any;
   loginForm: FormGroup;
@@ -29,14 +30,31 @@ export class LoginComponent implements OnInit {
   
     this._authService.getUserDetails(this.loginForm.value).subscribe(data => {
       this.response = data;
-      console.log(`🙂 ${this.response.data}`);
-      // this._authService.setUserDetails(data);
+      
+      if( this.response.data.length != 0 ){
+
+        this._authService.setUserDetails(this.response.data);
+
+        this._toastr.success("Welcome to Skuulba 🙂","",{
+          timeOut:2000
+        })
+
+        this.router.navigate(['/student/dashboard']);
+        
+      }else{
+        this._toastr.info("Invalid credentials. 🥺","",{
+          timeOut:2000
+        })
+      }
+      
+     
+      
       // console.log(this._authService.isLoggedIn);
       
     }, error=>{
       console.warn('An error occured');
     })
-   // this.router.navigate(['student/dashboard']);
+   // 
   }
 
 }

@@ -22,8 +22,23 @@ export class AuthService {
     localStorage.setItem("status", "active" )
   }
 
+  logUserOut(){
+
+    try{
+
+      localStorage.removeItem("userName");
+      localStorage.removeItem("role");
+      localStorage.removeItem("status");
+      return true;
+    }catch(err){
+      throw err;
+    }
+  }
+
   public get isLoggedIn(){
     return this.loggedInStatus;
   }
+
+
   
 }

@@ -15,6 +15,7 @@ import { MatSidenavModule,  MatCardModule, MatTableModule, MatPaginatorModule} f
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './modules/shared/shared.module';
 import { TableComponent } from './shared/widgets/table/table.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { TableComponent } from './shared/widgets/table/table.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({preventDuplicates: true}), 
     AppRoutingModule,
     MatToolbarModule,
     MatIconModule,
