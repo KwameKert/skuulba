@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +45,7 @@ import { TableComponent } from './shared/widgets/table/table.component';
     MatPaginatorModule,
     SharedModule,
     MatDatepickerModule,
+    HttpClientModule
    
     
   ],

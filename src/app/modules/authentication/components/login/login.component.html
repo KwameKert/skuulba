@@ -1,24 +1,28 @@
 <div class="row">
     <div class="col-md-8 col-lg-8 ">
         <img src="../../../../../assets/images/loginPage2.jpg"  alt=""
-        class="img-fluid" height="600px">
+        class="img-fluid" style="height:650px">
     </div>
     <div class="col-md-4 col-lg-4 mt-4">
         <div class="row offset-md-1  col-md-12 col-lg-12 mt-5">
             
-                <form >
+                <form  [formGroup]="loginForm">
                     <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">SkuulBa</h1>
-                   <div class="form-group">
-                       <div class="form-label">Email</div>
-                       <input type="text" placeholder="Enter email here" class="form-control input-lg" autocomplete="off" >
-                   </div>
-
-                   <div class="form-group">
-                    <div class="form-label">Password</div>
-                    <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off">
-                </div>
+                
+                       <mat-form-field appearance="outline" style="width:300px">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="JamesTown" formControlName="userName">
+                        <mat-error *ngIf="loginForm.get('userName').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                   
+                    <mat-form-field appearance="outline" style="width:300px">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="password" formControlName="password">
+                        <mat-error *ngIf="loginForm.get('password').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                
                     <div class="">
-                        <button class="btn btn-primary" (click)="loginUser()"><span class="px-3">Login</span></button>
+                        <button class="btn btn-primary" (click)="loginUser()"  [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
                         <a href="" class="text-bold forgotten-password text-secondary">Forgotten password? </a>
                     </div>
                   </form>
