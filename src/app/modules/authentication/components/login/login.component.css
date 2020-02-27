@@ -20,11 +20,17 @@ html, body {
 
 .forgotten-password {
         text-decoration: none;
-        font-weight: 500;
-        margin-left: 55px;
+        font-weight: 800;
+        margin-top:44px;
+        padding-top:100px;
         bottom: 0;
-        position: absolute;
     
+}
+
+#loginBtn {
+    margin-left: -43px !important;
+    margin-right: 10px !important;
+
 }
   
    ::ng-deep.mat-form-field-underline {
