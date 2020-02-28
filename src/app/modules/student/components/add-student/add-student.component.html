@@ -12,7 +12,7 @@
             </ng-template>
         </div>
         <div class="col-md-9">
-            <mat-horizontal-stepper [linear]="false" #stepper>
+            <mat-horizontal-stepper [linear]="true" #stepper>
                 <mat-step [stepControl]="studentForm">
                   <form [formGroup]="studentForm">
                     <ng-template matStepLabel>Fill out your name</ng-template>
@@ -100,8 +100,8 @@
                                 <div class="form-group">
                                     <mat-form-field  appearance="outline" style="width:300px">
                                         <mat-label>Number of Sibblings</mat-label>
-                                        <input matInput placeholder="JamesTown" formControlName="numSibblings">
-                                          <mat-error *ngIf="studentForm.get('numSibblings').invalid"> Invalid Input</mat-error>
+                                        <input matInput placeholder="JamesTown" formControlName="numSiblings">
+                                          <mat-error *ngIf="studentForm.get('numSiblings').invalid"> Invalid Input</mat-error>
                                       </mat-form-field>
         
                                 </div>
@@ -133,11 +133,11 @@
         
                         <div class="row mb-4" style="margin-bottom:400px">
                             <div class="col-md-6">
-                                <input type="file" class="ng-hide" formControlName="image" name="image" (change)="fileProgress($event)" required />
+                                <input type="file" class="ng-hide" formControlName="image" name="image" (change)="fileProgress($event)"  />
                             </div>
                         </div>
                     <div>
-                      <button   mat-stroked-button color="primary" class="float-right" matStepperNext>Next</button>
+                      <button   mat-stroked-button color="primary" class="float-right" (click)="saveStudent(stepper)">Next</button>
                     </div>
                   </form>
                 </mat-step>
@@ -231,7 +231,7 @@
                                       <div fxFlex="50">
                                           <mat-form-field  appearance="outline" style="width:300px">
                                               <mat-label>Date Deceased</mat-label>
-                                              <input matInput [matDatepicker]="picker1" formControlName="dateDeceased" required>
+                                              <input matInput [matDatepicker]="picker1" formControlName="dateDeceased" >
                                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                               <mat-datepicker #picker1></mat-datepicker>
                                             </mat-form-field>
@@ -242,7 +242,7 @@
         
                     <div class="float-right">
                       <button mat-stroked-button color="accent" matStepperPrevious  class="mr-2">Back</button>
-                      <button  mat-stroked-button color="primary" matStepperNext>Next</button>
+                      <button  mat-stroked-button color="primary" (click)="saveStudentMother(stepper)">Next</button>
                     </div>
                   </form>
                 </mat-step>
@@ -337,7 +337,7 @@
                                       <div fxFlex="50">
                                           <mat-form-field  appearance="outline" style="width:300px">
                                               <mat-label>Date Deceased</mat-label>
-                                              <input matInput [matDatepicker]="picker2" formControlName="dateDeceased" required>
+                                              <input matInput [matDatepicker]="picker2" formControlName="dateDeceased" >
                                               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                               <mat-datepicker #picker2></mat-datepicker>
                                             </mat-form-field>
@@ -349,7 +349,7 @@
           
                       <div class="float-right">
                         <button mat-stroked-button color="accent" matStepperPrevious class="mr-2">Back</button>
-                        <button  mat-stroked-button color="primary" matStepperNext>Next</button>
+                        <button  mat-stroked-button color="primary" (click)="saveStudentFather(stepper)">Next</button>
                       </div>
                     </form>
                   </mat-step>

@@ -37,7 +37,7 @@ export class ViewStudentComponent implements OnInit {
     class: 4,
     gender: 'Male',
     motherTongue: 'Twi',
-    numOfSibblings: 2,
+    numOfSiblings: 2,
     languages: ['twi','ewe','fante']
   };
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { StudentService} from '../../service/student.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-student',
@@ -10,6 +13,7 @@ import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms'
 export class AddStudentComponent implements OnInit {
 
   isLinear = false;
+  studentResponse: any;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -26,7 +30,7 @@ export class AddStudentComponent implements OnInit {
   languageList: string[] = ['Twi', 'Ewe', 'Ga', 'Dagomba', 'Talensi', 'Fante','French','Other'];
  // email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router,private studentService: StudentService, private _snackBar: MatSnackBar ) { }
 
   ngOnInit() {
 
@@ -41,13 +45,15 @@ export class AddStudentComponent implements OnInit {
       dob: new FormControl('',[Validators.required]),
       livingWith: new FormControl('',[Validators.required]),
       image: new FormControl('',[Validators.required]),
-      numSibblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
+      numSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
       languages: new FormControl('',[Validators.required])
     });
 
     
 
     this.studentMotherForm = new FormGroup({
+      studentId: new FormControl(''),
+      relation: new FormControl('mother'),
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
@@ -63,6 +69,8 @@ export class AddStudentComponent implements OnInit {
 
 
     this.studentFatherForm = new FormGroup({
+      studentId: new FormControl(''),
+      relation: new FormControl('father'),
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
@@ -78,7 +86,93 @@ export class AddStudentComponent implements OnInit {
 
   }
 
+  //saveStudent
+  saveStudent(stepper: MatStepper){
 
+    this.studentService.createStudent(this.studentForm.value).subscribe(data=>{
+      this.studentResponse = data;
+     if(this.studentResponse.data.length != 0){
+        this.updateStudentFatherMother(this.studentResponse.data.id);
+        this._snackBar.open("Student  Saved 🙂", "Undo", {
+          duration: 3000,
+        });
+        stepper.next();
+      }else{
+        this._snackBar.open("Oops🥺  An error occured", "Undo", {
+          duration: 3000,
+        });
+      }
+     
+    },error=>{
+      this._snackBar.open("Oops🥺  An error occured", "", {
+        duration: 3000,
+      });
+    })
+   
+   
+}
+
+
+saveStudentMother(stepper: MatStepper){
+  this.studentService.createStudentParent(this.studentMotherForm.value).subscribe(data=>{
+    this.studentResponse = data;
+   if(this.studentResponse.data.length != 0){
+      this._snackBar.open("Student Mother Saved 🙂", "Undo", {
+        duration: 3000,
+      });
+      stepper.next();
+    }else{
+      this._snackBar.open("Oops🥺  An error occured", "Undo", {
+        duration: 3000,
+      });
+    }
+   
+  },error=>{
+    this._snackBar.open("Oops🥺  An error occured", "", {
+      duration: 3000,
+    });
+  })
+ 
+}
+
+
+
+saveStudentFather(stepper: MatStepper){
+
+
+  this.studentService.createStudentParent(this.studentFatherForm.value).subscribe(data=>{
+    this.studentResponse = data;
+   if(this.studentResponse.data.length != 0){
+      this._snackBar.open("Student  Father Saved 🙂", "Undo", {
+        duration: 3000,
+      });
+      stepper.next();
+    }else{
+      this._snackBar.open("Oops🥺  An error occured", "Undo", {
+        duration: 3000,
+      });
+    }
+   
+  },error=>{
+    this._snackBar.open("Oops🥺  An error occured", "", {
+      duration: 3000,
+    });
+  })
+ 
+
+
+
+}
+
+updateStudentFatherMother(studID) {
+  this.studentMotherForm.patchValue({
+    studentId: studID
+  });
+
+  this.studentFatherForm.patchValue({
+    studentId: studID
+  });
+}
 
  
   
