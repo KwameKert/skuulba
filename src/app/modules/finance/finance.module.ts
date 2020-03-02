@@ -7,18 +7,25 @@ import { DailyFeesComponent } from './components/daily-fees/daily-fees.component
 import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 import { CollectSchoolFeesComponent } from './components/collect-school-fees/collect-school-fees.component';
 import { CollectFeeDialogComponent } from './components/collect-fee-dialog/collect-fee-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 
 
 @NgModule({
-  declarations: [GenerateBillComponent, DailyFeesComponent, DialogContentComponent, CollectSchoolFeesComponent, CollectFeeDialogComponent],
+ // declarations: [GenerateBillComponent, DailyFeesComponent,  ],
+  declarations: [GenerateBillComponent, DailyFeesComponent,DialogContentComponent , CollectSchoolFeesComponent, CollectFeeDialogComponent],
   imports: [
     CommonModule,
     FinanceRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule
   ],
   entryComponents: [
-    CollectFeeDialogComponent
+    CollectFeeDialogComponent,DialogContentComponent
   ]
+  // entryComponents: [
+  //   CollectFeeDialogComponent,
+  // ]
+  
 })
 export class FinanceModule { }

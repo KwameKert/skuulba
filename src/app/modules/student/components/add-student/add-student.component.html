@@ -12,7 +12,7 @@
             </ng-template>
         </div>
         <div class="col-md-9">
-            <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-horizontal-stepper [linear]="false" #stepper>
                 <mat-step [stepControl]="studentForm">
                   <form [formGroup]="studentForm">
                     <ng-template matStepLabel>Fill out your name</ng-template>

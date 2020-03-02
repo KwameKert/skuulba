@@ -4,7 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Student} from '../../../student/components/student';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogContentComponent } from '../dialog-content/dialog-content.component';
+import { DialogContentComponent } from '../../components/dialog-content/dialog-content.component';
 import { MatDialogConfig} from "@angular/material";
 
 import {MatSnackBar} from '@angular/material/snack-bar';

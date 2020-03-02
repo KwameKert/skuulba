@@ -16,6 +16,7 @@ export class AddStudentComponent implements OnInit {
   studentResponse: any;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  studId: any;
 
   studentForm:any;
   studentMotherForm:any;
@@ -26,11 +27,13 @@ export class AddStudentComponent implements OnInit {
 
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
-
+  public currentUrl: string;
   languageList: string[] = ['Twi', 'Ewe', 'Ga', 'Dagomba', 'Talensi', 'Fante','French','Other'];
  // email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private fb: FormBuilder, private router: Router,private studentService: StudentService, private _snackBar: MatSnackBar ) { }
+  constructor(private fb: FormBuilder, private router: Router,private studentService: StudentService, private _snackBar: MatSnackBar ) {
+
+   }
 
   ngOnInit() {
 
@@ -92,6 +95,7 @@ export class AddStudentComponent implements OnInit {
     this.studentService.createStudent(this.studentForm.value).subscribe(data=>{
       this.studentResponse = data;
      if(this.studentResponse.data.length != 0){
+       this.studId = this.studentResponse.data.id;
         this.updateStudentFatherMother(this.studentResponse.data.id);
         this._snackBar.open("Student  Saved 🙂", "Undo", {
           duration: 3000,
@@ -203,7 +207,7 @@ const formData = new FormData();
 
 
 finishStudentForm(){
-  this.router.navigate(['student/addStudentDetails']);
+  this.router.navigate([`student/addStudentDetails/1/hello`]);
 }
 
 }

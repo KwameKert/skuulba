@@ -18,7 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs'
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} from '@angular/material';
-import { DialogContentComponent } from '../finance/components/dialog-content/dialog-content.component';
+//import { DialogContentComponent } from '../finance/components/dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [AreaComponent, PieComponent, ColumnComponent],
@@ -71,9 +71,6 @@ import { DialogContentComponent } from '../finance/components/dialog-content/dia
     MatTabsModule,
     MatSelectModule,
     MatDialogModule
-  ],
-  entryComponents: [
-    DialogContentComponent
   ]
 })
 export class SharedModule { }

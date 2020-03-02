@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray , FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+//import 'rxjs/add/operator/filter';
+import { switchMap } from 'rxjs/operators';
+import {StudentService} from '../../service/student.service';
+
+
 
 @Component({
   selector: 'app-add-student-details',
@@ -10,13 +16,26 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AddStudentDetailsComponent implements OnInit {
 
   studentInfoForm: any;
+  studentId: any;
+  studentData: any;
   
 
 
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private route: ActivatedRoute,
+    private router: Router,private _studentService: StudentService) {
+   }
 
   ngOnInit() {
+    //let id = this.route.snapshot.paramMap.get('id');
+    this.studentData = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this._studentService.getStudent(parseInt(params.get('id'))))
+    );
+
+    console.log(this.studentData)
+
+   
 
     this.studentInfoForm = this.fb.group({
       primaryCarePhysician: ['',Validators.pattern('[a-zA-Z]*')],
