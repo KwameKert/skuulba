@@ -5,136 +5,153 @@
             <img src="assets/images/headshot.png" class="img-rounded " height="100" />  
         </div>
 
-        <div fxFlex="80">
+        <div fxFlex="80" class="mb-5" *ngIf="studentData">
             <div class="row">
-                <div class="col-md-4"><p class="">Surname:  Boadi </p></div>
-                <div class="col-md-4"> <p class="">Other Names: Micheal Kwame </p></div>
-                <div class="col-md-4"><p class="">Religion:  Christian </p></div>
+                <div class="col-md-4"><p class="">Surname:  {{ studentData.lastName}} </p></div>
+                <div class="col-md-4"> <p class="">Other Names:{{ studentData.otherNames}} </p></div>
+                <div class="col-md-4"><p class="">Religion:  {{ studentData.religion }} </p></div>
             </div>
 
             <div class="row">
                 
-                <div class="col-md-4"> <p class="">Mother Tongue: Twi </p></div>
-                <div class="col-md-4"><p class="">Hometown:  Akim Oda </p></div>
-                <div class="col-md-4"> <p class="">Gender: Male </p></div>
+                <div class="col-md-4"> <p class="">Mother Tongue: {{ studentData.motherTongue}} </p></div>
+                <div class="col-md-4"><p class="">Hometown:  {{ studentData.homeTown}} </p></div>
+                <div class="col-md-4"> <p class="">Gender: {{ studentData.gender}} </p></div>
             </div>
 
             <div class="row">
-                <div class="col-md-4"><p class="">Living With:  Both </p></div>
-                <div class="col-md-4"> <p class="">No. Sibblings: 2 </p></div>
-                <div class="col-md-4"><p class="">Date Of Birth:  2 Jan 2005 </p></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12"><p class="">Date Of Birth:  2 Jan 2005 </p></div>
-               
+                <div class="col-md-4"><p class="">Living With:  {{ studentData.livingWith}} </p></div>
+                <div class="col-md-4"> <p class="">No. Sibblings: {{ studentData.numSiblings}} </p></div>
+                <div class="col-md-4"><p class="">Date Of Birth:  {{ studentData.dob}} </p></div>
             </div>
         </div>
-    </div>
+    </div >
 
     <div class="row " style="margin-top:-40px">
-        <div class="col-md-2 offset-md-10 mb-1 ">
-            <button class="btn btn-success float-right  btn-sm" (click)="saveDetails()">Save Details</button>
-        </div>
     </div>
     <form  [formGroup]="studentInfoForm" >
     <div fxLayout="row" fxLayoutAligin=" start">
         
         <div fxFlex="100">
             <mat-tab-group color="primary" backgroundColor="primary">
-               
                 <mat-tab label="Physical Development"> 
-                <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
-                    <div fxFlex="30" class="text-center" >
-                        <div formArrayName="dates">
-                            <b> Date</b>
-                            <div *ngFor="let alias of dates.controls; let i=index">
-                                <mat-form-field  appearance="outline" >
-                                    <input matInput [matDatepicker]="picker" placeholder="Enter Date" [formControlName]="i" required>
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                  </mat-form-field>
-                            </div>
-                          </div>
-                    </div>
-                    <div fxFlex="20"  class="text-center">
-                        <b>Weight (cm)</b>
-                        <div formArrayName="weights">
-                            <div *ngFor="let alias of weights.controls; let i=index">
-                        <mat-form-field  appearance="outline" >
-                            <input matInput placeholder="10"  [formControlName]="i" required>
-                          </mat-form-field>
-                        </div>
-                        </div>
-                    </div>
-                    <div fxFlex="20"  class="text-center">
-                        <b>Height(cm)</b>
-                        <div formArrayName="heights">
-                            <div *ngFor="let alias of heights.controls; let i=index">
-                                <mat-form-field  appearance="outline" >
-                                    <input matInput placeholder="50"  [formControlName]="i"  required>
-                                  </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                    <div fxFlex="20"  class="text-center">
-                        <b>Remarks</b>
-                        <div formArrayName="remarks">
-                            <div *ngFor="let alias of heights.controls; let i=index">
-                                <mat-form-field  appearance="outline" >
-                                    <input matInput placeholder="10"  [formControlName]="i"  required>
-                                  </mat-form-field>
-                            </div>
-                        </div>
-                       
+                <div fxLayout="row" fxLayoutAlign="center space-evenly" class="mt-3"  >
+                        <form [formGroup]="studentPhysicalForm" >
+
+                            <div formArrayName="physicals">
+                                <div *ngFor="let physical of physicals.controls; let i=index">
+                                  <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px ">
+
+                                    <div fxFlex=25>
+                                        <mat-form-field  appearance="outline" >
+                                            <input matInput [matDatepicker]="picker" placeholder="Enter Date" formControlName="date" required>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <input matInput placeholder="10"  formControlName="weight" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <input matInput placeholder="10"  formControlName="height" >
+                                          </mat-form-field>
+                                   
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <input matInput placeholder="10"  formControlName="remark" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+              
+                                   <div fxFlex="1">
+                                    <button mat-icon-button color="warn"  (click)="removePhysical(i)">
+                                      <mat-icon>delete</mat-icon>
+                                    </button>
+                                    </div> 
+              
+                                  
+                                  
+                                
+                                  </div>
+                                </div>
+
+                                <div class="float-right">
+                                    <button mat-stroked-button color="accent"  (click)="addPhysical()" class="mr-2">Add Item</button>
+
+                                    <span  *ngIf="physicalsaveShow">
+                                        <button mat-stroked-button color="primary"  (click)="savePhysical()" class="float-right" [disabled]="!studentPhysicalForm.valid" disabled > Save</button>
+                                    </span>
+                                </div>
+              
+                                
+                              </div> 
+                        </form>
                       
-                    </div>
-                    <div fxFlex="10"  class="text-center">
-                        <button mat-button color="primary" (click)="addPhysique()"><mat-icon>add</mat-icon> Add</button>
-                    </div>
                 </div>    
                 </mat-tab>
                 <mat-tab label="Education Info"> 
 
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3"  >
-                        <div fxFlex="30" class="text-center" >
-                            <div formArrayName="schoolNames">
-                                <b> School </b>
-                                <div *ngFor="let alias of schoolNames.controls; let i=index">
+                    <div fxLayout="row" fxLayoutAlign="center " class="mt-3"  >
+
+                    <form [formGroup]="studentEducationForm" >
+
+                        <div formArrayName="educations">
+                            <div *ngFor="let education of educations.controls; let i=index">
+                              <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px ">
+
+                                <div fxFlex="25">
                                     <mat-form-field  appearance="outline" >
-                                        <input matInput placeholder="Enter school name" [formControlName]="i" >
+                                        <input matInput placeholder="Montesorri"  formControlName="schoolName" >
                                       </mat-form-field>
+                                  
                                 </div>
+
+                                <div fxFlex="30">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput [matDatepicker]="eduPicker" placeholder="Enter admission date" formControlName="admissionDate" >
+                                        <mat-datepicker-toggle matSuffix [for]="eduPicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #eduPicker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+
+
+                                <div fxFlex="30">
+                                    <mat-form-field  appearance="outline" >
+                                        <input matInput [matDatepicker]="eduPicker2" placeholder="Enter admission date" formControlName="lastAdmissionDate" >
+                                        <mat-datepicker-toggle matSuffix [for]="eduPicker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #eduPicker2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                               <div fxFlex="2">
+                                <button mat-icon-button color="warn"  (click)="removeEducation(i)">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                                </div> 
                               </div>
-                        </div>
-                        <div fxFlex="30"  class="text-center">
-                            <b>Date of Admission</b>
-                            <div formArrayName="admissionDates">
-                                <div *ngFor="let alias of admissionDates.controls; let i=index">
-                                    <mat-form-field  appearance="outline" >
-                                        <input matInput [matDatepicker]="picker" placeholder="Enter Date" [formControlName]="i" required>
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                      </mat-form-field>
                             </div>
+
+                            <div class="float-right">
+                                <button mat-stroked-button color="accent"  (click)="addEducation()" class="mr-2">Add Item</button>
+
+                                <span  *ngIf="educationsaveShow">
+                                    <button mat-stroked-button color="primary"  (click)="saveEducation()" class="float-right" [disabled]="!studentEducationForm.valid" disabled > Save</button>
+                                </span>
                             </div>
-                        </div>
-                        <div fxFlex="30"  class="text-center">
-                            <b>Date of Last Admission</b>
-                            <div formArrayName="lastAdmissionDates">
-                                <div *ngFor="let alias of lastAdmissionDates.controls; let i=index">
-                                    <mat-form-field  appearance="outline" >
-                                        <input matInput [matDatepicker]="picker" placeholder="Enter Date" [formControlName]="i" required>
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                      </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div fxFlex="10"  class="text-center">
-                            <button mat-button color="primary" (click)="addSchool()"><mat-icon>add</mat-icon> Add</button>
-                        </div>
-                    </div> 
+          
+                            
+                          </div>     
+                    </form>
+
+                    </div>
+              
                 </mat-tab>
                 <mat-tab label="Personality Info">
                     

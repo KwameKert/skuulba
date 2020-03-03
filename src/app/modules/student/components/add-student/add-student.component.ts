@@ -207,7 +207,7 @@ const formData = new FormData();
 
 
 finishStudentForm(){
-  this.router.navigate([`student/addStudentDetails/1/hello`]);
+  this.router.navigate([`student/addStudentDetails/6`]);
 }
 
 }

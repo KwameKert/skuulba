@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray , FormBuilder, Validators} from '@angular/forms';
+import { FormArray , FormBuilder, Validators, FormGroup, FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-//import 'rxjs/add/operator/filter';
-import { switchMap } from 'rxjs/operators';
 import {StudentService} from '../../service/student.service';
 
 
@@ -15,9 +13,14 @@ import {StudentService} from '../../service/student.service';
 })
 export class AddStudentDetailsComponent implements OnInit {
 
+  physicalsaveShow: boolean= false;
+  educationsaveShow: boolean= false;
   studentInfoForm: any;
   studentId: any;
-  studentData: any;
+  studentData: any ;
+  responseData : any;
+  studentPhysicalForm: any;
+  studentEducationForm: any;
   
 
 
@@ -27,13 +30,30 @@ export class AddStudentDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
-    //let id = this.route.snapshot.paramMap.get('id');
-    this.studentData = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this._studentService.getStudent(parseInt(params.get('id'))))
-    );
+    this.studentId = this.route.snapshot.paramMap.get('id');
+   
+ 
+    this._studentService.getStudent(parseInt(this.studentId)).subscribe(data=>{
+      this.responseData = data;
+      this.studentData = this.responseData.data;
 
-    console.log(this.studentData)
+    }, error => {
+      console.log(error)
+    })
+
+
+    this.studentPhysicalForm = this.fb.group({
+      physicals: this.fb.array([
+      ]) ,
+    });
+
+
+    this.studentEducationForm = this.fb.group({
+      educations: this.fb.array([
+      ]) ,
+    });
+
+    
 
    
 
@@ -106,6 +126,120 @@ export class AddStudentDetailsComponent implements OnInit {
     });
   
   }
+
+  //physical form 
+  get physicals() : FormArray {
+    return this.studentPhysicalForm.get("physicals") as FormArray
+  }
+ 
+  newPhysical(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      date: '',
+      weight: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
+      height: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
+      remark: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+    })
+  }
+ 
+  addPhysical() { 
+    if(this.physicals.length != null){
+      this.physicalsaveShow = true;
+    }else{
+      this.physicalsaveShow = false;
+    }
+    this.physicals.push(this.newPhysical());
+  }
+ 
+  removePhysical(i:number) {
+    this.physicals.removeAt(i);
+    if(this.physicals.length != null){
+      this.physicalsaveShow = true;
+    }else{
+      this.physicalsaveShow = false;
+    }
+  }
+ 
+  savePhysical() {
+
+    this._studentService.saveStudentPhysical(this.studentPhysicalForm.value).subscribe(data=>{
+      this.responseData = data;
+      console.log(this.responseData.data)
+      if(this.responseData.data.status == 200){
+        this._snackBar.open(  `Student Physical Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+   
+  }
+
+
+
+  //education form 
+  get educations() : FormArray {
+    return this.studentEducationForm.get("educations") as FormArray
+  }
+ 
+  newEducation(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      schoolName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      admissionDate: '',
+      lastAdmissionDate: '',
+    })
+  }
+ 
+  addEducation() { 
+    if(this.educations.length != null){
+      this.educationsaveShow = true;
+    }else{
+      this.educationsaveShow = false;
+    }
+    this.educations.push(this.newEducation());
+  }
+ 
+  removeEducation(i:number) {
+    this.educations.removeAt(i);
+    if(this.educations.length != null){
+      this.educationsaveShow = true;
+    }else{
+      this.educationsaveShow = false;
+    }
+  }
+ 
+  saveEducation() {
+
+    this._studentService.saveStudentEducation(this.studentEducationForm.value).subscribe(data=>{
+      this.responseData = data;
+      console.log(this.responseData.data)
+      if(this.responseData.data.status == 200){
+        this._snackBar.open(  `Student Education Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+
+  
+   
+  }
+
+
+
+
+
+
+
 
   get dates() {
     return this.studentInfoForm.get('dates') as FormArray;

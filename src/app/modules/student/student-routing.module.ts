@@ -12,7 +12,7 @@ import { StudentAttendanceComponent } from './components/student-attendance/stud
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'addStudent', component: AddStudentComponent},
-  {path: 'addStudentDetails/:id/:name', component: AddStudentDetailsComponent},
+  {path: 'addStudentDetails/:id', component: AddStudentDetailsComponent},
   {path:'searchStudent', component:SearchStudentComponent},
   {path:'viewStudent', component:ViewStudentComponent},
   {path:'editStudentInfo', component:EditStudentInfoComponent},

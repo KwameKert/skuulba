@@ -12,9 +12,7 @@ export class StudentService {
   constructor(private _httpClient: HttpClient) { }
 
   public getStudent(id: number){
-    let url = `${this.baseUrl}/student/${id}`;
-    return url;
-    console.log(url)
+    //let url = `${this.baseUrl}/student/${id}`;
     return this._httpClient.get(`${this.baseUrl}/student/${id}`)
   }
 
@@ -22,6 +20,13 @@ export class StudentService {
     return this._httpClient.post(`${this.baseUrl}/student/`,data);
   }
 
+  public saveStudentPhysical(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentPhysical/`,data);
+  }
+
+  public saveStudentEducation(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentEducation/`,data);
+  }
 
   public createStudentParent(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentParent/`,data);
