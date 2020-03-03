@@ -283,7 +283,7 @@
                             </div>
         
                             <div fxFlex="30">
-                                <button mat-stroked-button color="primary"  (click)="saveHealth()" class="float-right" [disabled]="!studentHealthForm.valid" disabled > Save</button>
+                                <button mat-stroked-button color="primary"  (click)="saveHealth()" class="float-right" [disabled]="!studentHealthForm.valid" disabled > Save Student Health</button>
                             </div>
         
                          
@@ -295,36 +295,48 @@
                 </mat-tab>
             
                 <mat-tab label="Handicap Info">
+                    <form  [formGroup]="studentHandicapForm">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly " class="mt-4" >
+                        <div formArrayName="handicaps">
+                            <div *ngFor="let handicap of handicaps.controls; let i=index">
+                                    <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="10px ">
+  
+                                  <div fxFlex="50">
+                                      <mat-form-field  appearance="outline" >
+                                          <input matInput placeholder="hand"  formControlName="handicapPart" >
+                                        </mat-form-field>
+                                    
+                                  </div>
 
-                    <div fxLayout="row" fxLayoutAlign="start"  class="mt-4">
-                        <div fxFlex="50" class="text-center">
-                            <div formArrayName="handicapParts">
-                                <b>Handicap Part</b>
-                                <div *ngFor="let alias of handicapParts.controls; let i=index">
-                                    <mat-form-field  appearance="outline"  style="width:300px">
-                                        <input matInput  placeholder="Enter part" [formControlName]="i" >
+                                  <div fxFlex="40">
+                                    <mat-form-field  appearance="outline" >
+                                        <mat-label>Textarea</mat-label>
+                                        <textarea matInput formControlName="handicapDescription"></textarea>
+                                  
                                       </mat-form-field>
+                                  
                                 </div>
-                            </div>
-                        </div>
-    
-                        <div fxFlex="50" class="text-center">
-                            <div formArrayName="handicapDescriptions">
-                                <b>Handicap Description</b>
-                                <div *ngFor="let alias of handicapDescriptions.controls; let i=index">
-                                    <mat-form-field  appearance="outline"  style="width:300px">
-                                        <input matInput  placeholder="Enter Description" [formControlName]="i" >
-                                      </mat-form-field>
+  
+                                 <div fxFlex="2">
+                                  <button mat-icon-button color="warn"  (click)="removeHandicap(i)">
+                                    <mat-icon>delete</mat-icon>
+                                  </button>
+                                  </div> 
                                 </div>
-                            </div>
-                        </div>
+                              </div>
 
-                        <div fxFlex="10"  class="text-center">
-                            <button mat-button color="primary" (click)="addHandicap()"><mat-icon>add</mat-icon> Add</button>
+                              <div class="float-right">
+                                <button mat-stroked-button color="accent"  (click)="addHandicap()" class="mr-2">Add Item</button>
+
+                                <span  *ngIf="handicapSaveShow">
+                                    <button mat-stroked-button color="primary"  (click)="saveHandicap()" class="float-right" [disabled]="!studentHandicapForm.valid" disabled > Save</button>
+                                </span>
+                            </div>
+
                         </div>
-    
                      
                     </div> 
+                    </form>
                 </mat-tab>
 
                 <mat-tab label="Special Talents">

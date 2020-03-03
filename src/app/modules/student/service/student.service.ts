@@ -37,6 +37,10 @@ export class StudentService {
     return this._httpClient.post(`${this.baseUrl}/studentHealth/`,data);
   }
 
+  public saveStudentHandicap(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentHandicap/`,data);
+  }
+
   public createStudentParent(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentParent/`,data);
   }

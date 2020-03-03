@@ -16,6 +16,7 @@ export class AddStudentDetailsComponent implements OnInit {
   physicalsaveShow: boolean= false;
   personalitySaveShow: boolean= false;
   educationsaveShow: boolean= false;
+  handicapSaveShow: boolean= false;
   studentInfoForm: any;
   studentHealthForm: any;
   studentId: any;
@@ -24,6 +25,7 @@ export class AddStudentDetailsComponent implements OnInit {
   studentPhysicalForm: any;
   studentEducationForm: any;
   studentPersonalityForm: any;
+  studentHandicapForm: any;
   
 
 
@@ -61,13 +63,20 @@ export class AddStudentDetailsComponent implements OnInit {
       ]) ,
     });
 
+
+    this.studentHandicapForm = this.fb.group({
+      handicaps: this.fb.array([
+      ]) ,
+    });
+
     this.studentHealthForm = this.fb.group({
-      primaryCarePhysician: ['',Validators.pattern('[a-zA-Z]*')],
+      studentId: this.studentId,
+      primaryCarePhysician: [''],
       pcpNumber: ['',Validators.pattern('[0-9]*$')],
-      insuranceNumber: ['',Validators.pattern('[0-9]*$')],
-      preferredMedicalFacility: ['',Validators.pattern('[a-zA-Z]*')],
-      policyHolderName: ['',Validators.pattern('[a-zA-Z]*')],
-      insuranceName: ['',Validators.pattern('[a-zA-Z]*')],
+      insuranceNumber: ['',[Validators.pattern('[0-9]*$')]],
+      preferredMedicalFacility: [''],
+      policyHolderName: [''],
+      insuranceName: [''],
       policyNumber: ['',Validators.pattern('[0-9]*$')],
     })
     
@@ -318,7 +327,68 @@ export class AddStudentDetailsComponent implements OnInit {
     });
   })
 
+
+
   }
+
+
+  //handicap form 
+  get handicaps() : FormArray {
+    return this.studentHandicapForm.get("handicaps") as FormArray
+  }
+ 
+  newHandicap(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      handicapPart:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      handicapDescription: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')])
+    })
+  }
+ 
+  addHandicap() { 
+    if(this.handicaps.length != null){
+      this.handicapSaveShow = true;
+    }else{
+      this.handicapSaveShow = false;
+    }
+    this.handicaps.push(this.newHandicap());
+  }
+ 
+  removeHandicap(i:number) {
+    this.handicaps.removeAt(i);
+    if(this.handicaps.length != null){
+      this.handicapSaveShow = true;
+    }else{
+      this.handicapSaveShow = false;
+    }
+  }
+ 
+  saveHandicap() {
+
+    this._studentService.saveStudentHandicap(this.studentHandicapForm.value).subscribe(data=>{
+      this.responseData = data;
+      if(this.responseData.status == 200){
+        this._snackBar.open(  `Student Handicap Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+
+  }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -437,27 +507,27 @@ export class AddStudentDetailsComponent implements OnInit {
   // }
 
 
-  get handicapParts() {
-    return this.studentInfoForm.get('handicapParts') as FormArray;
-  }
+  // get handicapParts() {
+  //   return this.studentInfoForm.get('handicapParts') as FormArray;
+  // }
 
-  addHandicapPart() {
-    this.handicapParts.push(this.fb.control(''));
-  }
+  // addHandicapPart() {
+  //   this.handicapParts.push(this.fb.control(''));
+  // }
 
 
-  get handicapDescriptions() {
-    return this.studentInfoForm.get('handicapDescriptions') as FormArray;
-  }
+  // get handicapDescriptions() {
+  //   return this.studentInfoForm.get('handicapDescriptions') as FormArray;
+  // }
 
-  addHandicapDescription() {
-    this.handicapDescriptions.push(this.fb.control(''));
-  }
+  // addHandicapDescription() {
+  //   this.handicapDescriptions.push(this.fb.control(''));
+  // }
 
-  addHandicap(){
-    this.addHandicapPart();
-    this.addHandicapDescription();
-  }
+  // addHandicap(){
+  //   this.addHandicapPart();
+  //   this.addHandicapDescription();
+  // }
 
 
   
