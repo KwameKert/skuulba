@@ -14,13 +14,16 @@ import {StudentService} from '../../service/student.service';
 export class AddStudentDetailsComponent implements OnInit {
 
   physicalsaveShow: boolean= false;
+  personalitySaveShow: boolean= false;
   educationsaveShow: boolean= false;
   studentInfoForm: any;
+  studentHealthForm: any;
   studentId: any;
   studentData: any ;
   responseData : any;
   studentPhysicalForm: any;
   studentEducationForm: any;
+  studentPersonalityForm: any;
   
 
 
@@ -53,6 +56,20 @@ export class AddStudentDetailsComponent implements OnInit {
       ]) ,
     });
 
+    this.studentPersonalityForm = this.fb.group({
+      personalities: this.fb.array([
+      ]) ,
+    });
+
+    this.studentHealthForm = this.fb.group({
+      primaryCarePhysician: ['',Validators.pattern('[a-zA-Z]*')],
+      pcpNumber: ['',Validators.pattern('[0-9]*$')],
+      insuranceNumber: ['',Validators.pattern('[0-9]*$')],
+      preferredMedicalFacility: ['',Validators.pattern('[a-zA-Z]*')],
+      policyHolderName: ['',Validators.pattern('[a-zA-Z]*')],
+      insuranceName: ['',Validators.pattern('[a-zA-Z]*')],
+      policyNumber: ['',Validators.pattern('[0-9]*$')],
+    })
     
 
    
@@ -165,7 +182,7 @@ export class AddStudentDetailsComponent implements OnInit {
     this._studentService.saveStudentPhysical(this.studentPhysicalForm.value).subscribe(data=>{
       this.responseData = data;
       console.log(this.responseData.data)
-      if(this.responseData.data.status == 200){
+      if(this.responseData.status == 200){
         this._snackBar.open(  `Student Physical Form saved successfully`, "", {
           duration: 3000,
         });
@@ -218,7 +235,7 @@ export class AddStudentDetailsComponent implements OnInit {
     this._studentService.saveStudentEducation(this.studentEducationForm.value).subscribe(data=>{
       this.responseData = data;
       console.log(this.responseData.data)
-      if(this.responseData.data.status == 200){
+      if(this.responseData.status == 200){
         this._snackBar.open(  `Student Education Form saved successfully`, "", {
           duration: 3000,
         });
@@ -230,10 +247,78 @@ export class AddStudentDetailsComponent implements OnInit {
     });
   })
 
-  
-   
   }
 
+
+  //personality form 
+  get personalities() : FormArray {
+    return this.studentPersonalityForm.get("personalities") as FormArray
+  }
+ 
+  newPersonality(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      trait:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      studentClass: new FormControl('',[Validators.required]),
+      score: new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
+      remark:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')])
+    })
+  }
+ 
+  addPersonality() { 
+    if(this.personalities.length != null){
+      this.personalitySaveShow = true;
+    }else{
+      this.personalitySaveShow = false;
+    }
+    this.personalities.push(this.newPersonality());
+  }
+ 
+  removePersonality(i:number) {
+    this.personalities.removeAt(i);
+    if(this.personalities.length != null){
+      this.personalitySaveShow = true;
+    }else{
+      this.personalitySaveShow = false;
+    }
+  }
+ 
+  savePersonality() {
+
+    this._studentService.saveStudentPersonality(this.studentPersonalityForm.value).subscribe(data=>{
+      this.responseData = data;
+      if(this.responseData.status == 200){
+        this._snackBar.open(  `Student Personality Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+
+  }
+
+
+  saveHealth(){
+
+    this._studentService.saveStudentHealth(this.studentHealthForm.value).subscribe(data=>{
+      this.responseData = data;
+      if(this.responseData.status == 200){
+        this._snackBar.open(  `Student Health Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+
+  }
 
 
 
@@ -344,12 +429,12 @@ export class AddStudentDetailsComponent implements OnInit {
     this.personalityRemarks.push(this.fb.control(''));
   }
 
-  addPersonality(){
-    this.addTrait();
-    this.addScore();
-    this.addPersonalityRemark();
-    this.addClass();
-  }
+  // addPersonality(){
+  //   this.addTrait();
+  //   this.addScore();
+  //   this.addPersonalityRemark();
+  //   this.addClass();
+  // }
 
 
   get handicapParts() {

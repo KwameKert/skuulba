@@ -28,6 +28,15 @@ export class StudentService {
     return this._httpClient.post(`${this.baseUrl}/studentEducation/`,data);
   }
 
+  public saveStudentPersonality(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentPersonality/`,data);
+  }
+
+
+  public saveStudentHealth(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentHealth/`,data);
+  }
+
   public createStudentParent(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentParent/`,data);
   }
