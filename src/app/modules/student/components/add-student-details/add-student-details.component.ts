@@ -14,6 +14,8 @@ import {StudentService} from '../../service/student.service';
 export class AddStudentDetailsComponent implements OnInit {
 
   physicalsaveShow: boolean= false;
+  awardsaveShow: boolean= false;
+  talentSaveShow: boolean= false;
   personalitySaveShow: boolean= false;
   educationsaveShow: boolean= false;
   handicapSaveShow: boolean= false;
@@ -26,6 +28,8 @@ export class AddStudentDetailsComponent implements OnInit {
   studentEducationForm: any;
   studentPersonalityForm: any;
   studentHandicapForm: any;
+  studentTalentForm: any;
+  studentAwardForm: any;
   
 
 
@@ -58,6 +62,12 @@ export class AddStudentDetailsComponent implements OnInit {
       ]) ,
     });
 
+
+    this.studentAwardForm = this.fb.group({
+      awards: this.fb.array([
+      ]) ,
+    });
+
     this.studentPersonalityForm = this.fb.group({
       personalities: this.fb.array([
       ]) ,
@@ -66,6 +76,12 @@ export class AddStudentDetailsComponent implements OnInit {
 
     this.studentHandicapForm = this.fb.group({
       handicaps: this.fb.array([
+      ]) ,
+    });
+
+
+    this.studentTalentForm = this.fb.group({
+      talents: this.fb.array([
       ]) ,
     });
 
@@ -382,218 +398,115 @@ export class AddStudentDetailsComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  get dates() {
-    return this.studentInfoForm.get('dates') as FormArray;
+  //talents form 
+  get talents() : FormArray {
+    return this.studentTalentForm.get("talents") as FormArray
   }
-
-  addDate() {
-    this.dates.push(this.fb.control(''));
+ 
+  newTalent(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      date:  '',
+      particulars: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')])
+    })
   }
-
-
-  get admissionDates() {
-    return this.studentInfoForm.get('admissionDates') as FormArray;
+ 
+  addTalent() { 
+    if(this.talents.length != null){
+      this.talentSaveShow = true;
+    }else{
+      this.talentSaveShow = false;
+    }
+    this.talents.push(this.newTalent());
   }
-
-  addAdmissionDate() {
-    this.admissionDates.push(this.fb.control(''));
+ 
+  removeTalent(i:number) {
+    this.talents.removeAt(i);
+    if(this.talents.length != null){
+      this.talentSaveShow = true;
+    }else{
+      this.talentSaveShow = false;
+    }
   }
+ 
+  saveTalent() {
 
-  get schoolNames() {
-    return this.studentInfoForm.get('schoolNames') as FormArray;
-  }
+    this._studentService.saveStudentTalent(this.studentTalentForm.value).subscribe(data=>{
+      this.responseData = data;
+      if(this.responseData.status == 200){
+        this._snackBar.open(  `Student Talent Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
 
-  addSchoolName() {
-    this.schoolNames.push(this.fb.control(''));
-  }
-
-
-  get lastAdmissionDates() {
-    return this.studentInfoForm.get('lastAdmissionDates') as FormArray;
-  }
-
-  addLastAdmissionDate() {
-    this.lastAdmissionDates.push(this.fb.control(''));
-  }
-
-  get weights() {
-    return this.studentInfoForm.get('weights') as FormArray;
-  }
-
-  addWeight() {
-    this.weights.push(this.fb.control(''));
-  }
-
-  get heights() {
-    return this.studentInfoForm.get('heights') as FormArray;
-  }
-
-  addHeight() {
-    this.heights.push(this.fb.control(''));
-  }
-
-  get remarks() {
-    return this.studentInfoForm.get('remarks') as FormArray;
-  }
-
-  addRemark() {
-    this.remarks.push(this.fb.control(''));
-  }
-
-  addPhysique(){
-    this.addDate();
-    this.addHeight();
-    this.addWeight();
-    this.addRemark();
-  }
-
-  addSchool(){
-    this.addLastAdmissionDate();
-    this.addSchoolName();
-    this.addAdmissionDate();
-  }
-
-  get traits() {
-    return this.studentInfoForm.get('traits') as FormArray;
-  }
-
-  addTrait() {
-    this.traits.push(this.fb.control(''));
-  }
-
-  get classes() {
-    return this.studentInfoForm.get('classes') as FormArray;
-  }
-
-  addClass() {
-    this.classes.push(this.fb.control(''));
-  }
-
-  get scores() {
-    return this.studentInfoForm.get('scores') as FormArray;
-  }
-
-  addScore() {
-    this.scores.push(this.fb.control(''));
-  }
-
-  get personalityRemarks() {
-    return this.studentInfoForm.get('personalityRemarks') as FormArray;
-  }
-
-  addPersonalityRemark() {
-    this.personalityRemarks.push(this.fb.control(''));
-  }
-
-  // addPersonality(){
-  //   this.addTrait();
-  //   this.addScore();
-  //   this.addPersonalityRemark();
-  //   this.addClass();
-  // }
-
-
-  // get handicapParts() {
-  //   return this.studentInfoForm.get('handicapParts') as FormArray;
-  // }
-
-  // addHandicapPart() {
-  //   this.handicapParts.push(this.fb.control(''));
-  // }
-
-
-  // get handicapDescriptions() {
-  //   return this.studentInfoForm.get('handicapDescriptions') as FormArray;
-  // }
-
-  // addHandicapDescription() {
-  //   this.handicapDescriptions.push(this.fb.control(''));
-  // }
-
-  // addHandicap(){
-  //   this.addHandicapPart();
-  //   this.addHandicapDescription();
-  // }
-
-
-  
-  get specialTalentDates() {
-    return this.studentInfoForm.get('specialTalentDates') as FormArray;
-  }
-
-  addSpecialTalentDate() {
-    this.specialTalentDates.push(this.fb.control(''));
-  }
-
-
-  get specialTalentParticulars() {
-    return this.studentInfoForm.get('specialTalentParticulars') as FormArray;
-  }
-
-  addSpecialTalentParticulars() {
-    this.specialTalentParticulars.push(this.fb.control(''));
-  }
-
-
-  addSpecialTalent(){
-    this.addSpecialTalentDate();
-    this.addSpecialTalentParticulars();
-  }
-
-
-  get awardDates() {
-    return this.studentInfoForm.get('awardDates') as FormArray;
-  }
-
-  addAwardDate() {
-    this.awardDates.push(this.fb.control(''));
-  }
-
-
-  get awardNames() {
-    return this.studentInfoForm.get('awardNames') as FormArray;
-  }
-
-  addAwardName() {
-    this.awardNames.push(this.fb.control(''));
-  }
-
-  get awardRemarks() {
-    return this.studentInfoForm.get('awardRemarks') as FormArray;
-  }
-
-  addAwardRemark() {
-    this.awardRemarks.push(this.fb.control(''));
-  }
-
-
-  addAward(){
-    this.addAwardDate();
-    this.addAwardName();
-    this.addAwardRemark();
-  }
-
-
-
-  saveDetails(){
-    this._snackBar.open("Student Details Saved", "", {
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
       duration: 3000,
     });
+  })
+
   }
+
+
+  //awards form 
+  get awards() : FormArray {
+    return this.studentAwardForm.get("awards") as FormArray
+  }
+ 
+  newAward(): FormGroup {
+    return this.fb.group({
+      studentId: this.studentId,
+      date:  '',
+      awardName:  ['',[Validators.required]],
+      remark:  ['',[Validators.required]]
+    })
+  }
+ 
+  addAward() { 
+    if(this.awards.length != null){
+      this.awardsaveShow = true;
+    }else{
+      this.awardsaveShow = false;
+    }
+    this.awards.push(this.newAward());
+  }
+ 
+  removeAward(i:number) {
+    this.awards.removeAt(i);
+    if(this.awards.length != null){
+      this.awardsaveShow = true;
+    }else{
+      this.awardsaveShow = false;
+    }
+  }
+ 
+  saveAward() {
+
+    this._studentService.saveStudentAward(this.studentAwardForm.value).subscribe(data=>{
+      this.responseData = data;
+      if(this.responseData.status == 200){
+        this._snackBar.open(  `Student Award Form saved successfully`, "", {
+          duration: 3000,
+        });
+      }
+
+  }, error=>{
+    this._snackBar.open(  `Ooops an error occured`, "", {
+      duration: 3000,
+    });
+  })
+
+  }
+
+
+
+
+
+
+
+
+
+
 
 
 

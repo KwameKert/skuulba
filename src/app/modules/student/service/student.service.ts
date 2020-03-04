@@ -41,6 +41,15 @@ export class StudentService {
     return this._httpClient.post(`${this.baseUrl}/studentHandicap/`,data);
   }
 
+
+  public saveStudentTalent(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentTalent/`,data);
+  }
+  public saveStudentAward(data: any){
+    return this._httpClient.post(`${this.baseUrl}/studentAward/`,data);
+  }
+
+
   public createStudentParent(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentParent/`,data);
   }
