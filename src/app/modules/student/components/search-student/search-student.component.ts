@@ -3,7 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Student} from '../student';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import {StudentService} from '../../service/student.service';
 
 
 @Component({
@@ -12,16 +13,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-student.component.scss']
 })
 export class SearchStudentComponent implements OnInit {
+  studentId: any;
   displayedColumns = ['full name', 'class', 'age', 'gender','action'];
-  dataSource = new MatTableDataSource(STUDENT_DATA);
+  dataSource :any ;
+  responseData: any ;
+  students: any;
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _studentService: StudentService,private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+   
+
+    this.getAllStudents();
+   
+ 
   }
+
+  getAllStudents(){
+    this._studentService.listStudents().subscribe(data=>{
+      this.responseData = data;
+      this.dataSource  = new MatTableDataSource(this.responseData.data);
+      //console.log();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.students = this.responseData.data;
+    }, error=>{
+      console.log(error)
+    })
+  }
+
+
 
 
   applyFilter(event: Event) {
@@ -33,8 +57,9 @@ export class SearchStudentComponent implements OnInit {
     }
   }
 
-  viewStudent(){
-    this.router.navigate(['student/viewStudent']);
+  viewStudent(id: any){
+    //console.log(id);
+    this.router.navigate([`student/viewStudent/${id}`]);
   }
 
   editStudent(){

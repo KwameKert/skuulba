@@ -50,6 +50,15 @@ export class StudentService {
   }
 
 
+  public listStudents(){
+    return this._httpClient.get(`${this.baseUrl}/student/`);
+  }
+
+  public getStudentDetails(id: any){
+    return this._httpClient.get(`${this.baseUrl}/student/studentDetails/${id}`)
+  }
+
+
   public createStudentParent(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentParent/`,data);
   }

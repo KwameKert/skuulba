@@ -32,13 +32,12 @@ export class AddStudentDetailsComponent implements OnInit {
   studentAwardForm: any;
   
 
-
-
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private route: ActivatedRoute,
     private router: Router,private _studentService: StudentService) {
    }
 
   ngOnInit() {
+    
     this.studentId = this.route.snapshot.paramMap.get('id');
    
  

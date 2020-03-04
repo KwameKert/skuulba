@@ -9,7 +9,7 @@
     <br>
     <mat-divider></mat-divider>
     
-<a  mat-list-item  routerLinkActive="list-item-active"   active   routerLink="/dashboard">  <mat-icon class="sidebar-icon">home</mat-icon  > Dashboard</a>
+<a  mat-list-item  routerLinkActive="list-item-active"   active   routerLink="/student/dashboard">  <mat-icon class="sidebar-icon">home</mat-icon  > Dashboard</a>
 
 <a  mat-list-item  routerLinkActive="list-item-active" (click)="showStudentLinks()"  data-toggle="collapse" href="#studentLinks"><mat-icon  class="sidebar-icon">account_box</mat-icon> Students <mat-icon class="li-icon" [style.display]="studentLinks ? 'none':'block'"  >keyboard_arrow_right</mat-icon>  <mat-icon class="li-icon" [style.display]="studentLinks ? 'block':'none'" >keyboard_arrow_down</mat-icon></a>
 <div class="collapse" id="studentLinks">
