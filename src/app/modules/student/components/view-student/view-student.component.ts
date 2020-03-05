@@ -171,45 +171,9 @@ export class ViewStudentComponent implements OnInit {
  
 
   editStudent(){
-    this.router.navigate(['student/editStudentInfo'])
+    this.router.navigate([`student/editStudentInfo${this.studentId}`])
   }
 
 }
-
-const PHYSICAL_DATA = [
-  {date: new Date(2019, 0, 23),weight: 23, height: 12, remark: 'Nice Growth'},
-  {date: new Date(2019, 0, 23),weight: 23, height: 12, remark: 'Nice Growth'},
-  {date: new Date(2019, 0, 23),weight: 23, height: 12, remark: 'Nice Growth'},
-]
-
-const EDUCATION_DATA = [
-  {lastAdmissionDate: new Date(),admissionDate: new Date(),school:'Ransom'},
-  {lastAdmissionDate: new Date(),admissionDate: new Date(),school:'Ransom'},
-  {lastAdmissionDate: new Date(),admissionDate: new Date(),school:'Ransom'},
-]
-
-
-const PERSONALITY_DATA = [
-  {trait: 'brilliance',class: 2, score: 2, remark: 'Nice Growth'},
-  {trait: 'brilliance',class: 2, score: 2, remark: 'Nice Growth'},
-  {trait: 'brilliance',class: 2, score: 2, remark: 'Nice Growth'},
-  {trait: 'brilliance',class: 2, score: 2, remark: 'Nice Growth'}
-]
-
-const HANDICAP_DATA = [
-  {part: 'hand',description: 'weak hand'},
-  {part: 'hand',description: 'weak hand'},
-  {part: 'hand',description: 'weak hand'},
-]
-
-const TALENT_DATA = [
-  {date: new Date(),particulars: 'Good listner'},
-  {date: new Date(),particulars: 'Good listner'},
-]
-
-const AWARD_DATA = [
-  {date: new Date(),award: 'Best Student', remark: 'Overall best student'},
-  {date: new Date(),award: 'Best Student', remark: 'Overall best student'},
-]
 
 

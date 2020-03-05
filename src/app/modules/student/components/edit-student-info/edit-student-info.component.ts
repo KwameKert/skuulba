@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
-
+import {StudentService} from '../../service/student.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-edit-student-info',
@@ -14,11 +16,13 @@ export class EditStudentInfoComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
+  studentId : any;
   studentForm:any;
   studentMotherForm:any;
   studentFatherForm:any;
   fileData: File = null;
   previewUrl:any = null;
+  responseData: any ;
   isMotherDeceased: boolean = false;
 
   fileUploadProgress: string = null;
@@ -27,56 +31,146 @@ export class EditStudentInfoComponent implements OnInit {
   languageList: string[] = ['Twi', 'Ewe', 'Ga', 'Dagomba', 'Talensi', 'Fante','French','Other'];
  // email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private _studentService: StudentService,  private _snackBar: MatSnackBar ) { }
 
   ngOnInit() {
 
+    this.studentId = this.route.snapshot.paramMap.get('id');
     this.previewUrl = 'assets/images/profile.jpg';
 
     this.studentForm = new FormGroup({
-      surname: new FormControl('Asante',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      otherNames: new FormControl('Kwame Vincent',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      religion: new FormControl('Christian',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      motherTongue: new FormControl('Twi',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      homeTown: new FormControl('Asante Mampong',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      gender: new FormControl('male',[Validators.required]),
-      dob: new FormControl(new Date(),[Validators.required]),
-      livingWith: new FormControl('both',[Validators.required]),
+      id: new FormControl(''),
+      lastName: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      otherNames: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      motherTongue: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      homeTown: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      gender: new FormControl('',[Validators.required]),
+      dob: new FormControl('',[Validators.required]),
+      livingWith: new FormControl('',[Validators.required]),
       image: new FormControl('',[Validators.required]),
-      numSibblings: new FormControl(2,[Validators.required,Validators.pattern('[0-9]*$')]),
-      languages: new FormControl(['Ewe','Twi'],[Validators.required])
+      noSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
+      languages: new FormControl('',[Validators.required])
     });
 
     
+    
 
     this.studentMotherForm = new FormGroup({
-      fullName:  new FormControl('Maame Serwaa',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      address:  new FormControl('Sobolo St',[Validators.required]),
-      phoneNumber:  new FormControl('02023413',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('maame@gmail.com',[Validators.required,  Validators.email]),
-      occupation: new FormControl('Trader',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      educationStatus: new FormControl('Degree',[Validators.required]),
-      religion: new FormControl('Christian',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      numSpouse: new FormControl(1,[Validators.required,  Validators.pattern('[0-9]*$')]),
+      id: new FormControl(''),
+      studentId: new FormControl(''),
+      relation: new FormControl('mother'),
+      fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      address:  new FormControl('',[Validators.required]),
+      phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
+      email:  new FormControl('',[Validators.required,  Validators.email]),
+      occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      educationStatus: new FormControl('',[Validators.required]),
+      religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      numSpouse: new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
       dateDeceased: new FormControl(''),
       isDeceased: new FormControl(''),
-      relationToStudent: new FormControl('mother')
     });
 
 
     this.studentFatherForm = new FormGroup({
-      fullName:  new FormControl('Mr Boateng',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      address:  new FormControl('Sobolo St',[Validators.required]),
-      phoneNumber:  new FormControl('023413434',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('boat@gmail.com',[Validators.required,  Validators.email]),
-      occupation: new FormControl('Salesman',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      educationStatus: new FormControl('Degree',[Validators.required]),
-      religion: new FormControl('Christian',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
-      numSpouse: new FormControl(1,[Validators.required,  Validators.pattern('[0-9]*$')]),
+      id: new FormControl(''),
+      studentId:new FormControl(''),
+      relation: new FormControl('father'),
+      fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      address:  new FormControl('',[Validators.required]),
+      phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
+      email:  new FormControl('',[Validators.required,  Validators.email]),
+      occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      educationStatus: new FormControl('',[Validators.required]),
+      religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      numSpouse: new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
       dateDeceased: new FormControl(''),
       isDeceased: new FormControl(''),
       relationToStudent: new FormControl('father')
     });
+
+    this._studentService.getStudentDetails(this.studentId).subscribe( data=>{
+
+      this.responseData = data;
+
+    
+      console.log(this.responseData.data)
+      if(this.responseData.data.student != null){
+        this.patchStudentForm(this.responseData.data.student)
+      }
+
+      if(this.responseData.data.studentParent[0] != null){
+        this.patchStudentMotherForm(this.responseData.data.studentParent[0])
+      }
+      if(this.responseData.data.studentParent[1] != null){
+        this.patchStudentFatherForm(this.responseData.data.studentParent[1])
+      }
+
+    }, error=>{
+
+    })
+
+
+
+  }
+
+
+  patchStudentForm(student){
+    this.studentForm.patchValue({
+      id: student.id,
+      lastName: student.lastName,
+      otherNames: student.otherNames,
+      religion: student.religion,
+      motherTongue: student.motherTongue,
+      homeTown: student.homeTown,
+      gender: student.gender,
+      dob: student.dob,
+      livingWith:student.livingWith,
+     
+      noSiblings: student.noSiblings,
+      languages: ['Twi','Ewe']
+
+    })
+  }
+
+
+  patchStudentMotherForm(studentMother){
+    this.studentMotherForm.patchValue({
+      id:studentMother.id,
+      studentId: this.studentId,
+      fullName:  studentMother.fullName,
+      address:  studentMother.address,
+      phoneNumber:  studentMother.phoneNumber,
+      email:  studentMother.email,
+      occupation: studentMother.occupation,
+      educationStatus: studentMother.educationStatus,
+      religion: studentMother.religion,
+      numSpouse: studentMother.numSpouse,
+      dateDeceased: studentMother.dateDeceased,
+      isDeceased: studentMother.isDeceased,
+    })
+
+  }
+
+
+
+    patchStudentFatherForm(studentFather){
+      this.studentFatherForm.patchValue({
+        id:studentFather.id,
+        studentId: this.studentId,
+        fullName:  studentFather.fullName,
+        address:  studentFather.address,
+        phoneNumber:  studentFather.phoneNumber,
+        email:  studentFather.email,
+        occupation: studentFather.occupation,
+        educationStatus: studentFather.educationStatus,
+        religion: studentFather.religion,
+        numSpouse: studentFather.numSpouse,
+        dateDeceased: studentFather.dateDeceased,
+        isDeceased: studentFather.isDeceased,
+      })
+
 
   }
 
@@ -103,6 +197,62 @@ reader.onload = (_event) => {
 }
 }
 
+
+
+
+updateStudent(stepper: MatStepper){
+  this._studentService.updateStudent(this.studentForm.value).subscribe(data=>{
+    this.responseData = data; 
+    if(this.responseData.status == 200){
+      this._snackBar.open("Student  Updated 🙂", "", {
+        duration: 3000,
+      });
+      stepper.next();
+    }
+  
+  }, error =>{
+    this._snackBar.open("Oops an error occured", "", {
+      duration: 3000,
+    });
+  })
+}
+
+updateStudentMother(stepper: MatStepper){
+  this._studentService.updateStudentParent(this.studentMotherForm.value).subscribe(data=>{
+    this.responseData = data; 
+    if(this.responseData.status == 200){
+      this._snackBar.open("Student Mother  Updated 🙂", "", {
+        duration: 3000,
+      });
+      stepper.next();
+    }
+  
+  }, error =>{
+    this._snackBar.open("Oops an error occured", "Undo", {
+      duration: 3000,
+    });
+  })
+}
+
+
+updateStudentFather(stepper: MatStepper){
+  this._studentService.updateStudentParent(this.studentFatherForm.value).subscribe(data=>{
+    this.responseData = data; 
+    if(this.responseData.status == 200){
+      this._snackBar.open("Student Father  Updated 🙂", "", {
+        duration: 3000,
+      });
+      stepper.next();
+    }
+  
+  }, error =>{
+    this._snackBar.open("Oops an error occured", "Undo", {
+      duration: 3000,
+    });
+  })
+}
+
+
 onSubmit() {
 const formData = new FormData();
   formData.append('file', this.fileData);
@@ -111,7 +261,7 @@ const formData = new FormData();
 
 
 editStudentDetails(){
-  this.router.navigate(['student/editStudentDetails']);
+  this.router.navigate([`student/editStudentDetails/${this.studentId}`]);
 }
 
 }

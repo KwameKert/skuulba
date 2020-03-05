@@ -15,8 +15,8 @@ const routes: Routes = [
   {path: 'addStudentDetails/:id', component: AddStudentDetailsComponent},
   {path:'searchStudent', component:SearchStudentComponent},
   {path:'viewStudent/:id', component:ViewStudentComponent},
-  {path:'editStudentInfo', component:EditStudentInfoComponent},
-  {path:'editStudentDetails', component:EditStudentDetailsComponent},
+  {path:'editStudentInfo/:id', component:EditStudentInfoComponent},
+  {path:'editStudentDetails/:id', component:EditStudentDetailsComponent},
   {path:'studentAttendance', component:StudentAttendanceComponent},
 ]
 

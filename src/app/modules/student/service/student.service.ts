@@ -20,8 +20,42 @@ export class StudentService {
     return this._httpClient.post(`${this.baseUrl}/student/`,data);
   }
 
+
+  public updateStudent(data: any){
+    return this._httpClient.put(`${this.baseUrl}/student/`,data);
+  }
+
+  public updateStudentParent(data: any){
+    return this._httpClient.put(`${this.baseUrl}/studentParent/`,data);
+  }
+
   public saveStudentPhysical(data: any){
     return this._httpClient.post(`${this.baseUrl}/studentPhysical/`,data);
+  }
+
+  public deleteStudentPhysical(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentPhysical/${id}`);
+  }
+
+  public deleteStudentEducation(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentEducation/${id}`);
+  }
+
+  public deleteStudentHandicap(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentHandicap/${id}`);
+  }
+
+
+  public deleteStudentAward(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentAward/${id}`);
+  }
+
+  public deleteStudentTalent(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentTalent/${id}`);
+  }
+
+  public deleteStudentPersonality(id: Number){
+    return this._httpClient.delete(`${this.baseUrl}/studentPersonality/${id}`);
   }
 
   public saveStudentEducation(data: any){
