@@ -19,9 +19,9 @@
                     <div fxLayout="row" fxLayoutAlign=" center" >
                         <div fxFlex="50">
                             <mat-form-field appearance="outline" style="width:300px"  >
-                                <mat-label>Surname</mat-label>
-                                <input matInput placeholder="John"  formControlName="surname" >
-                                <mat-error *ngIf="studentForm.get('surname').invalid"> Invalid input </mat-error>
+                                <mat-label>Last Name</mat-label>
+                                <input matInput placeholder="John"  formControlName="lastName" >
+                                <mat-error *ngIf="studentForm.get('lastName').invalid"> Invalid input </mat-error>
                               </mat-form-field>
                         </div>
                 
@@ -135,6 +135,22 @@
                             <div class="col-md-6">
                                 <input type="file" class="ng-hide" formControlName="image" name="image" (change)="fileProgress($event)"  />
                             </div>
+
+                            <div class="col-md-6">
+                              <mat-form-field  appearance="outline" style="width:300px">
+                                <mat-label>Student Class</mat-label>
+                                <mat-select formControlName="studentClass" >
+                                    <mat-option value="nursery1">Nursery 1</mat-option>
+                                    <mat-option value="creche">Creche</mat-option>
+                                    <mat-option value="class1">class1</mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="studentForm.get('studentClass').invalid"> Select  gender</mat-error>
+                              </mat-form-field>
+
+                            </div>
+
+
+                            
                         </div>
                     <div>
                       <button   mat-stroked-button color="primary" class="float-right" (click)="saveStudent(stepper)">Next</button>
@@ -151,7 +167,7 @@
                                   
                         <div fxFlex="50">
                             <mat-form-field appearance="outline" style="width:300px">
-                                <mat-label>Full name</mat-label>
+                                <mat-label>Mother Full name</mat-label>
                                 <input matInput placeholder="JamesTown" formControlName="fullName">
                                 <mat-error *ngIf="studentMotherForm.get('fullName').invalid"> Invalid input </mat-error>
                               </mat-form-field>
@@ -256,7 +272,7 @@
                                     
                           <div fxFlex="50">
                               <mat-form-field appearance="outline" style="width:300px">
-                                  <mat-label>Full name</mat-label>
+                                  <mat-label>Father Full name</mat-label>
                                   <input matInput placeholder="JamesTown" formControlName="fullName">
                                   <mat-error *ngIf="studentFatherForm.get('fullName').invalid"> Invalid input </mat-error>
                                 </mat-form-field>
@@ -359,7 +375,7 @@
                     <p class="lead">Student Information added successfully. Click on  <b>Finish</b> to add academic, physical and  personality details</p>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn" class="mr-3" (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button color="warn" class="mr-3" (click)="stepper.reset()">Add New Record</button>
                     <button mat-raised-button color="primary" (click)="finishStudentForm()">Finish</button>
                   </div>
                 </mat-step>

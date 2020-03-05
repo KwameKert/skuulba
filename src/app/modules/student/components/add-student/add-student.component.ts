@@ -39,7 +39,7 @@ export class AddStudentComponent implements OnInit {
 
 
     this.studentForm = new FormGroup({
-      surname: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       otherNames: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       motherTongue: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -49,7 +49,8 @@ export class AddStudentComponent implements OnInit {
       livingWith: new FormControl('',[Validators.required]),
       image: new FormControl('',[Validators.required]),
       numSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
-      languages: new FormControl('',[Validators.required])
+      languages: new FormControl('',[Validators.required]),
+      studentClass: new FormControl('',[Validators.required])
     });
 
     
@@ -60,7 +61,7 @@ export class AddStudentComponent implements OnInit {
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('',[Validators.required,  Validators.email]),
+      email:  new FormControl('',[ Validators.email]),
       occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       educationStatus: new FormControl('',[Validators.required]),
       religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -77,7 +78,7 @@ export class AddStudentComponent implements OnInit {
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('',[Validators.required,  Validators.email]),
+      email:  new FormControl('',[ Validators.email]),
       occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       educationStatus: new FormControl('',[Validators.required]),
       religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -207,7 +208,7 @@ const formData = new FormData();
 
 
 finishStudentForm(){
-  this.router.navigate([`student/addStudentDetails/6`]);
+  this.router.navigate([`student/editStudentDetails/${this.studId}`]);
 }
 
 }

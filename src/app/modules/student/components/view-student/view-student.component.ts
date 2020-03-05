@@ -171,7 +171,7 @@ export class ViewStudentComponent implements OnInit {
  
 
   editStudent(){
-    this.router.navigate([`student/editStudentInfo${this.studentId}`])
+    this.router.navigate([`student/editStudentInfo/${this.studentId}`])
   }
 
 }
