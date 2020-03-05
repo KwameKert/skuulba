@@ -47,7 +47,7 @@ export class AddStudentComponent implements OnInit {
       gender: new FormControl('',[Validators.required]),
       dob: new FormControl('',[Validators.required]),
       livingWith: new FormControl('',[Validators.required]),
-      image: new FormControl('',[Validators.required]),
+      pic: new FormControl(''),
       numSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
       languages: new FormControl('',[Validators.required]),
       studentClass: new FormControl('',[Validators.required])
@@ -92,6 +92,7 @@ export class AddStudentComponent implements OnInit {
 
   //saveStudent
   saveStudent(stepper: MatStepper){
+    
 
     this.studentService.createStudent(this.studentForm.value).subscribe(data=>{
       this.studentResponse = data;
@@ -144,8 +145,7 @@ saveStudentMother(stepper: MatStepper){
 
 saveStudentFather(stepper: MatStepper){
 
-
-  this.studentService.createStudentParent(this.studentFatherForm.value).subscribe(data=>{
+  this.studentService.createStudentParent(this.studentForm.value).subscribe(data=>{
     this.studentResponse = data;
    if(this.studentResponse.data.length != 0){
       this._snackBar.open("Student  Father Saved 🙂", "Undo", {
@@ -183,6 +183,9 @@ updateStudentFatherMother(studID) {
   
 fileProgress(fileInput: any) {
   this.fileData = <File>fileInput.target.files[0];
+  this.studentForm.patchValue({
+    pic: this.fileData
+  })
   this.preview();
 }
 
@@ -200,9 +203,10 @@ reader.onload = (_event) => {
 }
 }
 
-onSubmit() {
+saveImage() {
 const formData = new FormData();
-  formData.append('file', this.fileData);
+  formData.append('file', this.fileData, this.studId);
+
 
 }
 
