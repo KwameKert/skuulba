@@ -1,30 +1,18 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component, OnInit, ViewChild, Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
+import {FormBuilder,Validators, FormControlName, FormControl} from '@angular/forms';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Student} from '../../../student/components/student';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {StudentService} from '../../service/student.service';
 
 export interface PeriodicElement {
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  class: string;
+  gender: number;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 
 @Component({
@@ -34,9 +22,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class StudentAttendanceComponent implements OnInit {
   class: any;
-
-  displayedColumns = ['select','full name', 'class', 'age', 'gender'];
-  dataSource = new MatTableDataSource<Student>(STUDENT_DATA);
+  searchClassForm: any;
+  student : any;
+  tableShow: boolean = false;
+  displayedColumns = ['select','full name', 'class',  'gender'];
+  dataSource : any;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   public selection = new SelectionModel<Student>(true, []);
@@ -45,11 +35,25 @@ export class StudentAttendanceComponent implements OnInit {
   classes: String[] = [
     'Class 1','Class 2','Class 3','Class 4','Class 5', 'Class 6','Form 1', 'Form 2','Form 3'
   ]
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar, private fb: FormBuilder, private _studentService: StudentService) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+    // this._studentService.listStudents().subscribe(data=>{
+    //   let res : any= data;
+
+    //   if (res.data.length > 0){
+    //     this.tableShow = true;
+    //   }
+     
+     
+    // })
+  
+    this.searchClassForm = this.fb.group({
+      studentClass:  new FormControl('', Validators.required)
+    })
+    
+    
   }
 
   applyFilter(event: Event) {
@@ -60,6 +64,7 @@ export class StudentAttendanceComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 
 
 
@@ -89,26 +94,49 @@ export class StudentAttendanceComponent implements OnInit {
 
 
   generateStudents(){
-    let data = this.selection.selected;
+    let data = {
+      students: this.selection.selected
+    }
+
+    this._studentService.takeAttendance(data).subscribe(data=>{
+
+      console.log(data);
+
+    },error=>{
+      console.warn(error)
+    })
+    console.log(data)
     this._snackBar.open( ` ${this.class} attendance taken succesfully`, "", {
       duration: 3000,
     });;
 
+    
    // return this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+
+
+  searchClass(){
+    let data = {
+      value : this.class
+    }
+    this._studentService.getClassStudents(data).subscribe(data=>{
+      let res : any= data;
+      if(res.data){
+        this.tableShow = true;
+        this.dataSource =  new MatTableDataSource<Student>(res.data);
+        this.dataSource =  new MatTableDataSource<Student>(res.data);
+        this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      }else{
+        this.tableShow = false;
+      }
+     
+    })
   }
 }
 
 
-const STUDENT_DATA: Student[] = [
-  {studentId: 1, surname: 'Johnson', otherNames: 'Kwame Micheal',age:14,class:4,gender:'M'},
-  {studentId: 2, surname: 'Asante', otherNames: 'Fifi John',age:10,class:4,gender:'M'},
-  {studentId: 3, surname: 'Dodoo', otherNames:  'John Daniel',age:17,class:6,gender:'M'},
-  {studentId: 4, surname: 'Commey', otherNames: 'Kojo Philip',age:12,class:3,gender:'M'},
-  {studentId: 5, surname: 'Hughes', otherNames: 'Yaw Samuel',age:11,class:1,gender:'M'},
-  {studentId: 6, surname: 'Annan', otherNames: 'Kwabena Sean',age:12,class:2,gender:'M'},
-  {studentId: 3, surname: 'Dodoo', otherNames:  'John Daniel',age:17,class:6,gender:'M'},
-  {studentId: 4, surname: 'Commey', otherNames: 'Kojo Philip',age:12,class:3,gender:'M'},
-  {studentId: 5, surname: 'Hughes', otherNames: 'Yaw Samuel',age:11,class:1,gender:'M'},
-  {studentId: 6, surname: 'Annan', otherNames: 'Kwabena Sean',age:12,class:2,gender:'M'},
-  
-];
+
+

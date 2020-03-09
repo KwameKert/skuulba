@@ -11,15 +11,15 @@
         <div class="col-md-10 text-center">
             <mat-tab-group color="primary" backgroundColor="primary">
                
-                <mat-tab label="Personal Information" *ngIf="student != null"> 
+                <mat-tab label="Personal Information" *ngIf="studentData != null"> 
 
                     <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                         <div fxFlex="40">
-                            <p>Surname: {{ student.surname}}</p>
+                            <p>Lastname: {{ studentData.lastName}}</p>
                         </div>
 
                         <div fxFlex="40">
-                            <p>Other names: {{student.otherNames}}</p>
+                            <p>Other names: {{studentData.otherNames}}</p>
                         </div>
 
                     </div>
@@ -27,11 +27,11 @@
 
                     <div fxLayout="row" fxLayoutAlign="start" class="">
                         <div fxFlex="40">
-                            <p>Living With: {{ student.livingWith}}</p>
+                            <p>Living With: {{ studentData.livingWith}}</p>
                         </div>
 
                         <div fxFlex="40">
-                            <p>Mother Tongue: {{student.motherTongue}}</p>
+                            <p>Mother Tongue: {{studentData.motherTongue}}</p>
                         </div>
 
                     </div>
@@ -39,11 +39,11 @@
 
                     <div fxLayout="row" fxLayoutAlign="start" class="">
                         <div fxFlex="40">
-                            <p>Hometown: {{ student.homeTown}}</p>
+                            <p>Hometown: {{ studentData.homeTown}}</p>
                         </div>
 
                         <div fxFlex="40">
-                            <p>Languages: {{student.languages}}</p>
+                            <p>Languages: {{studentData.languages}}</p>
                         </div>
 
                     </div>
@@ -53,14 +53,14 @@
                         </div> -->
 
                         <div fxFlex="40">
-                            <p>Religion : {{student.religion}}</p>
+                            <p>Religion : {{studentData.religion}}</p>
                         </div>
 
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="start" class="">
                         <div fxFlex="40">
-                            <p>Date of birth: {{ student.dob |  date:"MM/dd/yy"}}</p>
+                            <p>Date of birth: {{ studentData.dob |  date:"MM/dd/yy"}}</p>
                         </div> 
 
                         <div fxFlex="40">

@@ -47,6 +47,7 @@ export class EditStudentInfoComponent implements OnInit {
       homeTown: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       gender: new FormControl('',[Validators.required]),
       dob: new FormControl('',[Validators.required]),
+      image_url: new FormControl(''),
       livingWith: new FormControl('',[Validators.required]),
       image: new FormControl('',[Validators.required]),
       noSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
@@ -58,12 +59,12 @@ export class EditStudentInfoComponent implements OnInit {
 
     this.studentMotherForm = new FormGroup({
       id: new FormControl(''),
-      studentId: new FormControl(''),
+      studentId: new FormControl(`${this.studentId}`),
       relation: new FormControl('mother'),
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('',[Validators.required,  Validators.email]),
+      email:  new FormControl('',[ Validators.email]),
       occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       educationStatus: new FormControl('',[Validators.required]),
       religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -75,12 +76,12 @@ export class EditStudentInfoComponent implements OnInit {
 
     this.studentFatherForm = new FormGroup({
       id: new FormControl(''),
-      studentId:new FormControl(''),
+      studentId:new FormControl(`${this.studentId}`),
       relation: new FormControl('father'),
       fullName:  new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       address:  new FormControl('',[Validators.required]),
       phoneNumber:  new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
-      email:  new FormControl('',[Validators.required,  Validators.email]),
+      email:  new FormControl('',[ Validators.email]),
       occupation: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       educationStatus: new FormControl('',[Validators.required]),
       religion: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -125,13 +126,14 @@ export class EditStudentInfoComponent implements OnInit {
       motherTongue: student.motherTongue,
       homeTown: student.homeTown,
       gender: student.gender,
-      dob: student.dob,
+      dob: new Date(student.dob),
       livingWith:student.livingWith,
      
       noSiblings: student.noSiblings,
-      languages: ['Twi','Ewe']
+      languages: student.languages
 
     })
+    console.log(this.studentFatherForm.value)
   }
 
 
@@ -147,7 +149,7 @@ export class EditStudentInfoComponent implements OnInit {
       educationStatus: studentMother.educationStatus,
       religion: studentMother.religion,
       numSpouse: studentMother.numSpouse,
-      dateDeceased: studentMother.dateDeceased,
+      dateDeceased: new Date(studentMother.dateDeceased),
       isDeceased: studentMother.isDeceased,
     })
 
@@ -167,7 +169,7 @@ export class EditStudentInfoComponent implements OnInit {
         educationStatus: studentFather.educationStatus,
         religion: studentFather.religion,
         numSpouse: studentFather.numSpouse,
-        dateDeceased: studentFather.dateDeceased,
+        dateDeceased: new Date(studentFather.dateDeceased),
         isDeceased: studentFather.isDeceased,
       })
 

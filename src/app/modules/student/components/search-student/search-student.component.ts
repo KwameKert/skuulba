@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import { FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import {Student} from '../student';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,13 +19,19 @@ export class SearchStudentComponent implements OnInit {
   dataSource :any ;
   responseData: any ;
   students: any;
+  searchStudentForm: any;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private router: Router, private _studentService: StudentService,private route: ActivatedRoute) { }
+  constructor(private router: Router, private _studentService: StudentService,private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
 
+    
+    this.searchStudentForm = this.fb.group({
+      param : new FormControl(''),
+      value: new FormControl('', Validators.required)
+    })
    
 
     this.getAllStudents();
@@ -66,4 +73,14 @@ export class SearchStudentComponent implements OnInit {
     this.router.navigate([`student/editStudentInfo/${id}`]);
   }
 
+
+  searchStudent(){
+    this._studentService.searchStudent(this.searchStudentForm.value).subscribe(data=>{
+      let response: any  =data; 
+      this.dataSource  = new MatTableDataSource(response.data);
+      // this.students = response.data;
+      // console.log(this.students)
+    })
+    console.log(this.searchStudentForm.value)
+  }
 }

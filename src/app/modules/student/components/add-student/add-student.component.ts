@@ -37,7 +37,6 @@ export class AddStudentComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.studentForm = new FormGroup({
       lastName: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
       otherNames: new FormControl('',[Validators.required,  Validators.pattern('[a-zA-Z ]*')]),
@@ -47,7 +46,7 @@ export class AddStudentComponent implements OnInit {
       gender: new FormControl('',[Validators.required]),
       dob: new FormControl('',[Validators.required]),
       livingWith: new FormControl('',[Validators.required]),
-      pic: new FormControl(''),
+      image_url: new FormControl(''),
       numSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
       languages: new FormControl('',[Validators.required]),
       studentClass: new FormControl('',[Validators.required])
@@ -183,8 +182,17 @@ updateStudentFatherMother(studID) {
   
 fileProgress(fileInput: any) {
   this.fileData = <File>fileInput.target.files[0];
-  this.studentForm.patchValue({
-    pic: this.fileData
+  let formData = new FormData();
+  console.log(formData)
+  formData.append('image', this.fileData, this.fileData.name);
+  this.studentService.uploadImage(formData).subscribe(data =>{
+    let response: any = data
+    this.studentForm.patchValue({
+      image_url: response.data.link
+    });
+    //this.imgURL = response.link
+  }, error=>{
+    console.warn(error)
   })
   this.preview();
 }

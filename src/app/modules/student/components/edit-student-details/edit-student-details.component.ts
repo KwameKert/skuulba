@@ -112,7 +112,7 @@ export class EditStudentDetailsComponent implements OnInit {
           this.physicals.push( this.fb.group({
             id: physical.id,
             studentId: this.studentId,
-            date: physical.date,
+            date: new Date(physical.date),
             weight: physical.weight,
             height: physical.height,
             remark: physical.remark,
@@ -129,8 +129,8 @@ export class EditStudentDetailsComponent implements OnInit {
           id: education.id,
           studentId: this.studentId,
           schoolName:  education.schoolName,
-          admissionDate: education.admissionDate,
-          lastAdmissionDate: education.lastAdmissionDate,
+          admissionDate: new Date(education.admissionDate),
+          lastAdmissionDate: new Date(education.lastAdmissionDate),
 
         }));
       }
@@ -187,7 +187,7 @@ export class EditStudentDetailsComponent implements OnInit {
     for(let talent of this.studentTalent){
       this.talents.push( this.fb.group({
       id: talent.id,
-      date:  talent.date,
+      date:  new Date(talent.date),
       particulars: talent.particulars
     }));
   }
@@ -198,7 +198,7 @@ if(this.studentAward){
   for(let award of this.studentAward){
     this.awards.push( this.fb.group({
     id: award.id,
-    date:  award.date,
+    date:  new Date(award.date),
     awardName: award.awardName,
     remark: award.remark
   }));

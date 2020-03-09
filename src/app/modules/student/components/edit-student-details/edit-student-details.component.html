@@ -1,8 +1,8 @@
 
 <mat-card class="mat-elevation-z3" style="margin-bottom:300px">
     <div fxLayout="row" fxLayoutAlign="space-between start"  fxLayoutGap="20px">
-        <div fxFlex="20" class="text-center">
-            <img src="assets/images/profile.jpg" class="img-thumbnail " height="100" />  <br>
+        <div fxFlex="20" class="text-center" *ngIf="student != null">
+            <img [src]="student.image_url" class="img-thumbnail " height="100"  />  <br>
             <button mat-raised-button color="primary" (click)="editStudentInfo()" style="width:100px;margin:10px 0 55px 0; height: 30px;">Edit Info</button>
         </div>
 
@@ -43,9 +43,9 @@
 
             </div>
             <div fxLayout="row" fxLayoutAlign="start" class="" >
-                <!-- <div fxFlex="40">
+                <div fxFlex="40">
                     <p>Number of Sibblings: {{ student.noSiblings}}</p>
-                </div> -->
+                </div>
 
                 <div fxFlex="40">
                     <p>Religion : {{student.religion}}</p>
@@ -66,7 +66,7 @@
         
     </div>
    
-<div class="row " style="margin-top:-40px">
+<div class="row " style="margin-top:50px">
     
 </div>
 
