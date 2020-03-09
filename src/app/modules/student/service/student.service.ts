@@ -117,4 +117,8 @@ export class StudentService {
   public takeAttendance(data: any){
     return this._httpClient.post(`${this.baseUrl}/student/attendance/`,data);
   }
+
+  public searchStudentByParam(data: any){
+    return this._httpClient.post(`${this.baseUrl}/student/paramsearch/`, data);
+  }
 }

@@ -7,10 +7,9 @@
         <div fxFlex="20">
             <mat-form-field appearance="outline">
                 <mat-label>-- Select --</mat-label>
-                <mat-select   (selectionChange)="changeSearchField($event)">
-                  <mat-option value="class">Class</mat-option>
-                  <mat-option value="otherNames">Student Name</mat-option>
-                  <mat-option value="studentId">Student ID</mat-option>
+                <mat-select  [(ngModel)] ="param" (selectionChange)="changeSearchField($event)">
+                  <mat-option value="1">Class</mat-option>
+                  <mat-option value="2">Student Name</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -20,7 +19,7 @@
                     <mat-form-field appearance="outline" style="width:400px">
                         <mat-label>-- Select --</mat-label>
                 
-                    <mat-select   >
+                    <mat-select  [(ngModel)] = "value" >
                         <mat-option *ngFor="let class of classes" [value]="class">{{class}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -28,8 +27,8 @@
 
                 <ng-template #elseBlock>
                 <mat-form-field appearance="outline" style="width:400px">
-                    <mat-label>Student Name</mat-label>
-                    <input matInput placeholder="Enter value" >
+                    <mat-label>Student Last Name</mat-label>
+                    <input matInput placeholder="Enter value"  [(ngModel)] = "value" >
                   </mat-form-field>
                 </ng-template>
             
@@ -37,7 +36,7 @@
              
             <div fxFlex="25" class="mb-4">
 
-                <button mat-raised-button color="primary"><mat-icon>search</mat-icon> Search</button>
+                <button mat-raised-button color="primary" (click)="searchStudents()"><mat-icon>search</mat-icon> Search</button>
             </div>
 
         
@@ -51,12 +50,12 @@
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
         </mat-form-field>
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" *ngIf="showTable">
         
         
           <ng-container matColumnDef="full name">
             <th mat-header-cell *matHeaderCellDef> Full Name </th>
-            <td mat-cell *matCellDef="let student">{{student.surname}}  {{student.otherNames}} </td>
+            <td mat-cell *matCellDef="let student">{{student.lastName}}  {{student.otherNames}} </td>
           </ng-container>
       
       

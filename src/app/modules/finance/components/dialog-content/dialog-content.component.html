@@ -1,13 +1,13 @@
 <h2 mat-dialog-title>Collect Fee</h2>
 <mat-dialog-content class="mat-typography">
-    <p>Name: {{data.surname}}</p>
+    <p>Name: {{data.lastName}}  {{data.otherNames}}</p>
     <p>Class: {{data.class}}</p>
     <div fxLayout="row" fxLayoutAlign="center center " fxLayoutGap="5px">
 
         <div fxFlex="40">
             <mat-form-field appearance="outline">
                 <mat-label>-- Select --</mat-label>
-                <mat-select   >
+                <mat-select  [(ngModel)] ="type" >
                   <mat-option value="studies">Studies</mat-option>
                   <mat-option value="feedingFee">Feeding Fee</mat-option>
                 </mat-select>
@@ -17,7 +17,7 @@
         <div fxFlex="60">
             <mat-form-field appearance="outline" >
                 <mat-label>Amount</mat-label>
-                <input matInput placeholder="Enter value" >
+                <input matInput placeholder="Enter value" [(ngModel)]="amount" >
               </mat-form-field>
         </div>
     </div>
@@ -28,5 +28,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="primary">Recieve</button>
+  <button mat-button [mat-dialog-close]="response()" cdkFocusInitial color="primary">Recieve</button>
 </mat-dialog-actions>
