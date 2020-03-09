@@ -27,7 +27,8 @@ export class CollectFeeDialogComponent implements OnInit {
   onSuccess(){
     return this.result = {
       saved: true,
-      name: this.data.surname + ' ' + this.data.otherNames,
+      studentId: this.data.id,
+      name: this.data.lastName + ' ' + this.data.otherNames,
       message: 'Payment Successful',
       amount: this.amount
     }

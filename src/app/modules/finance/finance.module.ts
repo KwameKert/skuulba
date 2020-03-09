@@ -8,12 +8,14 @@ import { DialogContentComponent } from './components/dialog-content/dialog-conte
 import { CollectSchoolFeesComponent } from './components/collect-school-fees/collect-school-fees.component';
 import { CollectFeeDialogComponent } from './components/collect-fee-dialog/collect-fee-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { ListDailyFeesComponent } from './components/list-daily-fees/list-daily-fees.component';
+import { ListSchoolFeesComponent } from './components/list-school-fees/list-school-fees.component';
 
 
 
 @NgModule({
  // declarations: [GenerateBillComponent, DailyFeesComponent,  ],
-  declarations: [GenerateBillComponent, DailyFeesComponent,DialogContentComponent , CollectSchoolFeesComponent, CollectFeeDialogComponent],
+  declarations: [GenerateBillComponent, DailyFeesComponent,DialogContentComponent , CollectSchoolFeesComponent, CollectFeeDialogComponent, ListDailyFeesComponent, ListSchoolFeesComponent],
   imports: [
     CommonModule,
     FinanceRoutingModule,

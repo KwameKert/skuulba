@@ -15,4 +15,23 @@ export class FinanceService {
   public payDailyFees(data){
     return this._httpClient.post(`${this.baseUrl}/finance/dailyFee/`, data);
   }
+
+  public paySchoolFees(data){
+    return this._httpClient.post(`${this.baseUrl}/finance/schoolFee/`, data);
+  }
+
+  public listDailyFees(){
+    return this._httpClient.get(`${this.baseUrl}/finance/dailyFee/`)
+  }
+
+  public listSchoolFees(){
+    return this._httpClient.get(`${this.baseUrl}/finance/schoolFee/`)
+  }
+
+  public searchFinanceByParam(data: any){
+    return this._httpClient.post(`${this.baseUrl}/finance/schoolFee/search/`,data)
+  }
+
+
+
 }

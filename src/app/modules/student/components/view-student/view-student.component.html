@@ -1,14 +1,14 @@
 <mat-card class="mat-elevation-z3" style="margin-bottom:300px">
     <div class="row">
 
-        <div class="col-md-2 text-center">
-            <img src="assets/images/headshot.png" class="img-thumbnail mt-2"  />  
+        <div class="col-md-3 text-center">
+            <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
             <button mat-icon-button color="warn" (click)="editStudent()">
                 Edit <mat-icon>edit</mat-icon>
               </button> 
         </div>
 
-        <div class="col-md-10 text-center">
+        <div class="col-md-9 text-center">
             <mat-tab-group color="primary" backgroundColor="primary">
                
                 <mat-tab label="Personal Information" *ngIf="studentData != null"> 

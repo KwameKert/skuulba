@@ -4,12 +4,12 @@
         <div class="col-md-3 text-center">
             <div *ngIf="previewUrl; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock> 
-                 <img [src]="previewUrl" class="img-thumbnail mt-4" height="300" />   
+                 <img [src]="studentImg" class="img-thumbnail mt-4" height="300" />   
                 <p class="lead">Student Image</p>         
                 <button mat-raised-button color="primary" (click)="editStudentDetails()">Edit Details</button>
             </ng-template>
             <ng-template #elseBlock>
-                <img src="assets/images/headshot.png" class="img-thumbnail mt-4" height="300" />  
+                <img [src]="studentImg" class="img-thumbnail mt-4" height="300" *ngIf="studentImg" />  
                 <button mat-raised-button color="primary" (click)="editStudentDetails()">Edit Details</button>
             </ng-template>
         </div>
@@ -74,8 +74,8 @@
                             <mat-form-field appearance="outline" style="width:300px" >
                                 <mat-label>Gender </mat-label>
                                 <mat-select formControlName="gender">
-                                    <mat-option value="male">Male</mat-option>
-                                    <mat-option value="female">Female</mat-option>
+                                    <mat-option value="MALE">Male</mat-option>
+                                    <mat-option value="FEMALE">Female</mat-option>
                                   </mat-select>
                                   <mat-error *ngIf="studentForm.get('gender').invalid"> Select  gender</mat-error>
                               </mat-form-field>
@@ -89,9 +89,9 @@
                                 <mat-form-field  appearance="outline" style="width:300px">
                                     <mat-label>Living With</mat-label>
                                     <mat-select formControlName="livingWith" >
-                                        <mat-option value="both">Both</mat-option>
-                                        <mat-option value="mother">Mother</mat-option>
-                                        <mat-option value="father">Father</mat-option>
+                                        <mat-option value="BOTH">Both</mat-option>
+                                        <mat-option value="MOTHER">Mother</mat-option>
+                                        <mat-option value="FATHER">Father</mat-option>
                                       </mat-select>
                                       <mat-error *ngIf="studentForm.get('livingWith').invalid"> Select  gender</mat-error>
                                   </mat-form-field>
@@ -154,7 +154,7 @@
                         <div fxFlex="50">
                             <mat-form-field appearance="outline" style="width:300px">
                                 <mat-label>Full name</mat-label>
-                                <input matInput placeholder="JamesTown" formControlName="fullName">
+                                <input matInput placeholder="Mrs User" formControlName="fullName">
                                 <mat-error *ngIf="studentMotherForm.get('fullName').invalid"> Invalid input </mat-error>
                               </mat-form-field>
                         </div>
@@ -174,7 +174,7 @@
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width:300px">
                                     <mat-label>Email</mat-label>
-                                    <input matInput placeholder="JamesTown" formControlName="email">
+                                    <input matInput placeholder="test@gmail.com" formControlName="email">
                                     <mat-error *ngIf="studentMotherForm.get('email').invalid"> Invalid input </mat-error>
                                   </mat-form-field>
                             </div>
@@ -182,7 +182,7 @@
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width:300px" >
                                     <mat-label>Occupation </mat-label>
-                                    <input matInput placeholder="address" formControlName="occupation">
+                                    <input matInput placeholder="trader" formControlName="occupation">
                                       <mat-error *ngIf="studentMotherForm.get('occupation').invalid"> Invalid input</mat-error>
                                   </mat-form-field>
                             </div>
@@ -193,7 +193,7 @@
                                 <div fxFlex="50">
                                     <mat-form-field appearance="outline" style="width:300px">
                                         <mat-label>Phone Number</mat-label>
-                                        <input matInput placeholder="JamesTown" formControlName="phoneNumber">
+                                        <input matInput placeholder="020141100" formControlName="phoneNumber">
                                         <mat-error *ngIf="studentMotherForm.get('phoneNumber').invalid"> Invalid input </mat-error>
                                       </mat-form-field>
                                 </div>
@@ -213,7 +213,7 @@
                                     <div fxFlex="50">
                                         <mat-form-field appearance="outline" style="width:300px">
                                             <mat-label>Religion </mat-label>
-                                            <input matInput placeholder="JamesTown" formControlName="religion">
+                                            <input matInput placeholder="Christian" formControlName="religion">
                                             <mat-error *ngIf="studentMotherForm.get('religion').invalid"> Invalid input </mat-error>
                                           </mat-form-field>
                                     </div>
@@ -221,7 +221,7 @@
                                     <div fxFlex="50">
                                         <mat-form-field appearance="outline" style="width:300px" >
                                             <mat-label>Number of Spouse </mat-label>
-                                            <input matInput placeholder="address" formControlName="numSpouse">
+                                            <input matInput placeholder="1" formControlName="numSpouse">
                                               <mat-error *ngIf="studentMotherForm.get('numSpouse').invalid"> Invalid input</mat-error>
                                           </mat-form-field>
                                     </div>
@@ -259,7 +259,7 @@
                           <div fxFlex="50">
                               <mat-form-field appearance="outline" style="width:300px">
                                   <mat-label>Full name</mat-label>
-                                  <input matInput placeholder="JamesTown" formControlName="fullName">
+                                  <input matInput placeholder="Mr User" formControlName="fullName">
                                   <mat-error *ngIf="studentFatherForm.get('fullName').invalid"> Invalid input </mat-error>
                                 </mat-form-field>
                           </div>
@@ -279,7 +279,7 @@
                               <div fxFlex="50">
                                   <mat-form-field appearance="outline" style="width:300px">
                                       <mat-label>Email</mat-label>
-                                      <input matInput placeholder="JamesTown" formControlName="email">
+                                      <input matInput placeholder="test@gmail.com" formControlName="email">
                                       <mat-error *ngIf="studentFatherForm.get('email').invalid"> Invalid input </mat-error>
                                     </mat-form-field>
                               </div>
@@ -287,7 +287,7 @@
                               <div fxFlex="50">
                                   <mat-form-field appearance="outline" style="width:300px" >
                                       <mat-label>Occupation </mat-label>
-                                      <input matInput placeholder="address" formControlName="occupation">
+                                      <input matInput placeholder="trader" formControlName="occupation">
                                         <mat-error *ngIf="studentFatherForm.get('occupation').invalid"> Invalid input</mat-error>
                                     </mat-form-field>
                               </div>
@@ -298,7 +298,7 @@
                                   <div fxFlex="50">
                                       <mat-form-field appearance="outline" style="width:300px">
                                           <mat-label>Phone Number</mat-label>
-                                          <input matInput placeholder="JamesTown" formControlName="phoneNumber">
+                                          <input matInput placeholder="0241100000" formControlName="phoneNumber">
                                           <mat-error *ngIf="studentFatherForm.get('phoneNumber').invalid"> Invalid input </mat-error>
                                         </mat-form-field>
                                   </div>
@@ -318,7 +318,7 @@
                                       <div fxFlex="50">
                                           <mat-form-field appearance="outline" style="width:300px">
                                               <mat-label>Religion </mat-label>
-                                              <input matInput placeholder="JamesTown" formControlName="religion">
+                                              <input matInput placeholder="Christian" formControlName="religion">
                                               <mat-error *ngIf="studentFatherForm.get('religion').invalid"> Invalid input </mat-error>
                                             </mat-form-field>
                                       </div>
@@ -326,7 +326,7 @@
                                       <div fxFlex="50">
                                           <mat-form-field appearance="outline" style="width:300px" >
                                               <mat-label>Number of Spouse </mat-label>
-                                              <input matInput placeholder="address" formControlName="numSpouse">
+                                              <input matInput placeholder="1" formControlName="numSpouse">
                                                 <mat-error *ngIf="studentFatherForm.get('numSpouse').invalid"> Invalid input</mat-error>
                                             </mat-form-field>
                                       </div>

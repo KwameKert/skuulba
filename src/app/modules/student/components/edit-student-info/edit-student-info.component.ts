@@ -15,6 +15,7 @@ export class EditStudentInfoComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  studentImg: any;
 
   studentId : any;
   studentForm:any;
@@ -49,7 +50,6 @@ export class EditStudentInfoComponent implements OnInit {
       dob: new FormControl('',[Validators.required]),
       image_url: new FormControl(''),
       livingWith: new FormControl('',[Validators.required]),
-      image: new FormControl('',[Validators.required]),
       noSiblings: new FormControl('',[Validators.required,Validators.pattern('[0-9]*$')]),
       languages: new FormControl('',[Validators.required])
     });
@@ -98,8 +98,12 @@ export class EditStudentInfoComponent implements OnInit {
     
       console.log(this.responseData.data)
       if(this.responseData.data.student != null){
+        this.studentImg = this.responseData.data.student.image_url;
+         console.log(this.studentImg)
         this.patchStudentForm(this.responseData.data.student)
       }
+
+
 
       if(this.responseData.data.studentParent[0] != null){
         this.patchStudentMotherForm(this.responseData.data.studentParent[0])
@@ -127,8 +131,9 @@ export class EditStudentInfoComponent implements OnInit {
       homeTown: student.homeTown,
       gender: student.gender,
       dob: new Date(student.dob),
+      image_url: student.image_url,
       livingWith:student.livingWith,
-     
+      studentClass: student.studentClass,
       noSiblings: student.noSiblings,
       languages: student.languages
 

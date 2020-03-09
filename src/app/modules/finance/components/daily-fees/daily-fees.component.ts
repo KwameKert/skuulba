@@ -64,6 +64,7 @@ export class DailyFeesComponent implements OnInit {
    this._studentService.listStudents().subscribe(data=>{
 
     let response : any= data
+    console.log(response.data)
     this.dataSource = new MatTableDataSource(response.data);
     
     this.dataSource.paginator = this.paginator;

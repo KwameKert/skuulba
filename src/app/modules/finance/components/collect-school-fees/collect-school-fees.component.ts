@@ -2,12 +2,13 @@ import {Component, OnInit, ViewChild, Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { Student} from '../../../student/components/student';
+
+import {StudentService} from '../../../student/service/student.service';
+import {FinanceService} from '../../service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { CollectFeeDialogComponent } from '../collect-fee-dialog/collect-fee-dialog.component';
-import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-collect-school-fees',
@@ -15,16 +16,19 @@ import { DialogContentComponent } from '../dialog-content/dialog-content.compone
   styleUrls: ['./collect-school-fees.component.scss']
 })
 export class CollectSchoolFeesComponent implements OnInit {
+  showTable : boolean = false;
+  param: any ;
+  value: any;
   isClass: boolean = true;
   displayedColumns = ['full name', 'class', 'age', 'gender','action'];
-  dataSource = new MatTableDataSource(STUDENT_DATA);
+  dataSource : any ;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   classes: String[] = [
     'Class 1','Class 2','Class 3','Class 4','Class 5', 'Class 6','Form 1', 'Form 2','Form 3'
   ]
-  constructor(private dialog: MatDialog,  private _snackBar: MatSnackBar) {
+  constructor(private dialog: MatDialog,  private _snackBar: MatSnackBar, private _studentService: StudentService, private _financeService: FinanceService) {
 
    }
 
@@ -39,6 +43,11 @@ export class CollectSchoolFeesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.saved){
+        this._financeService.paySchoolFees(result).subscribe(data=>{
+          console.log(data)
+        }, error=>{
+          console.warn(error)
+        })
         this._snackBar.open(  `Payment for ${result.name} made `, "", {
           duration: 3000,
         });
@@ -54,8 +63,19 @@ export class CollectSchoolFeesComponent implements OnInit {
     });
 }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this._studentService.listStudents().subscribe(data=>{
+
+      let response : any= data
+      this.dataSource = new MatTableDataSource(response.data);
+      
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.showTable = true;
+  
+     }, error=>{
+  
+     })
+  
   }
 
 
@@ -82,18 +102,32 @@ export class CollectSchoolFeesComponent implements OnInit {
    this.openDialog(student);
   }
 
+  searchStudents(){
+    let data = {
+      param: this.param,
+      value: this.value
+    }
+    this._studentService.searchStudentByParam(data).subscribe(data=>{
+      
+    let response : any= data
+    if(response.data){
+      this.dataSource = new MatTableDataSource(response.data);
+    
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.showTable = true;
+    }else{
+      this.showTable = false;
+    }
+
+   
+    }, error=>{
+
+      console.warn(error)
+
+    })
+   // console.log(this.param,this.value)
+  }
+
 }
 
-const STUDENT_DATA: Student[] = [
-  {studentId: 1, surname: 'Johnson', otherNames: 'Kwame Micheal',age:14,class:4,gender:'M'},
-  {studentId: 2, surname: 'Asante', otherNames: 'Fifi John',age:10,class:4,gender:'M'},
-  {studentId: 3, surname: 'Dodoo', otherNames:  'John Daniel',age:17,class:6,gender:'M'},
-  {studentId: 4, surname: 'Commey', otherNames: 'Kojo Philip',age:12,class:3,gender:'M'},
-  {studentId: 5, surname: 'Hughes', otherNames: 'Yaw Samuel',age:11,class:1,gender:'M'},
-  {studentId: 6, surname: 'Annan', otherNames: 'Kwabena Sean',age:12,class:2,gender:'M'},
-  {studentId: 3, surname: 'Dodoo', otherNames:  'John Daniel',age:17,class:6,gender:'M'},
-  {studentId: 4, surname: 'Commey', otherNames: 'Kojo Philip',age:12,class:3,gender:'M'},
-  {studentId: 5, surname: 'Hughes', otherNames: 'Yaw Samuel',age:11,class:1,gender:'M'},
-  {studentId: 6, surname: 'Annan', otherNames: 'Kwabena Sean',age:12,class:2,gender:'M'},
-  
-];
