@@ -48,14 +48,22 @@ export class DailyFeesComponent implements OnInit {
     //console.log(student);
 
     dialogRef.afterClosed().subscribe(result => {
-      this._financeService.payDailyFees(result).subscribe(data=>{
-        console.log(data);
-      }, error=>{
-        console.warn(error)
-      })
-      this._snackBar.open("Payment saved", "", {
-        duration: 3000,
-      });
+      if(result.status){
+        this._financeService.payDailyFees(result).subscribe(data=>{
+         
+            this._snackBar.open("Payment saved", "", {
+              duration: 3000,
+            });
+          
+        }, error=>{
+          console.warn(error)
+        })
+      }
+
+
+
+
+   
       
     });
 }

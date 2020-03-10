@@ -2,6 +2,7 @@
 <mat-card class="mat-elevation-z3" style="margin-bottom:300px">
     <div class="row">
         <div class="col-md-3 text-center">
+        
             <div *ngIf="previewUrl; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock> 
                  <img [src]="previewUrl" class="img-thumbnail mt-4" height="300" />   
@@ -12,6 +13,7 @@
             </ng-template>
         </div>
         <div class="col-md-9">
+          
             <mat-horizontal-stepper [linear]="false" #stepper>
                 <mat-step [stepControl]="studentForm">
                   <form [formGroup]="studentForm">

@@ -11,6 +11,7 @@ import {StudentService} from '../../service/student.service';
 })
 export class ViewStudentComponent implements OnInit {
 
+  isLoaded: boolean = false;
   studentId: any;
   studentData: any;
   responseData: any;
@@ -47,6 +48,10 @@ export class ViewStudentComponent implements OnInit {
     this._studentService.getStudentDetails(this.studentId).subscribe(data=>{
         this.responseData = data;
         this.studentData = this.responseData.data.student;
+        if(this.studentData){
+          this.isLoaded = true;
+          console.log(this.isLoaded)
+        }
         this.studentHealth = this.responseData.data.studentHealth;
         if(this.responseData.data.studentParent != null){
 

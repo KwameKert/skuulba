@@ -1,5 +1,54 @@
 <mat-card class="mat-elevation-z3" style="margin-bottom:300px">
-    <div class="row">
+
+    <div class="row"  *ngIf="isLoaded; else elseBlock">
+        <div class="col-md-3 text-center">
+            <ngx-skeleton-loader appearance="circle" [theme]="{ width: '120px', height: '120px' }">
+            </ngx-skeleton-loader><br>
+            <ngx-skeleton-loader [theme]="{ width: '120px', 'border-radius': '0', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+
+        <div class="col-md-9 mt-3">
+            <ngx-skeleton-loader [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{
+                width: '70%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+
+              <ngx-skeleton-loader [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{
+                width: '60%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+
+              <ngx-skeleton-loader [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+
+        </div>
+    </div>
+
+
+
+    <ng-template #elseBlock>
+  <div class="row">
+      
 
         <div class="col-md-3 text-center">
             <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
@@ -9,7 +58,10 @@
         </div>
 
         <div class="col-md-9 text-center">
+         
             <mat-tab-group color="primary" backgroundColor="primary">
+
+               
                
                 <mat-tab label="Personal Information" *ngIf="studentData != null"> 
 
@@ -48,9 +100,7 @@
 
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start" class="" >
-                        <!-- <div fxFlex="40">
-                            <p>Number of Sibblings: {{ student.noSiblings}}</p>
-                        </div> -->
+                       
 
                         <div fxFlex="40">
                             <p>Religion : {{studentData.religion}}</p>
@@ -360,4 +410,7 @@
 
     </div>
 
+    </ng-template>
+    
+  
  </mat-card>

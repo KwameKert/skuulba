@@ -19,11 +19,20 @@ export class DialogContentComponent implements OnInit {
 
   response(){
     let res = {
+      status : true,
       studentId: this.data.id,
       type: this.type,
       amount: this.amount
     }
     return res;
+  }
+
+
+  cancel(){
+    let res = {
+      status : false
+    }
+    return res
   }
 
 }

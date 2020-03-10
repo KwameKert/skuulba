@@ -27,6 +27,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button [mat-dialog-close]="cancel()" color="warn">Cancel</button>
   <button mat-button [mat-dialog-close]="response()" cdkFocusInitial color="primary">Recieve</button>
 </mat-dialog-actions>

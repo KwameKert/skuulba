@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { AddStudentDetailsComponent } from './components/add-student-details/add-student-details.component';
 import { SearchStudentComponent } from './components/search-student/search-student.component'
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ViewStudentComponent } from './components/view-student/view-student.component';
 import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
 import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
@@ -20,7 +20,7 @@ import { StudentAttendanceComponent } from './components/student-attendance/stud
     CommonModule,
     StudentRoutingModule,
     SharedModule,
-    
+    NgxSkeletonLoaderModule,
   ],
   providers: [  
    // MatDatepickerModule,  
