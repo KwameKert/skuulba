@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AddStudentComponent implements OnInit {
 
+  @ViewChild('imageHolder',{static: true}) imageHolder: ElementRef;
   isLinear = false;
   studentResponse: any;
   firstFormGroup: FormGroup;
@@ -224,9 +225,8 @@ finishStudentForm(){
 }
 
 addNewRecord(stepper: MatStepper){
-  this.studentForm =  null;
-  this.studentMotherForm  = null;
-  this.studentFatherForm  = null;
+  this.previewUrl =  null;
+  this.imageHolder.nativeElement.value = '';
   stepper.reset()
 }
 
