@@ -223,4 +223,12 @@ finishStudentForm(){
   this.router.navigate([`student/editStudentDetails/${this.studId}`]);
 }
 
+addNewRecord(stepper: MatStepper){
+  this.studentForm =  null;
+  this.studentMotherForm  = null;
+  this.studentFatherForm  = null;
+  stepper.reset()
+}
+
+
 }

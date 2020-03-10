@@ -227,7 +227,7 @@
                                     <div fxFlex="50">
                                         <mat-form-field appearance="outline" style="width:300px">
                                             <mat-label>Religion </mat-label>
-                                            <input matInput placeholder="JamesTown" formControlName="religion">
+                                            <input matInput placeholder="Christian" formControlName="religion">
                                             <mat-error *ngIf="studentMotherForm.get('religion').invalid"> Invalid input </mat-error>
                                           </mat-form-field>
                                     </div>
@@ -332,7 +332,7 @@
                                       <div fxFlex="50">
                                           <mat-form-field appearance="outline" style="width:300px">
                                               <mat-label>Religion </mat-label>
-                                              <input matInput placeholder="JamesTown" formControlName="religion">
+                                              <input matInput placeholder="Christian" formControlName="religion">
                                               <mat-error *ngIf="studentFatherForm.get('religion').invalid"> Invalid input </mat-error>
                                             </mat-form-field>
                                       </div>
@@ -375,7 +375,7 @@
                     <p class="lead">Student Information added successfully. Click on  <b>Finish</b> to add academic, physical and  personality details</p>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn" class="mr-3" (click)="stepper.reset()">Add New Record</button>
+                    <button mat-raised-button color="warn" class="mr-3" (click)="addNewRecord(stepper)">Add New Record</button>
                     <button mat-raised-button color="primary" (click)="finishStudentForm()">Finish</button>
                   </div>
                 </mat-step>
