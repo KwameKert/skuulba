@@ -8,7 +8,7 @@ import { environment} from '../../../../environments/environment';
 })
 export class AuthService {
 
-  private _baseUrl = environment.api_host;
+  private _baseUrl :String = environment.api_host;
   private loggedInStatus = localStorage.getItem("status");
   constructor(private _httpClient: HttpClient) { }
 
