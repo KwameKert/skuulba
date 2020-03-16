@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Delete Student</h1>
+<div mat-dialog-content>
+  <p class="lead">This action is irrovokeable. Do you want to delete student? 
+    
+</div>
+<div mat-dialog-actions class="float-right">
+  <button mat-raised-button (click)="onNoClick()" color="primary">No Thanks</button>
+  <button mat-raised-button [mat-dialog-close]="true" color="warn" cdkFocusInitial>Ok</button>
+</div>

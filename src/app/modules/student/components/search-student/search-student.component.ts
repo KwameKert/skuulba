@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { FormBuilder, FormControl, Validators} from '@angular/forms';
@@ -6,6 +6,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Student} from '../student';
 import { Router, ActivatedRoute } from '@angular/router';
 import {StudentService} from '../../service/student.service';
+import {MatDialog} from '@angular/material/dialog';
+import { DeleteStudentComponent } from '../delete-student/delete-student.component';
+
 
 
 @Component({
@@ -24,7 +27,29 @@ export class SearchStudentComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private router: Router, private _studentService: StudentService,private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private router: Router, private _studentService: StudentService,private route: ActivatedRoute, private fb: FormBuilder,public dialog: MatDialog) { }
+
+
+  deleteStudent(id: Number): void {
+    const dialogRef = this.dialog.open(DeleteStudentComponent, {
+      width: '550px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loading = true;
+      if(result){
+        this._studentService.deleteStudent(id).subscribe(data=>{
+          let responseData: any = data;
+          this.students =responseData.data;
+          this.loading = false;
+        }, error=>{
+          console.warn(error)
+        })
+      }
+    });
+  }
+
+
 
   ngOnInit() {
 
@@ -89,3 +114,6 @@ export class SearchStudentComponent implements OnInit {
     console.log(this.searchStudentForm.value)
   }
 }
+
+
+

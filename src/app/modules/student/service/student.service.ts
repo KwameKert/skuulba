@@ -106,6 +106,10 @@ export class StudentService {
     return this._httpClient.get(`${this.baseUrl}/student/studentDetails/${id}`)
   }
 
+  public deleteStudent(id: any){
+    return this._httpClient.get(`${this.baseUrl}/student/delete/${id}`)
+  }
+
   public getClassStudents(data: any){
     return this._httpClient.post(`${this.baseUrl}/student/class/`,data)
   }
