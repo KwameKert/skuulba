@@ -30,57 +30,73 @@
 
     </div>
 
-    
-    <div class="row">
-      <div class="col-md-12  example-container mat-elevation-z3 pt-3">
-        <mat-form-field>
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
-        </mat-form-field>
-        <table mat-table [dataSource]="dataSource">
-        
-        
-          <ng-container matColumnDef="full name">
-            <th mat-header-cell *matHeaderCellDef> Full Name </th>
-            <td mat-cell *matCellDef="let student">{{student.lastName | titlecase}}  {{student.otherNames | titlecase}} </td>
-          </ng-container>
-      
-      
-          <ng-container matColumnDef="class">
-            <th mat-header-cell *matHeaderCellDef> Class </th>
-            <td mat-cell *matCellDef="let student"> {{student.studentClass }} </td>
-          </ng-container>
-      
-   
-          <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef> Age </th>
-            <td mat-cell *matCellDef="let student"> {{student.age}} </td>
-          </ng-container>
-      
-          <ng-container matColumnDef="gender">
-            <th mat-header-cell *matHeaderCellDef> Gender </th>
-            <td mat-cell *matCellDef="let student"> {{student.gender | titlecase}} </td>
-          </ng-container>
 
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let student" >
-              <button mat-icon-button color="primary" (click)="viewStudent(student.id)" >
-                <mat-icon>pageview icon</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" (click)="editStudent(student.id)">
-                <mat-icon>edit</mat-icon>
-              </button> 
-            
-            </td>
-          </ng-container>
-      
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+    <div *ngIf="loading; else studentList">
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <div class="text-center">
+        <img src="assets/loaders/loader.svg" alt="">
       </div>
     </div>
+
+<ng-template #studentList>
+  <div class="row">
+    <div class="col-md-12  example-container mat-elevation-z3 pt-3">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource">
+      
+      
+        <ng-container matColumnDef="full name">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td mat-cell *matCellDef="let student">{{student.lastName | titlecase}}  {{student.otherNames | titlecase}} </td>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="class">
+          <th mat-header-cell *matHeaderCellDef> Class </th>
+          <td mat-cell *matCellDef="let student"> {{student.studentClass }} </td>
+        </ng-container>
+    
+ 
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let student"> {{student.age}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td mat-cell *matCellDef="let student"> {{student.gender | titlecase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let student" >
+            <button mat-icon-button color="primary" (click)="viewStudent(student.id)" >
+              <mat-icon>pageview icon</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="editStudent(student.id)">
+              <mat-icon>edit</mat-icon>
+            </button> 
+
+            <button mat-icon-button color="warn" (click)="editStudent(student.id)">
+              <mat-icon>delete</mat-icon>
+            </button> 
+          
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</ng-template>
+
+
+
 
     </mat-card>

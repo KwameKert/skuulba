@@ -71,6 +71,7 @@ export class EditStudentInfoComponent implements OnInit {
       numSpouse: new FormControl('',[Validators.required,  Validators.pattern('[0-9]*$')]),
       dateDeceased: new FormControl(''),
       isDeceased: new FormControl(''),
+      relationToStudent: new FormControl('mother')
     });
 
 

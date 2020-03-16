@@ -14,6 +14,7 @@ import {StudentService} from '../../service/student.service';
   styleUrls: ['./search-student.component.scss']
 })
 export class SearchStudentComponent implements OnInit {
+  loading: boolean = true;
   studentId: any;
   displayedColumns = ['full name', 'class', 'age', 'gender','action'];
   dataSource :any ;
@@ -46,7 +47,11 @@ export class SearchStudentComponent implements OnInit {
       //console.log();
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.students = this.responseData.data;
+      
+      if(this.responseData.data){
+        this.students = this.responseData.data;
+        this.loading = false;
+      }
     }, error=>{
       console.log(error)
     })

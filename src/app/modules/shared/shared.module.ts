@@ -14,7 +14,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatTabsModule} from '@angular/material/tabs'
+import {MatTabsModule} from '@angular/material/tabs';
+ 
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} from '@angular/material';
@@ -43,7 +44,7 @@ import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} f
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [  
     MatDatepickerModule,  
@@ -70,7 +71,7 @@ import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} f
     MatDividerModule,
     MatTabsModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
   ]
 })
 export class SharedModule { }
