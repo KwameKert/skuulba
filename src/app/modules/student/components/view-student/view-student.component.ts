@@ -48,6 +48,7 @@ export class ViewStudentComponent implements OnInit {
     this._studentService.getStudentDetails(this.studentId).subscribe(data=>{
         this.responseData = data;
         this.studentData = this.responseData.data.student;
+        console.log(this.studentData)
         if(this.studentData){
           this.isLoaded = true;
           console.log(this.isLoaded)

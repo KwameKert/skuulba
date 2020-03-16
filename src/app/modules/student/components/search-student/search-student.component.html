@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z3" style="margin-bottom:30px;padding-bottom:50px">
 
-    <div fxLayout="row"  fxLayoutAlign="center center" [formGroup]="searchStudentForm">
+    <div fxLayout="row"  fxLayoutAlign="center " [formGroup]="searchStudentForm">
         <div fxFlex="15">
 
         </div>
@@ -21,9 +21,9 @@
                   </mat-form-field>
             </div>
              
-            <div fxFlex="25" class="mb-4">
+            <div fxFlex="25" >
 
-                <button mat-raised-button color="primary" (click)="searchStudent()"  [disabled]="!searchStudentForm.valid"><mat-icon>search</mat-icon> Search</button>
+                <button mat-raised-button color="primary" (click)="searchStudent()"  [disabled]="!searchStudentForm.valid" style="margin-top:5px"><mat-icon>search</mat-icon> Search</button>
             </div>
 
         
