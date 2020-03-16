@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
- 
+
+/* html {  overflow-x:hidden; } */
+
+
 body {   font-family: 'Lato', cursive,"Helvetica Neue", sans-serif;background-color:  aliceblue; overflow: hidden; }
