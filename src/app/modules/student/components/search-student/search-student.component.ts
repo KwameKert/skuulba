@@ -40,7 +40,7 @@ export class SearchStudentComponent implements OnInit {
       if(result){
         this._studentService.deleteStudent(id).subscribe(data=>{
           let responseData: any = data;
-          this.students =responseData.data;
+          this.dataSource  = new MatTableDataSource(responseData.data);
           this.loading = false;
         }, error=>{
           console.warn(error)
