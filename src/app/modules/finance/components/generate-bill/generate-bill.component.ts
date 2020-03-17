@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class GenerateBillComponent implements OnInit {
 
+  amount: any = [];
      invoiceID: any;
   //items: FormArray;
   invoiceForm: FormGroup;
@@ -40,7 +41,7 @@ export class GenerateBillComponent implements OnInit {
       name: '',
       quantity: '',
       rate: '',
-      amount:  new FormControl({value: '', disabled: true}),
+      amount: '89',
     })
   }
  
@@ -78,6 +79,16 @@ export class GenerateBillComponent implements OnInit {
     this._snackBar.open(  `Bill sent successfully`, "", {
       duration: 3000,
     });
+
+  }
+
+  onKey(event: any, i){
+
+    let quantity = this.invoiceForm.value.items[i].quantity;
+    let rate = this.invoiceForm.value.items[i].rate;
+    let amount =  quantity * rate;
+    this.invoiceForm.value.items[i].amount = amount;
+    this.amount[i] = amount;
 
   }
   

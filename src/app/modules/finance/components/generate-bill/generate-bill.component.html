@@ -29,9 +29,7 @@
                         <input matInput [matDatepicker]="picker"  required formControlName="date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-<!-- 
-                        <mat-error *ngIf="studentForm.get('dob').invalid"> Invalid input</mat-error>
-                         -->
+
                       </mat-form-field>
 
                       <mat-form-field  appearance="outline" style="margin-top:-38px">
@@ -58,7 +56,7 @@
                         <th  scope="col" style="width:420px" class="text-center">Item</th>
                         <th scope="col" class="text-center" style="width:120px" >Quantity</th>
                         <th  scope="col" class="text-center" style="width:80px" >Rate</th>
-                        <th  scope="col" class="" > <span style="margin-left:20px">Amount ($)</span></th>
+                        <th  scope="col" class="" > <span style="margin-left:20px">Amount</span></th>
                       </tr>
                     </thead>
                 
@@ -85,11 +83,11 @@
                       </div>
 
                       <div fxFlex=10>
-                        <input type="number" formControlName="rate" class="form-control">
+                        <input type="number" formControlName="rate" (keyup)="onKey($event, i)" class="form-control">
                       </div>
 
-                      <div fxFlex=10>
-                        <input type="number" formControlName="amount" class="form-control"   >
+                      <div fxFlex=10 class="text-center mt-2">
+                        ₵{{ amount[i]}}
                       </div>
 
                      <div fxFlex="3">
@@ -113,13 +111,13 @@
 
                     <mat-form-field appearance="outline" style="width:600px; margin-top:30px">
                       <mat-label>Notes</mat-label>
-                      <textarea matInput ></textarea>
+                      <textarea matInput formControlName="notes" ></textarea>
                     </mat-form-field>
 
 
                     <mat-form-field appearance="outline" style="width:600px">
                       <mat-label>Terms</mat-label>
-                      <textarea matInput></textarea>
+                      <textarea matInput formControlName="terms"></textarea>
                     </mat-form-field>
                   </div>
                 </div>
