@@ -20,6 +20,7 @@ declare var $: any;
   styleUrls: ['./daily-fees.component.scss']
 })
 export class DailyFeesComponent implements OnInit {
+  loading: boolean = false;
   showTable : boolean = false;
   param: any ;
   value: any;
@@ -59,25 +60,25 @@ export class DailyFeesComponent implements OnInit {
           console.warn(error)
         })
       }
-
-
-
-
-   
       
     });
 }
   ngOnInit() {
-
+  this.loading = true;
    this._studentService.listStudents().subscribe(data=>{
 
     let response : any= data
-    console.log(response.data)
-    this.dataSource = new MatTableDataSource(response.data);
+    if(response.data){
     
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.showTable = true;
+      this.loading = false;
+      this.dataSource = new MatTableDataSource(response.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.showTable = true;
+      console.log(this.dataSource)
+    }
+
+    
 
    }, error=>{
 
