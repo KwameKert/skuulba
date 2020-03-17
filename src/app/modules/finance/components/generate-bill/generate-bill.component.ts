@@ -20,7 +20,13 @@ export class GenerateBillComponent implements OnInit {
   ngOnInit() {
 
     this.invoiceForm = this.fb.group({
-      invoiceID: this.invoiceID,
+      studentClass: '',
+      notes: '',
+      terms: '',
+      date: '',
+      dateDue: '',
+      amount: '',
+      code: new FormControl({value: this.invoiceID, disabled: true}),
       items: this.fb.array([]) ,
     });
   }
@@ -67,6 +73,8 @@ export class GenerateBillComponent implements OnInit {
 
 
   sendBill(){
+
+    console.log(this.invoiceForm.value);
     this._snackBar.open(  `Bill sent successfully`, "", {
       duration: 3000,
     });
