@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class GenerateBillComponent implements OnInit {
 
-  amount: any = [];
+  totalAmount: any ;
+  amount: any = {};
      invoiceID: any;
   //items: FormArray;
   invoiceForm: FormGroup;
@@ -41,7 +42,7 @@ export class GenerateBillComponent implements OnInit {
       name: '',
       quantity: '',
       rate: '',
-      amount: '89',
+      amount: new FormControl({value: '', disabled: true}),
     })
   }
  
@@ -88,11 +89,52 @@ export class GenerateBillComponent implements OnInit {
     let rate = this.invoiceForm.value.items[i].rate;
     let amount =  quantity * rate;
     this.invoiceForm.value.items[i].amount = amount;
-    this.amount[i] = amount;
+   this.amount[i] = amount;
+
+    console.log(this.amount);
+
+    // if(this.invoiceForm.value.items.length != 0){
+    //   let arr = this.invoiceForm.value.items;
+    //   let holder = [];
+    //   for(let item of arr){
+    //    this.totalAmount =+ parseInt(item.amount)
+    //   }
+    //   console.log(arr)
+    // }
+
+
+
 
   }
   
 
+  // get total(){
+  //   if(this.invoiceForm.value.items.length != 0){
+  //     let arr = this.invoiceForm.value.items;
+  //     let holder = [];
+  
+  //     let sum = 0;
+  //     for(let item of arr){
+  //       console.log(typeof(item.amount))
+  //      sum =+ item.amount
+  //     }
+
+  //     console.log(sum)
+  //   }
+  //   return this.invoiceForm.value.items
+  //   // if(this.invoiceForm.value.items){
+  //   //   let arr = this.invoiceForm.value.items;
+  //   //   let holder ;
+  
+  //   //   for(let item of arr){
+  //   //     holder.push(item.amount);
+  //   //   }
+  
+  //   //   console.log(holder)
+  //   //   return holder;
+  //   // }
+    
+  // }
 
 
 
