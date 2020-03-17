@@ -51,9 +51,13 @@
       </div>
     </div>
 
+    <div class="alert alert-danger text-center" *ngIf="!showTable">
+      <p class="lead">No students found</p>
+
+    </div>
     <ng-template #studentList>
-      <div class="row" *ngIf="dataSource != null">
-        <div class="col-md-12  example-container mat-elevation-z3 pt-3">
+      <div class="row" *ngIf="showTable">
+        <div class="col-md-12   pt-3">
           <mat-form-field>
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">

@@ -119,7 +119,6 @@ export class DailyFeesComponent implements OnInit {
       value: this.value
     }
     this._studentService.searchStudentByParam(data).subscribe(data=>{
-      
     let response : any= data
     if(response.data){
       this.dataSource = new MatTableDataSource(response.data);
