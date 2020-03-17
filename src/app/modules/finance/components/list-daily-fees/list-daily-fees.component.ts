@@ -18,7 +18,7 @@ export class ListDailyFeesComponent implements OnInit {
   param: any ;
   value: any;
   isClass: boolean = true;
-  displayedColumns = ['full name','amount','date_paid','class', 'gender'];
+  displayedColumns = ['full name','type','amount','date_paid','class', 'gender'];
   dataSource : any;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
