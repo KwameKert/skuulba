@@ -8,6 +8,7 @@ import { Student} from '../../../student/components/student';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {StudentService} from '../../../student/service/student.service';
+import {FinanceService} from '../../service.service';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class GenerateBillComponent implements OnInit {
   invoiceForm: FormGroup;
   public selection = new SelectionModel<Student>(true, []);
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private _studentService: StudentService) { }
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private _studentService: StudentService, private _financeService: FinanceService) { }
 
   ngOnInit() {
 
@@ -97,6 +98,12 @@ export class GenerateBillComponent implements OnInit {
 
     this.invoiceForm.patchValue({
       students: this.selection.selected
+    })
+
+    this._financeService.saveInvoice(this.invoiceForm.value).subscribe(data=>{
+      console.log(data)
+    }, error=>{
+      console.warn(error);
     })
 
     //console.log(this.selection.selected)
