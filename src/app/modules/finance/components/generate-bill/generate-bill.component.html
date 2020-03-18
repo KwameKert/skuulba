@@ -10,7 +10,7 @@
                     <p class="text-muted" style="font-size:15px">SkuulBa</p>
                     <mat-form-field appearance="outline">
                         <mat-label>Bill To</mat-label>
-                        <mat-select (selectionChange)="generateID()" formControlName="studentClass" >
+                        <mat-select (selectionChange)="generateID($event)" formControlName="studentClass" >
                           <mat-option value="class 1">Class 1</mat-option>
                           <mat-option value="class 2">Class 2</mat-option>
                           <mat-option value="class 3">Class 3</mat-option>
@@ -130,6 +130,21 @@
       <button mat-raised-button color="primary"  (click)="sendBill()" aria-label="Example icon-button with a heart icon" class="mb-3"> <mat-icon>send</mat-icon>  Send Bill</button> <br>
 
       <button mat-raised-button color="accent"  (click)="downloadBill()" aria-label="Example icon-button with a heart icon"><mat-icon> vertical_align_bottom</mat-icon>  Download</button>
+
+
+      <table mat-table [dataSource]="dataSource" >
+            
+            
+        <ng-container matColumnDef="full name">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td mat-cell *matCellDef="let student">{{student.fullName}}</td>
+        </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
     </div>
 
 </div>

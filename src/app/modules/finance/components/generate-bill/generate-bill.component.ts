@@ -2,6 +2,11 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormArray, FormBuilder } from '@angular/forms';
 import {Finance} from '../../finance';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
+import {StudentService} from '../../../student/service/student.service';
 
 
 @Component({
@@ -11,13 +16,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class GenerateBillComponent implements OnInit {
 
+  displayedColumns = ['full name'];
   totalAmount: any ;
   amount: any = {};
      invoiceID: any;
-  //items: FormArray;
+     dataSource : any;
   invoiceForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private _studentService: StudentService) { }
 
   ngOnInit() {
 
@@ -61,8 +67,13 @@ export class GenerateBillComponent implements OnInit {
 
  
 
-  generateID(){
+  generateID(event: any){
     this.invoiceID = `${new Date().getFullYear()}${Math.floor(Math.random() * (3000 - 1000) + 4)}`;
+    this._studentService.getClassStudents(event.value).subscribe(data=>{
+      console.log(data);
+    },error=>{
+      console.warn("Error");
+    })
   }
 
 
