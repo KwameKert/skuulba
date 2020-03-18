@@ -35,7 +35,8 @@ export class GenerateBillComponent implements OnInit {
   ngOnInit() {
 
     this.invoiceForm = this.fb.group({
-      studentClass: '',
+      param: 'class',
+      value: '',
       notes: '',
       terms: '',
       date: '',
@@ -81,6 +82,9 @@ export class GenerateBillComponent implements OnInit {
       value : event.value
     }
     this.invoiceID = `${new Date().getFullYear()}${Math.floor(Math.random() * (3000 - 1000) + 4)}`;
+    this.invoiceForm.patchValue({
+      code: this.invoiceID
+    })
     this._studentService.getClassStudents(data).subscribe(data=>{
       let response: any  = data;
      this.dataSource = new MatTableDataSource(response.data)
