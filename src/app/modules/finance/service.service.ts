@@ -33,7 +33,7 @@ export class FinanceService {
   }
 
   public saveInvoice(data: any){
-    return this._httpClient.post(`${this.baseUrl}/finance/schoolFee/search/`,data)
+    return this._httpClient.post(`${this.baseUrl}/finance/invoice/`,data)
   }
 
 
