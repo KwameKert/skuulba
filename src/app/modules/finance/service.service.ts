@@ -32,6 +32,9 @@ export class FinanceService {
     return this._httpClient.post(`${this.baseUrl}/finance/schoolFee/search/`,data)
   }
 
+  public saveInvoice(data: any){
+    return this._httpClient.post(`${this.baseUrl}/finance/schoolFee/search/`,data)
+  }
 
 
 }

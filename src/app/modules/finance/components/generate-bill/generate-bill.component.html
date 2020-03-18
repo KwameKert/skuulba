@@ -41,11 +41,8 @@
                         <mat-error *ngIf="studentForm.get('dob').invalid"> Invalid input</mat-error>
                          -->
                       </mat-form-field>
-
-                      <mat-form-field  appearance="outline">
-                        <mat-label>Balance Due   </mat-label>
-                        <input matInput  disabled >
-                      </mat-form-field> 
+                      
+                    
                 </div>
             </div>
 
@@ -87,7 +84,7 @@
                       </div>
 
                       <div fxFlex=10 class="text-center ">
-                        <input type="number" formControlName="amount" class="form-control" [value]="amount[i]">
+                        <input type="number" formControlName="amount" class="form-control" [(ngModel)]="amount[i]">
                       </div>
 
                      <div fxFlex="3">
@@ -121,6 +118,11 @@
                     </mat-form-field>
                   </div>
                 </div>
+
+                <div class="form-group text-center float-right">
+
+                  <input type="text" formControlName="amount" placeholder="total" class="form-control" [(ngModel)]="total">
+               </div>
            
        
         </mat-card>

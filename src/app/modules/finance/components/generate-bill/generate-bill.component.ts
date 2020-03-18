@@ -20,7 +20,9 @@ import {StudentService} from '../../../student/service/student.service';
 export class GenerateBillComponent implements OnInit {
 
   displayedColumns =  ['select','full name',];
+
   totalAmount: any ;
+  total : any;
   amount: any = {};
   invoiceID: any;
   dataSource : any;
@@ -37,8 +39,8 @@ export class GenerateBillComponent implements OnInit {
       terms: '',
       date: '',
       dateDue: '',
-      amount: '',
-      students: this.selection.selected,
+      amount:  new FormControl({value: this.totalAmount, disabled: true}),
+      students: '',
       code: new FormControl({value: this.invoiceID, disabled: true}),
       items: this.fb.array([]) ,
     });
@@ -53,7 +55,7 @@ export class GenerateBillComponent implements OnInit {
       name: '',
       quantity: '',
       rate: '',
-      amount: new FormControl({value: '', disabled: true}),
+      amount: new FormControl({value:'', disabled: true}),
     })
   }
  
@@ -93,6 +95,11 @@ export class GenerateBillComponent implements OnInit {
       duration: 3000,
     });
 
+    this.invoiceForm.patchValue({
+      students: this.selection.selected
+    })
+
+    //console.log(this.selection.selected)
     console.log(this.invoiceForm.value)
   }
 
@@ -132,25 +139,20 @@ export class GenerateBillComponent implements OnInit {
       return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.studentId + 1}`;
     }
 
+
+  sumValues = obj => Object.values(obj).reduce((a: any, b: any) => a + b, 0)
+
   onKey(event: any, i){
 
     let quantity = this.invoiceForm.value.items[i].quantity;
     let rate = this.invoiceForm.value.items[i].rate;
     let amount =  quantity * rate;
     this.invoiceForm.value.items[i].amount = amount;
-   this.amount[i] = amount;
+    this.amount[i] = amount;
 
-    console.log(this.amount);
+    this.totalAmount = this.sumValues(this.amount);
 
-    // if(this.invoiceForm.value.items.length != 0){
-    //   let arr = this.invoiceForm.value.items;
-    //   let holder = [];
-    //   for(let item of arr){
-    //    this.totalAmount =+ parseInt(item.amount)
-    //   }
-    //   console.log(arr)
-    // }
-
+    this.total = "  Total(₵) : " +this.totalAmount;
 
 
 
