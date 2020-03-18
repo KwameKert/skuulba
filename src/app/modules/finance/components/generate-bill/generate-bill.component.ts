@@ -4,8 +4,9 @@ import {Finance} from '../../finance';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import { Student} from '../../../student/components/student';
 import {MatTableDataSource} from '@angular/material/table';
-
+import {SelectionModel} from '@angular/cdk/collections';
 import {StudentService} from '../../../student/service/student.service';
 
 
@@ -14,14 +15,17 @@ import {StudentService} from '../../../student/service/student.service';
   templateUrl: './generate-bill.component.html',
   styleUrls: ['./generate-bill.component.scss']
 })
+
+
 export class GenerateBillComponent implements OnInit {
 
-  displayedColumns = ['full name'];
+  displayedColumns =  ['select','full name',];
   totalAmount: any ;
   amount: any = {};
-     invoiceID: any;
-     dataSource : any;
+  invoiceID: any;
+  dataSource : any;
   invoiceForm: FormGroup;
+  public selection = new SelectionModel<Student>(true, []);
 
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private _studentService: StudentService) { }
 
@@ -34,6 +38,7 @@ export class GenerateBillComponent implements OnInit {
       date: '',
       dateDue: '',
       amount: '',
+      students: this.selection.selected,
       code: new FormControl({value: this.invoiceID, disabled: true}),
       items: this.fb.array([]) ,
     });
@@ -70,11 +75,12 @@ export class GenerateBillComponent implements OnInit {
   generateID(event: any){
     let data = {
       param : 1,
-      class : event.value
+      value : event.value
     }
     this.invoiceID = `${new Date().getFullYear()}${Math.floor(Math.random() * (3000 - 1000) + 4)}`;
     this._studentService.getClassStudents(data).subscribe(data=>{
-      console.log(data);
+      let response: any  = data;
+     this.dataSource = new MatTableDataSource(response.data)
     },error=>{
       console.warn("Error");
     })
@@ -86,6 +92,8 @@ export class GenerateBillComponent implements OnInit {
     this._snackBar.open(  `Bill downloaded successfully`, "", {
       duration: 3000,
     });
+
+    console.log(this.invoiceForm.value)
   }
 
 
@@ -97,6 +105,32 @@ export class GenerateBillComponent implements OnInit {
     });
 
   }
+
+
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+      if(this.dataSource){
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+      }
+     
+    }
+  
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    masterToggle() {
+      this.isAllSelected() ?
+          this.selection.clear() :
+          this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+  
+    /** The label for the checkbox on the passed row */
+    checkboxLabel(row?: Student): string {
+      if (!row) {
+        return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      }
+      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.studentId + 1}`;
+    }
 
   onKey(event: any, i){
 
@@ -123,33 +157,6 @@ export class GenerateBillComponent implements OnInit {
   }
   
 
-  // get total(){
-  //   if(this.invoiceForm.value.items.length != 0){
-  //     let arr = this.invoiceForm.value.items;
-  //     let holder = [];
-  
-  //     let sum = 0;
-  //     for(let item of arr){
-  //       console.log(typeof(item.amount))
-  //      sum =+ item.amount
-  //     }
-
-  //     console.log(sum)
-  //   }
-  //   return this.invoiceForm.value.items
-  //   // if(this.invoiceForm.value.items){
-  //   //   let arr = this.invoiceForm.value.items;
-  //   //   let holder ;
-  
-  //   //   for(let item of arr){
-  //   //     holder.push(item.amount);
-  //   //   }
-  
-  //   //   console.log(holder)
-  //   //   return holder;
-  //   // }
-    
-  // }
 
 
 
