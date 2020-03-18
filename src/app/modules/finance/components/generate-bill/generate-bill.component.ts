@@ -68,8 +68,12 @@ export class GenerateBillComponent implements OnInit {
  
 
   generateID(event: any){
+    let data = {
+      param : 1,
+      class : event.value
+    }
     this.invoiceID = `${new Date().getFullYear()}${Math.floor(Math.random() * (3000 - 1000) + 4)}`;
-    this._studentService.getClassStudents(event.value).subscribe(data=>{
+    this._studentService.getClassStudents(data).subscribe(data=>{
       console.log(data);
     },error=>{
       console.warn("Error");
