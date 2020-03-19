@@ -414,7 +414,7 @@
 
                     </div></div>
                     <div class="tab-pane fade" id="disability" role="tabpanel" aria-labelledby="list-settings-list">  
-                        <table mat-table [dataSource]="handicapSource" class="mat-elevation-z8" style="width:100%" *ngIf="handicapSource != null">
+                        <table mat-table [dataSource]="handicapSource"  style="width:100%" *ngIf="handicapSource != null">
         
                         <ng-container matColumnDef="part">
                           <th mat-header-cell *matHeaderCellDef class="text-center"> Body Part </th>
@@ -432,7 +432,7 @@
                         <tr mat-row *matRowDef="let row; columns: handicapColumns;"></tr>
                       </table></div>
                     <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="list-settings-list"  *ngIf="talentSource != null"> 
-                        <table mat-table [dataSource]="awardSource" class="mat-elevation-z8" style="width:100%">
+                        <table mat-table [dataSource]="awardSource"  style="width:100%">
         
                         <ng-container matColumnDef="date">
                           <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
