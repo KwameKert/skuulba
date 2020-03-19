@@ -158,7 +158,7 @@
             
                 <div class="col-6 border border-light mt-4" style="height: 320px;">
                   <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="list-home-list">
+                    <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="list-home-list" *ngIf="studentData != null"> 
                      
                                 <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
                                     <div fxFlex="40">
@@ -216,7 +216,7 @@
             
                         
                     </div>
-                    <div class="tab-pane fade" id="mother" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="tab-pane fade" id="mother" role="tabpanel" aria-labelledby="list-profile-list" *ngIf="studentMotherData != null"> 
                         <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
                             <div fxFlex="40">
                                 <span><b>FullName: </b>{{ studentMotherData.fullName}}</span>
@@ -262,28 +262,226 @@
     
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="father" role="tabpanel" aria-labelledby="list-messages-list">Father</div>
-                    <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="list-settings-list">Physical</div>
-                    <div class="tab-pane fade" id="personality" role="tabpanel" aria-labelledby="list-settings-list">Personality</div>
-                    <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="list-settings-list">Education</div>
-                    <div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="list-settings-list">Health</div>
-                    <div class="tab-pane fade" id="disability" role="tabpanel" aria-labelledby="list-settings-list">Disability</div>
-                    <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="list-settings-list">Awards</div>
-                    <div class="tab-pane fade" id="talents" role="tabpanel" aria-labelledby="list-settings-list">Talents</div>
+                    <div class="tab-pane fade" id="father" role="tabpanel" aria-labelledby="list-messages-list" *ngIf="studentFatherData != null">
+                        <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                            <div fxFlex="40">
+                                <span><b>FullName: </b>{{ studentFatherData.fullName}}</span>
+                            </div>
+    
+                            <div fxFlex="40">
+                                <span><b>Address : </b>{{studentFatherData.address}}</span>
+                            </div>
+    
+                        </div>
+                       
+    
+                        <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                            <div fxFlex="40">
+                                <span><b>Email: </b>{{ studentFatherData.email}}</span>
+                            </div>
+    
+                            <div fxFlex="40">
+                                <span><b>Occupation: </b>{{studentFatherData.occupation}}</span>
+                            </div>
+    
+                        </div>
+    
+    
+                        <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                            <div fxFlex="40">
+                                <span><b>Phone: </b>+233{{ studentFatherData.phoneNumber}}</span>
+                            </div>
+    
+                            <div fxFlex="40">
+                                <span><b>Education Status: </b>{{studentFatherData.educationStatus}}</span>
+                            </div>
+    
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                            <div fxFlex="40">
+                                <span><b>Religion: </b>{{ studentFatherData.religion}}</span>
+                            </div>
+    
+                            <div fxFlex="40">
+                                <span><b>Number of Spouse: </b>{{studentFatherData.numSpouse}}</span>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="list-settings-list"  *ngIf="physicalSource != null">
+                        <table mat-table [dataSource]="physicalSource" class="" style="width:100%">
+        
+                            <ng-container matColumnDef="date">
+                              <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                              <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="weight">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Weight </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.weight}} </td>
+                            </ng-container>
+                          
+                        
+                            <ng-container matColumnDef="height">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Height </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.height}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="remark">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                            </ng-container>
+                          
+                            <tr mat-header-row *matHeaderRowDef="physicalColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: physicalColumns;"></tr>
+                          </table>
+                    </div>
+                    <div class="tab-pane fade" id="personality" role="tabpanel" aria-labelledby="list-settings-list" *ngIf="personalitySource != null">
+                        <table mat-table [dataSource]="personalitySource" style="width:100%">
+    
+                            <ng-container matColumnDef="trait">
+                              <th mat-header-cell *matHeaderCellDef class="text-center"> Trait </th>
+                              <td mat-cell *matCellDef="let element" class="text-center"> {{element.trait}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="class">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Class </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.class}} </td>
+                            </ng-container>
+                          
+                        
+                            <ng-container matColumnDef="score">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> score </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.score}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="remark">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                            </ng-container>
+                          
+                            <tr mat-header-row *matHeaderRowDef="personalityColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: personalityColumns;"></tr>
+                          </table></div>
+                    <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="list-settings-list" *ngIf="educationSource != null"> 
+                        <table mat-table [dataSource]="educationSource"  style="width:100%">
+        
+                        <ng-container matColumnDef="school">
+                          <th mat-header-cell *matHeaderCellDef class="text-center"> School </th>
+                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.schoolName}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="admissionDate">
+                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Admission Date </th>
+                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.admissionDate |  date: 'dd/MM/yyyy'}} </td>
+                        </ng-container>
+                      
+                    
+                        <ng-container matColumnDef="lastAdmissionDate">
+                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Last Date Admission </th>
+                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.lastAdmissionDate |  date: 'dd/MM/yyyy'}} </td>
+                        </ng-container>
+                      
+                      
+                        <tr mat-header-row *matHeaderRowDef="educationColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: educationColumns;"></tr>
+                      </table></div>
+                    <div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="list-settings-list" *ngIf="studentHealth != null">    
+                         <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                        <div fxFlex="40">
+                            <span> <b>Primary Care Physician: </b> {{ studentHealth.primaryCarePhysician}}</span>
+                        </div>
+
+                        <div fxFlex="40">
+                            <span><b>Preferred  Hospital : </b>{{studentHealth.preferredMedicalFacility}}</span>
+                        </div>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                        <div fxFlex="40">
+                            <span><b>Policy Holder Name: </b>{{ studentHealth.policyHolderName}}</span>
+                        </div>
+
+                        <div fxFlex="40">
+                            <span><b>Insurance Number : </b>{{studentHealth.insuranceNumber}}</span>
+                        </div>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around" class="mt-3">
+                        <div fxFlex="40">
+                            <span><b>Policy Number: </b>{{ studentHealth.policyNumber}}</span>
+                        </div>
+
+                    </div></div>
+                    <div class="tab-pane fade" id="disability" role="tabpanel" aria-labelledby="list-settings-list">  
+                        <table mat-table [dataSource]="handicapSource" class="mat-elevation-z8" style="width:100%" *ngIf="handicapSource != null">
+        
+                        <ng-container matColumnDef="part">
+                          <th mat-header-cell *matHeaderCellDef class="text-center"> Body Part </th>
+                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.handicapPart}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="description">
+                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Description </th>
+                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.handicapDescription}} </td>
+                        </ng-container>
+                      
+                    
+                      
+                        <tr mat-header-row *matHeaderRowDef="handicapColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: handicapColumns;"></tr>
+                      </table></div>
+                    <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="list-settings-list"  *ngIf="talentSource != null"> 
+                        <table mat-table [dataSource]="awardSource" class="mat-elevation-z8" style="width:100%">
+        
+                        <ng-container matColumnDef="date">
+                          <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="award">
+                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Award </th>
+                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.award}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="remark">
+                            <th mat-header-cell *matHeaderCellDef  class="text-center"> Remark </th>
+                            <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                          </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="awardColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: awardColumns;"></tr>
+                      </table></div>
+                    <div class="tab-pane fade" id="talents" role="tabpanel" aria-labelledby="list-settings-list">
+                        <table mat-table [dataSource]="talentSource" style="width:100%">
+    
+                            <ng-container matColumnDef="date">
+                              <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                              <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="particulars">
+                              <th mat-header-cell *matHeaderCellDef  class="text-center"> Particulars </th>
+                              <td mat-cell *matCellDef="let element"  class="text-center"> {{element.particulars}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="talentColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: talentColumns;"></tr>
+                          </table></div>
                   </div>
                 </div>
 
                 <div class="col-3">
                     <div class="list-group" id="list-tab" role="tablist">
-                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#personal" role="tab" aria-controls="home">Personal Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#mother" role="tab" aria-controls="profile">Mother Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#father" role="tab" aria-controls="messages">Father Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#physical" role="tab" aria-controls="settings">Physical Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#personality" role="tab" aria-controls="settings">Personality Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#education" role="tab" aria-controls="settings">Education Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#health" role="tab" aria-controls="settings">Health Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#disability" role="tab" aria-controls="settings">Disability Information</a>
-                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#talents" role="tab" aria-controls="settings">Talents</a>
+                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#personal" role="tab" aria-controls="home" *ngIf="studentData != null">Personal Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#mother" role="tab" aria-controls="profile" *ngIf="studentMotherData != null">Mother Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#father" role="tab" aria-controls="messages" *ngIf="studentFatherData != null">Father Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#physical" role="tab" aria-controls="settings"  *ngIf="physicalSource != null">Physical Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#personality" role="tab" aria-controls="settings" *ngIf="personalitySource != null">Personality Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#education" role="tab" aria-controls="settings" *ngIf="educationSource != null">Education Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#health" role="tab" aria-controls="settings" *ngIf="studentHealth != null">Health Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#disability" role="tab" aria-controls="settings" *ngIf="handicapSource != null">Disability Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#talents" role="tab" aria-controls="settings"  *ngIf="talentSource != null">Talents</a>
                       <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#awards" role="tab" aria-controls="settings">Awards</a>
                     </div>
                   </div>
