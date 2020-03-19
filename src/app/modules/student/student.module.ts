@@ -13,11 +13,14 @@ import { EditStudentDetailsComponent } from './components/edit-student-details/e
 import { StudentAttendanceComponent } from './components/student-attendance/student-attendance.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteStudentComponent } from './components/delete-student/delete-student.component';
+import { StudentDailyFeeComponent } from './components/student-daily-fee/student-daily-fee.component';
+import { StudentSchoolFeeComponent } from './components/student-school-fee/student-school-fee.component';
+import { StudentInvoiceComponent } from './components/student-invoice/student-invoice.component';
 
 
 
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent, StudentAttendanceComponent, DeleteStudentComponent, ],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent, StudentAttendanceComponent, DeleteStudentComponent, StudentDailyFeeComponent, StudentSchoolFeeComponent, StudentInvoiceComponent,  ],
   imports: [
     CommonModule,
     StudentRoutingModule,
