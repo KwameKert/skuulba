@@ -58,3 +58,11 @@
     background: #FF0001;
     padding: 10px;
   }
+
+
+  .list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #3f51b5 !important;
+    border-color: #3f51b5 !important;
+}

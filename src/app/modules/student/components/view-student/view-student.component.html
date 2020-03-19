@@ -146,9 +146,101 @@
 
 
     <ng-template #elseBlock >
+        <mat-card class="row mat-elevation-z3 mb-3" >
+            <div class="row">
 
+                <div class="col-4 text-center">
+                    <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
+                    <button mat-icon-button color="warn" (click)="editStudent()">
+                        Edit <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            
+                <div class="col-4">
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="list-home-list">
+                     
+                                <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                    <div fxFlex="40">
+                                        <span><b>Lastname: </b> {{ studentData.lastName}}</span>
+                                    </div>
+            
+                                    <div fxFlex="40">
+                                        <span><b>Other names:</b> {{studentData.otherNames}}</span>
+                                    </div>
+            
+                                </div>                              
+                                <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
+                                    <div fxFlex="40">
+                                        <span><b>Living With: </b>{{ studentData.livingWith}}</span>
+                                    </div>
+            
+                                    <div fxFlex="40">
+                                        <span><b>Mother Tongue: </b>{{studentData.motherTongue}}</span>
+                                    </div>
+            
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
+                                    <div fxFlex="40">
+                                        <span><b>Hometown: </b>{{ studentData.homeTown}}</span>
+                                    </div>
+            
+                                    <div fxFlex="40">
+                                        <span><b>Languages: </b>{{studentData.languages}}</span>
+                                    </div>
+            
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="start" class="mt-2" >
+                                   
+            
+                                    <div fxFlex="40">
+                                        <span><b>Religion : </b>{{studentData.religion}}</span>
+                                    </div>
+            
+                                </div>
+            
+                                <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
+                                    <div fxFlex="40">
+                                        <span><b>Date of birth: </b>{{ studentData.dob |  date:"MM/dd/yy"}}</span>
+                                    </div> 
+            
+                                    <div fxFlex="40">
+                                        <span><b>Student Class: </b> {{studentData.studentClass}} </span>
+                                    </div> 
+                                </div>
+            
+                        
+                    </div>
+                    <div class="tab-pane fade" id="mother" role="tabpanel" aria-labelledby="list-profile-list">Mother</div>
+                    <div class="tab-pane fade" id="father" role="tabpanel" aria-labelledby="list-messages-list">Father</div>
+                    <div class="tab-pane fade" id="physical" role="tabpanel" aria-labelledby="list-settings-list">Physical</div>
+                    <div class="tab-pane fade" id="personality" role="tabpanel" aria-labelledby="list-settings-list">Personality</div>
+                    <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="list-settings-list">Education</div>
+                    <div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="list-settings-list">Health</div>
+                    <div class="tab-pane fade" id="disability" role="tabpanel" aria-labelledby="list-settings-list">Disability</div>
+                    <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="list-settings-list">Awards</div>
+                    <div class="tab-pane fade" id="talents" role="tabpanel" aria-labelledby="list-settings-list">Talents</div>
+                  </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="list-group" id="list-tab" role="tablist">
+                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#personal" role="tab" aria-controls="home">Personal Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#mother" role="tab" aria-controls="profile">Mother Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#father" role="tab" aria-controls="messages">Father Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#physical" role="tab" aria-controls="settings">Physical Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#personality" role="tab" aria-controls="settings">Personality Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#education" role="tab" aria-controls="settings">Education Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#health" role="tab" aria-controls="settings">Health Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#disability" role="tab" aria-controls="settings">Disability Information</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#talents" role="tab" aria-controls="settings">Talents</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#awards" role="tab" aria-controls="settings">Awards</a>
+                    </div>
+                  </div>
+              </div>
+        </mat-card>
         
-            <mat-card class="row mat-elevation-z3 mb-3" >
+            <!-- <mat-card class="row mat-elevation-z3 mb-3" >
                 <div class="row">
                 <div class="col-md-3 text-center">
                     <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
@@ -477,8 +569,11 @@
                 </div>
             </div>
             </mat-card> 
+
+
+    
        
-            <div fxLayout="row" fxLayoutAlign="start" style="margin-bottom:100px">
+            <div fxLayout="row" fxLayoutAlign="space-between " fxLayoutGap="" style="margin-bottom:100px">
                 <div fxFlex="55">
                     <mat-card class="row mat-elevation-z3 bg-light">
                         <mat-card-title class="text-center">Health Info </mat-card-title>
@@ -514,11 +609,29 @@
                     </mat-card>
                 </div>
 
-                <div  fxFlex="45">
-                    
+                <div  fxFlex="40">
+                        <mat-card class="row mat-elevation-z3 bg-light">
+                           <div class="row">
+                               <div class="col-md-4">
+                                <mat-icon style="font-size: 70px" color="primary">credit_card</mat-icon><br>
+                                <span class="float-left">Daily Fees</span>
+                               </div>
+
+                               <div class="col-md-4">
+                                <mat-icon style="font-size: 70px" color="accent">money</mat-icon><br>
+                                <span class="float-left">School Fees</span>
+                               </div>
+
+                               <div class="col-md-4">
+                                <mat-icon style="font-size: 70px" color="warn">notes</mat-icon><br>
+                                <span class="float-left">Invoices Fees</span>
+                               </div>
+                           </div>
+                        </mat-card>
+
                 </div>
           
-            </div>    
+            </div>     -->
               
       
 
