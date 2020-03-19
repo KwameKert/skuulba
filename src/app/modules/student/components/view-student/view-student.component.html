@@ -145,374 +145,412 @@
 
 
 
-    <ng-template #elseBlock>
-  <mat-card class="row mat-elevation-z3">
+    <ng-template #elseBlock >
+
+        
+            <mat-card class="row mat-elevation-z3 mb-3" >
+                <div class="row">
+                <div class="col-md-3 text-center">
+                    <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
+                    <button mat-icon-button color="warn" (click)="editStudent()">
+                        Edit <mat-icon>edit</mat-icon>
+                      </button> 
+                </div>
+        
+                <div class="col-md-9 text-center">
+                 
+                    <mat-tab-group color="primary" backgroundColor="primary">
+        
+                       
+                       
+                        <mat-tab label="Personal Information" *ngIf="studentData != null"> 
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>Lastname: {{ studentData.lastName}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Other names: {{studentData.otherNames}}</p>
+                                </div>
+        
+                            </div>
+                           
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Living With: {{ studentData.livingWith}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Mother Tongue: {{studentData.motherTongue}}</p>
+                                </div>
+        
+                            </div>
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Hometown: {{ studentData.homeTown}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Languages: {{studentData.languages}}</p>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="" >
+                               
+        
+                                <div fxFlex="40">
+                                    <p>Religion : {{studentData.religion}}</p>
+                                </div>
+        
+                            </div>
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Date of birth: {{ studentData.dob |  date:"MM/dd/yy"}}</p>
+                                </div> 
+        
+                                <div fxFlex="40">
+                                    <p>Student Class: </p>
+                                </div> 
+                            </div>
+        
+        
+                        </mat-tab>
+        
+        
+                        <mat-tab label="Mother Information" *ngIf="studentMotherData != null"> 
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>FullName: {{ studentMotherData.fullName}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Address : {{studentMotherData.address}}</p>
+                                </div>
+        
+                            </div>
+                           
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Email: {{ studentMotherData.email}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Occupation: {{studentMotherData.occupation}}</p>
+                                </div>
+        
+                            </div>
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Phone: +233{{ studentMotherData.phoneNumber}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Education Status: {{studentMotherData.educationStatus}}</p>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Religion: {{ studentMotherData.religion}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Number of Spouse: {{studentMotherData.numSpouse}}</p>
+                                </div>
+        
+                            </div>
+                        </mat-tab>
+        
+        
+                        <mat-tab label="Father Information" *ngIf="studentFatherData != null"> 
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>FullName: {{ studentFatherData.fullName}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Address : {{studentFatherData.address}}</p>
+                                </div>
+        
+                            </div>
+                           
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Email: {{ studentFatherData.email}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Occupation: {{studentFatherData.occupation}}</p>
+                                </div>
+        
+                            </div>
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Phone: +233{{ studentFatherData.phoneNumber}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Education Status: {{studentFatherData.educationStatus}}</p>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                                <div fxFlex="40">
+                                    <p>Religion: {{ studentFatherData.religion}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Number of Spouse: {{studentFatherData.numSpouse}}</p>
+                                </div>
+        
+                            </div>
+                        </mat-tab>
+        
+        
+                        <mat-tab label="Physical Development" *ngIf="physicalSource != null"> 
+                            <table mat-table [dataSource]="physicalSource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="date">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="weight">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Weight </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.weight}} </td>
+                                </ng-container>
+                              
+                            
+                                <ng-container matColumnDef="height">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Height </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.height}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="remark">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                                </ng-container>
+                              
+                                <tr mat-header-row *matHeaderRowDef="physicalColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: physicalColumns;"></tr>
+                              </table>
+                              
+                              
+                        </mat-tab>
+        
+                        <mat-tab label="Personality Development" *ngIf="personalitySource != null"> 
+        
+                            <table mat-table [dataSource]="personalitySource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="trait">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> Trait </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.trait}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="class">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Class </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.class}} </td>
+                                </ng-container>
+                              
+                            
+                                <ng-container matColumnDef="score">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> score </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.score}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="remark">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                                </ng-container>
+                              
+                                <tr mat-header-row *matHeaderRowDef="personalityColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: personalityColumns;"></tr>
+                              </table>
+                        </mat-tab>
+        
+                        <mat-tab label="Education Info" *ngIf="educationSource != null"> 
+        
+                            <table mat-table [dataSource]="educationSource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="school">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> School </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.schoolName}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="admissionDate">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Admission Date </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.admissionDate |  date: 'dd/MM/yyyy'}} </td>
+                                </ng-container>
+                              
+                            
+                                <ng-container matColumnDef="lastAdmissionDate">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Last Date Admission </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.lastAdmissionDate |  date: 'dd/MM/yyyy'}} </td>
+                                </ng-container>
+                              
+                              
+                                <tr mat-header-row *matHeaderRowDef="educationColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: educationColumns;"></tr>
+                              </table>
+                        </mat-tab>
+        
+                        <mat-tab label="Health Info" *ngIf="studentHealth != null"> 
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>Primary Care Physician: {{ studentHealth.primaryCarePhysician}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Preferred  Hospital : {{studentHealth.preferredMedicalFacility}}</p>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>Policy Holder Name: {{ studentHealth.policyHolderName}}</p>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <p>Insurance Number : {{studentHealth.insuranceNumber}}</p>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <p>Policy Number: {{ studentHealth.policyNumber}}</p>
+                                </div>
+        
+                            </div>
+                           
+                        </mat-tab>
+        
+        
+                        <mat-tab label="Handicap Info" *ngIf="handicapSource != null"> 
+                            <table mat-table [dataSource]="handicapSource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="part">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> Body Part </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.handicapPart}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="description">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Description </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.handicapDescription}} </td>
+                                </ng-container>
+                              
+                            
+                              
+                                <tr mat-header-row *matHeaderRowDef="handicapColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: handicapColumns;"></tr>
+                              </table>
+                        </mat-tab>
+        
+        
+                        <mat-tab label="Special Talent" *ngIf="talentSource != null"> 
+        
+                            <table mat-table [dataSource]="talentSource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="date">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="particulars">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Particulars </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.particulars}} </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="talentColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: talentColumns;"></tr>
+                              </table>
+                        </mat-tab>
+        
+                        <mat-tab label="Awards" *ngIf="awardSource != null">
+        
+                            <table mat-table [dataSource]="awardSource" class="mat-elevation-z8" style="width:100%">
+        
+                                <ng-container matColumnDef="date">
+                                  <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="award">
+                                  <th mat-header-cell *matHeaderCellDef  class="text-center"> Award </th>
+                                  <td mat-cell *matCellDef="let element"  class="text-center"> {{element.award}} </td>
+                                </ng-container>
+        
+                                <ng-container matColumnDef="remark">
+                                    <th mat-header-cell *matHeaderCellDef  class="text-center"> Remark </th>
+                                    <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
+                                  </ng-container>
+        
+        
+                                <tr mat-header-row *matHeaderRowDef="awardColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: awardColumns;"></tr>
+                              </table>
+                             
+                        </mat-tab>
+        
+        
+        
+                        
+                    </mat-tab-group>    
+                </div>
+            </div>
+            </mat-card> 
+       
+            <div fxLayout="row" fxLayoutAlign="start" style="margin-bottom:100px">
+                <div fxFlex="50">
+                    <mat-card class="row mat-elevation-z3 bg-light">
+                        <mat-card-title class="text-center">Health Info </mat-card-title>
+                        <mat-card-content>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <span> <b>Primary Care Physician: </b> {{ studentHealth.primaryCarePhysician}}</span>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <span><b>Preferred  Hospital : </b>{{studentHealth.preferredMedicalFacility}}</span>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <span><b>Policy Holder Name: </b>{{ studentHealth.policyHolderName}}</span>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <span><b>Insurance Number : </b>{{studentHealth.insuranceNumber}}</span>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <span><b>Policy Number: </b>{{ studentHealth.policyNumber}}</span>
+                                </div>
+        
+                            </div>
+                        </mat-card-content>
+                       
+                    </mat-card>
+                </div>
+          
+            </div>    
+              
       
 
-        <div class="col-md-3 text-center">
-            <img [src]="studentData.image_url" class="img-thumbnail mt-4" height="800px"  *ngIf="studentData != null" />  
-            <button mat-icon-button color="warn" (click)="editStudent()">
-                Edit <mat-icon>edit</mat-icon>
-              </button> 
-        </div>
 
-        <div class="col-md-9 text-center">
-         
-            <mat-tab-group color="primary" backgroundColor="primary">
-
-               
-               
-                <mat-tab label="Personal Information" *ngIf="studentData != null"> 
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>Lastname: {{ studentData.lastName}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Other names: {{studentData.otherNames}}</p>
-                        </div>
-
-                    </div>
-                   
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Living With: {{ studentData.livingWith}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Mother Tongue: {{studentData.motherTongue}}</p>
-                        </div>
-
-                    </div>
-
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Hometown: {{ studentData.homeTown}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Languages: {{studentData.languages}}</p>
-                        </div>
-
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="start" class="" >
-                       
-
-                        <div fxFlex="40">
-                            <p>Religion : {{studentData.religion}}</p>
-                        </div>
-
-                    </div>
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Date of birth: {{ studentData.dob |  date:"MM/dd/yy"}}</p>
-                        </div> 
-
-                        <div fxFlex="40">
-                            <p>Student Class: </p>
-                        </div> 
-                    </div>
-
-
-                </mat-tab>
-
-
-                <mat-tab label="Mother Information" *ngIf="studentMotherData != null"> 
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>FullName: {{ studentMotherData.fullName}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Address : {{studentMotherData.address}}</p>
-                        </div>
-
-                    </div>
-                   
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Email: {{ studentMotherData.email}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Occupation: {{studentMotherData.occupation}}</p>
-                        </div>
-
-                    </div>
-
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Phone: +233{{ studentMotherData.phoneNumber}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Education Status: {{studentMotherData.educationStatus}}</p>
-                        </div>
-
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Religion: {{ studentMotherData.religion}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Number of Spouse: {{studentMotherData.numSpouse}}</p>
-                        </div>
-
-                    </div>
-                </mat-tab>
-
-
-                <mat-tab label="Father Information" *ngIf="studentFatherData != null"> 
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>FullName: {{ studentFatherData.fullName}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Address : {{studentFatherData.address}}</p>
-                        </div>
-
-                    </div>
-                   
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Email: {{ studentFatherData.email}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Occupation: {{studentFatherData.occupation}}</p>
-                        </div>
-
-                    </div>
-
-
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Phone: +233{{ studentFatherData.phoneNumber}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Education Status: {{studentFatherData.educationStatus}}</p>
-                        </div>
-
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="start" class="">
-                        <div fxFlex="40">
-                            <p>Religion: {{ studentFatherData.religion}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Number of Spouse: {{studentFatherData.numSpouse}}</p>
-                        </div>
-
-                    </div>
-                </mat-tab>
-
-
-                <mat-tab label="Physical Development" *ngIf="physicalSource != null"> 
-                    <table mat-table [dataSource]="physicalSource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="date">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="weight">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Weight </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.weight}} </td>
-                        </ng-container>
-                      
-                    
-                        <ng-container matColumnDef="height">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Height </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.height}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="remark">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
-                        </ng-container>
-                      
-                        <tr mat-header-row *matHeaderRowDef="physicalColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: physicalColumns;"></tr>
-                      </table>
-                      
-                      
-                </mat-tab>
-
-                <mat-tab label="Personality Development" *ngIf="personalitySource != null"> 
-
-                    <table mat-table [dataSource]="personalitySource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="trait">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> Trait </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.trait}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="class">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Class </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.class}} </td>
-                        </ng-container>
-                      
-                    
-                        <ng-container matColumnDef="score">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> score </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.score}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="remark">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Remarks </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
-                        </ng-container>
-                      
-                        <tr mat-header-row *matHeaderRowDef="personalityColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: personalityColumns;"></tr>
-                      </table>
-                </mat-tab>
-
-                <mat-tab label="Education Info" *ngIf="educationSource != null"> 
-
-                    <table mat-table [dataSource]="educationSource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="school">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> School </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.schoolName}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="admissionDate">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Admission Date </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.admissionDate |  date: 'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                      
-                    
-                        <ng-container matColumnDef="lastAdmissionDate">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Last Date Admission </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.lastAdmissionDate |  date: 'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                      
-                      
-                        <tr mat-header-row *matHeaderRowDef="educationColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: educationColumns;"></tr>
-                      </table>
-                </mat-tab>
-
-                <mat-tab label="Health Info" *ngIf="studentHealth != null"> 
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>Primary Care Physician: {{ studentHealth.primaryCarePhysician}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Preferred  Hospital : {{studentHealth.preferredMedicalFacility}}</p>
-                        </div>
-
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>Policy Holder Name: {{ studentHealth.policyHolderName}}</p>
-                        </div>
-
-                        <div fxFlex="40">
-                            <p>Insurance Number : {{studentHealth.insuranceNumber}}</p>
-                        </div>
-
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                        <div fxFlex="40">
-                            <p>Policy Number: {{ studentHealth.policyNumber}}</p>
-                        </div>
-
-                    </div>
-                   
-                </mat-tab>
-
-
-                <mat-tab label="Handicap Info" *ngIf="handicapSource != null"> 
-                    <table mat-table [dataSource]="handicapSource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="part">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> Body Part </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.handicapPart}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="description">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Description </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.handicapDescription}} </td>
-                        </ng-container>
-                      
-                    
-                      
-                        <tr mat-header-row *matHeaderRowDef="handicapColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: handicapColumns;"></tr>
-                      </table>
-                </mat-tab>
-
-
-                <mat-tab label="Special Talent" *ngIf="talentSource != null"> 
-
-                    <table mat-table [dataSource]="talentSource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="date">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="particulars">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Particulars </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.particulars}} </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="talentColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: talentColumns;"></tr>
-                      </table>
-                </mat-tab>
-
-                <mat-tab label="Awards" *ngIf="awardSource != null">
-
-                    <table mat-table [dataSource]="awardSource" class="mat-elevation-z8" style="width:100%">
-
-                        <ng-container matColumnDef="date">
-                          <th mat-header-cell *matHeaderCellDef class="text-center"> Date </th>
-                          <td mat-cell *matCellDef="let element" class="text-center"> {{element.date |  date: 'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="award">
-                          <th mat-header-cell *matHeaderCellDef  class="text-center"> Award </th>
-                          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.award}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="remark">
-                            <th mat-header-cell *matHeaderCellDef  class="text-center"> Remark </th>
-                            <td mat-cell *matCellDef="let element"  class="text-center"> {{element.remark}} </td>
-                          </ng-container>
-
-
-                        <tr mat-header-row *matHeaderRowDef="awardColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: awardColumns;"></tr>
-                      </table>
-                     
-                </mat-tab>
-
-
-
-                
-            </mat-tab-group>    
-        </div>
-
-
-        <div class="col-md-4 col-lg-4">
-            
-        </div>
-
-
-    </mat-card>
+ 
 
     </ng-template>
     
