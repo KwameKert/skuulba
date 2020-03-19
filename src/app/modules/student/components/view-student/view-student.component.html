@@ -167,54 +167,54 @@
         
                             <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>Lastname: {{ studentData.lastName}}</p>
+                                    <span><b>Lastname: </b> {{ studentData.lastName}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Other names: {{studentData.otherNames}}</p>
+                                    <span><b>Other names:</b> {{studentData.otherNames}}</span>
                                 </div>
         
                             </div>
                            
         
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
                                 <div fxFlex="40">
-                                    <p>Living With: {{ studentData.livingWith}}</p>
+                                    <span><b>Living With: </b>{{ studentData.livingWith}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Mother Tongue: {{studentData.motherTongue}}</p>
-                                </div>
-        
-                            </div>
-        
-        
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
-                                <div fxFlex="40">
-                                    <p>Hometown: {{ studentData.homeTown}}</p>
-                                </div>
-        
-                                <div fxFlex="40">
-                                    <p>Languages: {{studentData.languages}}</p>
+                                    <span><b>Mother Tongue: </b>{{studentData.motherTongue}}</span>
                                 </div>
         
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="start" class="" >
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
+                                <div fxFlex="40">
+                                    <span><b>Hometown: </b>{{ studentData.homeTown}}</span>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <span><b>Languages: </b>{{studentData.languages}}</span>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-2" >
                                
         
                                 <div fxFlex="40">
-                                    <p>Religion : {{studentData.religion}}</p>
+                                    <span><b>Religion : </b>{{studentData.religion}}</span>
                                 </div>
         
                             </div>
         
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-2">
                                 <div fxFlex="40">
-                                    <p>Date of birth: {{ studentData.dob |  date:"MM/dd/yy"}}</p>
+                                    <span><b>Date of birth: </b>{{ studentData.dob |  date:"MM/dd/yy"}}</span>
                                 </div> 
         
                                 <div fxFlex="40">
-                                    <p>Student Class: </p>
+                                    <span><b>Student Class: </b> {{studentData.studentClass}} </span>
                                 </div> 
                             </div>
         
@@ -225,45 +225,45 @@
                         <mat-tab label="Mother Information" *ngIf="studentMotherData != null"> 
                             <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>FullName: {{ studentMotherData.fullName}}</p>
+                                    <span><b>FullName: </b>{{ studentMotherData.fullName}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Address : {{studentMotherData.address}}</p>
+                                    <span><b>Address : </b>{{studentMotherData.address}}</span>
                                 </div>
         
                             </div>
                            
         
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>Email: {{ studentMotherData.email}}</p>
+                                    <span><b>Email: </b>{{ studentMotherData.email}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Occupation: {{studentMotherData.occupation}}</p>
-                                </div>
-        
-                            </div>
-        
-        
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
-                                <div fxFlex="40">
-                                    <p>Phone: +233{{ studentMotherData.phoneNumber}}</p>
-                                </div>
-        
-                                <div fxFlex="40">
-                                    <p>Education Status: {{studentMotherData.educationStatus}}</p>
+                                    <span><b>Occupation: </b>{{studentMotherData.occupation}}</span>
                                 </div>
         
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>Religion: {{ studentMotherData.religion}}</p>
+                                    <span><b>Phone: </b> +233{{ studentMotherData.phoneNumber}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Number of Spouse: {{studentMotherData.numSpouse}}</p>
+                                    <span><b>Education Status: </b>{{studentMotherData.educationStatus}}</span>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <span><b>Religion: </b>{{ studentMotherData.religion}}</span>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <span><b>Number of Spouse: </b>{{studentMotherData.numSpouse}}</span>
                                 </div>
         
                             </div>
@@ -273,45 +273,45 @@
                         <mat-tab label="Father Information" *ngIf="studentFatherData != null"> 
                             <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>FullName: {{ studentFatherData.fullName}}</p>
+                                    <span><b>FullName: </b>{{ studentFatherData.fullName}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Address : {{studentFatherData.address}}</p>
+                                    <span><b>Address : </b>{{studentFatherData.address}}</span>
                                 </div>
         
                             </div>
                            
         
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>Email: {{ studentFatherData.email}}</p>
+                                    <span><b>Email: </b>{{ studentFatherData.email}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Occupation: {{studentFatherData.occupation}}</p>
-                                </div>
-        
-                            </div>
-        
-        
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
-                                <div fxFlex="40">
-                                    <p>Phone: +233{{ studentFatherData.phoneNumber}}</p>
-                                </div>
-        
-                                <div fxFlex="40">
-                                    <p>Education Status: {{studentFatherData.educationStatus}}</p>
+                                    <span><b>Occupation: </b>{{studentFatherData.occupation}}</span>
                                 </div>
         
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="start" class="">
+        
+        
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
                                 <div fxFlex="40">
-                                    <p>Religion: {{ studentFatherData.religion}}</p>
+                                    <span><b>Phone: </b>+233{{ studentFatherData.phoneNumber}}</span>
                                 </div>
         
                                 <div fxFlex="40">
-                                    <p>Number of Spouse: {{studentFatherData.numSpouse}}</p>
+                                    <span><b>Education Status: </b>{{studentFatherData.educationStatus}}</span>
+                                </div>
+        
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
+                                <div fxFlex="40">
+                                    <span><b>Religion: </b>{{ studentFatherData.religion}}</span>
+                                </div>
+        
+                                <div fxFlex="40">
+                                    <span><b>Number of Spouse: </b>{{studentFatherData.numSpouse}}</span>
                                 </div>
         
                             </div>
@@ -405,37 +405,6 @@
                               </table>
                         </mat-tab>
         
-                        <mat-tab label="Health Info" *ngIf="studentHealth != null"> 
-                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                                <div fxFlex="40">
-                                    <p>Primary Care Physician: {{ studentHealth.primaryCarePhysician}}</p>
-                                </div>
-        
-                                <div fxFlex="40">
-                                    <p>Preferred  Hospital : {{studentHealth.preferredMedicalFacility}}</p>
-                                </div>
-        
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                                <div fxFlex="40">
-                                    <p>Policy Holder Name: {{ studentHealth.policyHolderName}}</p>
-                                </div>
-        
-                                <div fxFlex="40">
-                                    <p>Insurance Number : {{studentHealth.insuranceNumber}}</p>
-                                </div>
-        
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="start" class="mt-3">
-                                <div fxFlex="40">
-                                    <p>Policy Number: {{ studentHealth.policyNumber}}</p>
-                                </div>
-        
-                            </div>
-                           
-                        </mat-tab>
-        
-        
                         <mat-tab label="Handicap Info" *ngIf="handicapSource != null"> 
                             <table mat-table [dataSource]="handicapSource" class="mat-elevation-z8" style="width:100%">
         
@@ -510,7 +479,7 @@
             </mat-card> 
        
             <div fxLayout="row" fxLayoutAlign="start" style="margin-bottom:100px">
-                <div fxFlex="50">
+                <div fxFlex="55">
                     <mat-card class="row mat-elevation-z3 bg-light">
                         <mat-card-title class="text-center">Health Info </mat-card-title>
                         <mat-card-content>
@@ -543,6 +512,10 @@
                         </mat-card-content>
                        
                     </mat-card>
+                </div>
+
+                <div  fxFlex="45">
+                    
                 </div>
           
             </div>    
