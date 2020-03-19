@@ -8,6 +8,9 @@ import { ViewStudentComponent } from './components/view-student/view-student.com
 import { EditStudentInfoComponent } from './components/edit-student-info/edit-student-info.component';
 import { EditStudentDetailsComponent } from './components/edit-student-details/edit-student-details.component';
 import { StudentAttendanceComponent } from './components/student-attendance/student-attendance.component';
+import { StudentDailyFeeComponent } from './components/student-daily-fee/student-daily-fee.component';
+import { StudentSchoolFeeComponent } from './components/student-school-fee/student-school-fee.component';
+import { StudentInvoiceComponent } from './components/student-invoice/student-invoice.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -15,9 +18,9 @@ const routes: Routes = [
   {path: 'addStudentDetails/:id', component: AddStudentDetailsComponent},
   {path:'searchStudent', component:SearchStudentComponent},
   {path:'viewStudent/:id', component:ViewStudentComponent},
-  {path:'dailyFee/:id', component:ViewStudentComponent},
-  {path:'schoolFee/:id', component:ViewStudentComponent},
-  {path:'invoice/:id', component:ViewStudentComponent},
+  {path:'dailyFee/:id', component:StudentDailyFeeComponent},
+  {path:'schoolFee/:id', component:StudentSchoolFeeComponent},
+  {path:'invoice/:id', component:StudentInvoiceComponent},
   {path:'editStudentInfo/:id', component:EditStudentInfoComponent},
   {path:'editStudentDetails/:id', component:EditStudentDetailsComponent},
   {path:'studentAttendance', component:StudentAttendanceComponent},
