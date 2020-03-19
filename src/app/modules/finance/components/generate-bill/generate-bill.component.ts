@@ -42,7 +42,7 @@ export class GenerateBillComponent implements OnInit {
       billDueDate: '',
       amount:  new FormControl({value:'', disabled: true}),
       students: '',
-      code:  '',
+      code:  new FormControl({value:'', disabled: true}),
       items: this.fb.array([]) ,
     });
   }
@@ -87,16 +87,18 @@ export class GenerateBillComponent implements OnInit {
 
 
   downloadBill(){
-    this._snackBar.open(  `Bill downloaded successfully`, "", {
-      duration: 3000,
-    });
-
+   
     this.invoiceForm.patchValue({
-      students: this.selection.selected
+      students: this.selection.selected,
     })
 
+
+    this.invoiceForm.value.code = this.invoiceID;
+    this.invoiceForm.value.amount = this.totalAmount;
+    
+
     this._financeService.saveInvoice(this.invoiceForm.value).subscribe(data=>{
-      this._toastr.success("Welcome to Skuulba 🙂","",{
+      this._toastr.success("Invoice Saved 🙂","",{
         timeOut:2000
       })
     }, error=>{
@@ -156,11 +158,12 @@ export class GenerateBillComponent implements OnInit {
     this.amount[i] = amount;
 
     this.totalAmount = this.sumValues(this.amount);
+    this.invoiceForm.value.amount = this.totalAmount;
 
     this.total = "  Total(₵) : " +this.totalAmount;
 
-    this.invoiceForm.value.amount = this.totalAmount;
-
+    
+    console.log(this.invoiceForm.value)
 
   }
   
