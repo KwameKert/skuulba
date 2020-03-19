@@ -1,53 +1,152 @@
-<mat-card class="mat-elevation-z3" style="margin-bottom:300px">
 
-    <div class="row"  *ngIf="!isLoaded; else elseBlock">
-        <div class="col-md-3 text-center">
-            <ngx-skeleton-loader appearance="circle" [theme]="{ width: '120px', height: '120px' }">
-            </ngx-skeleton-loader><br>
-            <ngx-skeleton-loader [theme]="{ width: '120px', 'border-radius': '0', height: '15px' }"></ngx-skeleton-loader>
+<div *ngIf="!isLoaded; else elseBlock">
+    <mat-card class="mat-elevation-z3 "  style="margin-bottom:25px">
+        <div class="row"  >
+            
+            
+            <div class="col-md-3 text-center">
+                <ngx-skeleton-loader appearance="circle" [theme]="{ width: '120px', height: '120px' }">
+                </ngx-skeleton-loader><br>
+                <ngx-skeleton-loader [theme]="{ width: '120px', 'border-radius': '0', height: '15px' }"></ngx-skeleton-loader>
+            
+            
+            </div>
+    
+            <div class="col-md-9 mt-3">
+                <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '70%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+    
+                  <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '60%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+    
+                  <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+    
+            </div>
+        
+        </div>
+    
+    </mat-card>
+
+    <div class="row">
+
+        <div class="col-md-4 col-lg-4">
+            <mat-card class="mat-elevation-z3 ">
+                <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '50%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader><ngx-skeleton-loader [theme]="{
+                    width: '70%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '80%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader><ngx-skeleton-loader [theme]="{
+                    width: '60%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+            </mat-card>
         </div>
 
-        <div class="col-md-9 mt-3">
-            <ngx-skeleton-loader [theme]="{
-                width: '90%',
-                'border-radius': '0',
-                height: '15px',
-                'margin-bottom': '10px'
-              }"></ngx-skeleton-loader>
-              <ngx-skeleton-loader [theme]="{
-                width: '70%',
-                'border-radius': '0',
-                height: '15px',
-                'margin-bottom': '10px'
-              }"></ngx-skeleton-loader>
 
-              <ngx-skeleton-loader [theme]="{
-                width: '90%',
-                'border-radius': '0',
-                height: '15px',
-                'margin-bottom': '10px'
-              }"></ngx-skeleton-loader>
-              <ngx-skeleton-loader [theme]="{
-                width: '60%',
-                'border-radius': '0',
-                height: '15px',
-                'margin-bottom': '10px'
-              }"></ngx-skeleton-loader>
-
-              <ngx-skeleton-loader [theme]="{
-                width: '90%',
-                'border-radius': '0',
-                height: '15px',
-                'margin-bottom': '10px'
-              }"></ngx-skeleton-loader>
-
+        <div class="col-md-8 col-lg-8">
+            <mat-card class="mat-elevation-z3 ">
+                <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader><ngx-skeleton-loader [theme]="{
+                    width: '80%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '70%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader><ngx-skeleton-loader [theme]="{
+                    width: '90%',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"></ngx-skeleton-loader>
+            </mat-card>
         </div>
     </div>
+
+</div>
+
+
+
+
+
+
+   
 
 
 
     <ng-template #elseBlock>
-  <div class="row">
+  <mat-card class="row mat-elevation-z3">
       
 
         <div class="col-md-3 text-center">
@@ -408,9 +507,14 @@
         </div>
 
 
-    </div>
+        <div class="col-md-4 col-lg-4">
+            
+        </div>
+
+
+    </mat-card>
 
     </ng-template>
     
   
- </mat-card>
+
