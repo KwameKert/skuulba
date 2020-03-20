@@ -1,6 +1,20 @@
 <div class="">
     <mat-card class="mat-elevation-z3 "  style="margin-bottom:25px">
-    <mat-form-field>
+
+      
+      <div class="row">
+
+        <div class="col-md-12" *ngIf="!showTable; else displayTable">
+          <p class="lead alert alert-danger text-center">No data available</p>
+
+        </div>
+
+    
+   
+    <ng-template #displayTable>
+
+      <div class="col-md-12  example-container mat-elevation-z3 pt-3">
+      <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
       </mat-form-field>
@@ -33,5 +47,13 @@
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+    </ng-template>
+
+     
+  
+
+    </div>
+ 
       </mat-card>
 </div>

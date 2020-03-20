@@ -13,6 +13,7 @@ import {FinanceService} from '../../../finance/service.service';
 
 export class StudentDailyFeeComponent implements OnInit {
 
+  showTable: boolean = false;
   studentID: any ;
   dataSource: any;
   feeColumns = ['id', 'date', 'type', 'amount'];
@@ -26,10 +27,15 @@ export class StudentDailyFeeComponent implements OnInit {
     this.studentID = this.route.snapshot.paramMap.get('id');
     this._financeService.getStudentDailyFees(this.studentID).subscribe(data=>{
       let responseData: any= data;
-      this.dataSource = responseData.data;
 
-      this.dataSource = new MatTableDataSource(responseData.data)
-    
+      if(responseData.data != null){
+        this.dataSource = responseData.data;
+
+        this.dataSource = new MatTableDataSource(responseData.data)
+
+        this.showTable = true;
+      }
+   
     }, error=>{
       console.warn(error)
     })
