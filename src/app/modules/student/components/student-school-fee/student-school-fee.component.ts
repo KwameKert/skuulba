@@ -13,6 +13,7 @@ import {FinanceService} from '../../../finance/service.service';
 })
 export class StudentSchoolFeeComponent implements OnInit {
 
+  showTable: boolean = false;
   studentID: any ;
   dataSource: any;
   feeColumns = ['id', 'date', 'amount'];
@@ -25,10 +26,16 @@ export class StudentSchoolFeeComponent implements OnInit {
   ngOnInit() {
     this.studentID = this.route.snapshot.paramMap.get('id');
     this._financeService.getStudentSchoolFees(this.studentID).subscribe(data=>{
-      let responseData: any= data;
-      this.dataSource = responseData.data;
 
-      this.dataSource = new MatTableDataSource(responseData.data)
+      let responseData: any= data;
+      if(responseData.data != null){
+        this.showTable = true;
+      }else{
+        this.dataSource = responseData.data;
+
+        this.dataSource = new MatTableDataSource(responseData.data)
+      }
+
     
     }, error=>{
       console.warn(error)
