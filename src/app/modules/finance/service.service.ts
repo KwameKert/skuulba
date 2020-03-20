@@ -36,5 +36,9 @@ export class FinanceService {
     return this._httpClient.post(`${this.baseUrl}/finance/invoice/`,data)
   }
 
+  public getStudentDailyFees(id: Number){
+    return this._httpClient.get(`${this.baseUrl}/finance/dailyFee/student/${id}`)
+  }
+
 
 }
