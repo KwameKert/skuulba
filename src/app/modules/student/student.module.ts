@@ -21,7 +21,7 @@ import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.com
 
 
 @NgModule({
-  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent, StudentAttendanceComponent, DeleteStudentComponent, StudentDailyFeeComponent, StudentSchoolFeeComponent, StudentInvoiceComponent,  ],
+  declarations: [ DashboardComponent, AddStudentComponent, AddStudentDetailsComponent, SearchStudentComponent, ViewStudentComponent, EditStudentInfoComponent, EditStudentDetailsComponent, StudentAttendanceComponent, DeleteStudentComponent, StudentDailyFeeComponent, StudentSchoolFeeComponent, StudentInvoiceComponent, ViewInvoiceComponent ],
   imports: [
     CommonModule,
     StudentRoutingModule,
