@@ -1,1 +1,55 @@
-<p>student-invoice works!</p>
+<div class="">
+    <mat-card class="mat-elevation-z3 "  style="margin-bottom:25px">
+
+      
+      <div class="row">
+
+        <div class="col-md-12" *ngIf="!showTable; else displayTable">
+          <p class="lead alert alert-danger text-center">No data available</p>
+
+        </div>
+
+    
+   
+    <ng-template #displayTable>
+
+      <div class="col-md-12  example-container mat-elevation-z3 pt-3">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
+      </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" style="width:100%">
+    
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Id </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.id}} </td>
+        </ng-container>
+      
+       
+    
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef  class="text-center"> Amount </th>
+          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.amount}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef  class="text-center"> Date </th>
+          <td mat-cell *matCellDef="let element"  class="text-center"> {{element.createdAt |  date:"MM/dd/yy"}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="feeColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: feeColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+    </ng-template>
+
+     
+  
+
+    </div>
+ 
+      </mat-card>
+</div>

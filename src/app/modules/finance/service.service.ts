@@ -44,5 +44,9 @@ export class FinanceService {
     return this._httpClient.get(`${this.baseUrl}/finance/schoolFee/student/${id}`)
   }
 
+  public getStudentInvoice(id: Number){
+    return this._httpClient.get(`${this.baseUrl}/finance/invoice/student/${id}`)
+  }
+
 
 }
