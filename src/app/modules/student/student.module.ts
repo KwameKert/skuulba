@@ -16,6 +16,7 @@ import { DeleteStudentComponent } from './components/delete-student/delete-stude
 import { StudentDailyFeeComponent } from './components/student-daily-fee/student-daily-fee.component';
 import { StudentSchoolFeeComponent } from './components/student-school-fee/student-school-fee.component';
 import { StudentInvoiceComponent } from './components/student-invoice/student-invoice.component';
+import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.component';
 
 
 
@@ -29,7 +30,8 @@ import { StudentInvoiceComponent } from './components/student-invoice/student-in
     NgxSkeletonLoaderModule,
   ],
   entryComponents: [
-    DeleteStudentComponent
+    DeleteStudentComponent,
+    ViewInvoiceComponent
   ],
   providers: [  
    // MatDatepickerModule,  

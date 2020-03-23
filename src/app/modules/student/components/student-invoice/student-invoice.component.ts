@@ -4,6 +4,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource } from '@angular/material/table';
 import {FinanceService} from '../../../finance/service.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ViewInvoiceComponent} from '../view-invoice/view-invoice.component';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class StudentInvoiceComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private route: ActivatedRoute, private router: Router, private _financeService: FinanceService){}
+  constructor(private route: ActivatedRoute, private router: Router, private _financeService: FinanceService, public dialog: MatDialog){}
 
 
   ngOnInit() {
@@ -43,6 +45,18 @@ export class StudentInvoiceComponent implements OnInit {
   }
 
 
+  viewStudent(id: Number): void {
+    const dialogRef = this.dialog.open(ViewInvoiceComponent, {
+      width: '550px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+  
+      }
+    );
+  }
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -52,6 +66,7 @@ export class StudentInvoiceComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 
 
 
