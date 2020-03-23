@@ -16,7 +16,7 @@ export class StudentInvoiceComponent implements OnInit {
   showTable: boolean = false;
   studentID: any ;
   dataSource: any;
-  feeColumns = ['id', 'date', 'amount'];
+  feeColumns = ['id', 'date', 'amount','action'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -25,15 +25,15 @@ export class StudentInvoiceComponent implements OnInit {
 
   ngOnInit() {
     this.studentID = this.route.snapshot.paramMap.get('id');
-    this._financeService.getStudentSchoolFees(this.studentID).subscribe(data=>{
+    this._financeService.getStudentInvoice(this.studentID).subscribe(data=>{
 
       let responseData: any= data;
       if(responseData.data != null){
-        this.showTable = true;
-      }else{
         this.dataSource = responseData.data;
 
         this.dataSource = new MatTableDataSource(responseData.data)
+
+        this.showTable = true;
       }
 
     

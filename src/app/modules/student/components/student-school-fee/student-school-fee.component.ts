@@ -29,13 +29,12 @@ export class StudentSchoolFeeComponent implements OnInit {
 
       let responseData: any= data;
       if(responseData.data != null){
-        this.showTable = true;
-      }else{
         this.dataSource = responseData.data;
 
         this.dataSource = new MatTableDataSource(responseData.data)
-      }
 
+        this.showTable = true;
+      }
     
     }, error=>{
       console.warn(error)
