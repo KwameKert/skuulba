@@ -1,6 +1,7 @@
-<div class="container">
-    <h3 class="text-center">Invoice #{{data.code}}</h3>
 
+<div class="container">
+    <h3 mat-dialog-title class="text-center">Invoice #{{data.code}}</h3>
+    <div mat-dialog-content>
     <div class="row content-justify-between">
         <div class="col-6 ">
               Bill To : Kwame
@@ -52,10 +53,12 @@
 <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
 
     <div fxFlex="70">
-        <h4>Notes</h4>
-        <p class="lead" >
-           {{data.notes}}
-        </p>
+        <h4><u>Notes</u></h4>
+        <blockquote class="blockquote">
+            <p class="mb-0">
+                {{data.notes}}</p>
+          </blockquote>
+       
     </div>
 
 </div>
@@ -63,10 +66,11 @@
 <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
 
     <div fxFlex="70">
-        <h4>Terms</h4>
-        <p  class="lead">
-            {{data.terms}}
-        </p>
+        <h4><u>Terms</u></h4>
+        <blockquote class="blockquote">
+            <p class="mb-0">
+                {{data.terms}}</p>
+          </blockquote>
     </div>
 
 </div>
@@ -77,15 +81,20 @@
     <div fxFlex="70">
     </div>
     <div fxFlex="20">
-        Total: $123
+        Total: {{data.amount}}
     </div>
 
     
 </div>
 
 
+</div>
+
 
 
 </div>
+<div mat-dialog-actions class="float-right">
+    <button mat-raised-button (click)="generatePdf()"  color="primary">Print</button>
+  </div>
 
 

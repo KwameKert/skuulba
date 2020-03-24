@@ -53,7 +53,7 @@ export class StudentInvoiceComponent implements OnInit {
     console.log("hello")
     const dialogRef = this.dialog.open(ViewInvoiceComponent, {
       width: '920px',
-      height: '420px',
+      height: '620px',
       data: invoice
     });
 
