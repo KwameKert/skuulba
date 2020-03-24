@@ -1,13 +1,13 @@
 <div class="container">
-    <h3 class="text-center">Invoice ID</h3>
+    <h3 class="text-center">Invoice #{{data.code}}</h3>
 
-    <div class="row content-justify-around">
-        <div class="col-6 text-center">
+    <div class="row content-justify-between">
+        <div class="col-6 ">
               Bill To : Kwame
         </div>
-        <div class="col-6 text-center">
-            <p>Date Issued: date</p> 
-            <p>Date Issued: date</p> 
+        <div class="col-6 text-right">
+            <p>Date Issued: {{ billDate | date:'mediumDate'}}</p> 
+            <p>Date Issued: {{ billDate | date:'mediumDate'}}</p> 
         </div>
     </div>
 
@@ -26,40 +26,46 @@
 </div>
 
 
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-    <div fxFlex="50" class="text-center" >
-        Sanitizer
-    </div>
-    <div fxFlex="10" >
-        12
-    </div>
-    <div fxFlex="10">
-        23
-    </div>
-    <div fxFlex="20" >
-        34
-    </div>
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px" *ngFor="let item of data.invoiceItems">
+
+        <div fxFlex="45" class="text-center" >
+            {{item.name}}
+        </div>
+        <div fxFlex="10"  class="text-center"  >
+            {{item.quantity}}
+        </div>
+        <div fxFlex="10" class="text-center" >
+            {{item.rate}}
+        </div>
+        <div fxFlex="20"  >
+            {{item.amount}}
+        </div>
+   
+  
 </div>
 
+
+
 <hr>
+
+
 <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
 
     <div fxFlex="70">
         <h4>Notes</h4>
-        <p >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum eos dolorem officiis illum quo ratione, debitis, cupiditate dicta quas dignissimos omnis veritatis quam voluptatem? In magni placeat reiciendis aperiam!
+        <p class="lead" >
+           {{data.notes}}
         </p>
     </div>
 
 </div>
-<hr>
 
 <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
 
     <div fxFlex="70">
         <h4>Terms</h4>
-        <p >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum eos dolorem officiis illum quo ratione, debitis, cupiditate dicta quas dignissimos omnis veritatis quam voluptatem? In magni placeat reiciendis aperiam!
+        <p  class="lead">
+            {{data.terms}}
         </p>
     </div>
 

@@ -21,7 +21,7 @@ export class ViewInvoiceComponent implements OnInit {
     console.log(this.data)
     this.billDate = new Date(this.data.billDate);
     this.billDueDate = new Date(this.data.billDueDate);
-    this.generatePdf();
+  //  this.generatePdf();
   
   }
 
@@ -87,7 +87,7 @@ export class ViewInvoiceComponent implements OnInit {
           ]
         },
         {
-          text: `Total : (₵)${this.data.amount}`,
+          text: `Total : ${this.data.amount}`,
           alignment: 'right'
         }
       ],
@@ -126,7 +126,7 @@ export class ViewInvoiceComponent implements OnInit {
             style: 'tableHeader'
           },
           {
-            text: 'Amount(₵)',
+            text: 'Amount',
             style: 'tableHeader'
           },
           ],
