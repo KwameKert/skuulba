@@ -42,6 +42,7 @@ export class ViewInvoiceComponent implements OnInit {
           alignment: 'center',
           margin: [0, 0, 0, 20]
         },
+
         {
         columns: [
           [{
@@ -58,13 +59,46 @@ export class ViewInvoiceComponent implements OnInit {
           }] 
          ]
         },
-        this.getItemObject(this.data.invoiceItems)
+        {
+          text: 'Items',
+          style: 'name'
+        },
+        this.getItemObject(this.data.invoiceItems),
+        {
+          text: 'Notes',
+          style: 'name'
+        },
+        {
+          columns : [
+            {
+              text: this.data.notes
+            }
+          ]
+        },
+        {
+          text: 'Terms',
+          style: 'name'
+        },
+        {
+          columns : [
+            {
+              text: this.data.terms
+            }
+          ]
+        },
+        {
+          text: `Total : (₵)${this.data.amount}`,
+          alignment: 'right'
+        }
       ],
+     
     
         styles: {
           name: {
             fontSize: 16,
-            bold: true
+            bold: true,
+            margin: [0, 20, 0, 10],
+            decoration: 'underline'
           }
         }
     };
@@ -92,7 +126,7 @@ export class ViewInvoiceComponent implements OnInit {
             style: 'tableHeader'
           },
           {
-            text: 'Amount',
+            text: 'Amount(₵)',
             style: 'tableHeader'
           },
           ],
