@@ -49,10 +49,10 @@ export class ViewInvoiceComponent implements OnInit {
             text: `Bill To  : ${this.data.studentName}` 
           }],
           [{
-            text: `Date Issued : ${this.billDate}`  
+            text: `Date Issued : ${this.billDate.toDateString()}`  
           },
           {
-            text: `Date Issued : ${this.billDate}`  
+            text: `Date Due : ${this.billDueDate.toDateString()}`  
           },
           {
             text: ''  
