@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -10,10 +11,18 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class ViewInvoiceComponent implements OnInit {
 
-  constructor() { }
+  // @Inject(MAT_DIALOG_DATA) public data: any) { }
+  billDate : Date;
+  billDueDate : Date;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    console.log(this.data)
+    this.billDate = new Date(this.data.billDate);
+    this.billDueDate = new Date(this.data.billDueDate);
     this.generatePdf();
+  
   }
 
   generatePdf(){
@@ -24,61 +33,41 @@ export class ViewInvoiceComponent implements OnInit {
 
   getDocumentDefinition() {
     
-     return {
-       content: [
-         {
-           text: 'INVOICE',
-           bold: true,
-           fontSize: 20,
-           alignment: 'center',
-           margin: [0, 0, 0, 20]
-         },
-         {
-           columns: [
-             [{
-               text: 'Hello',
-               style: 'name'
-             },
-             {
-               text: 'Hello'
-             },
-             {
-               text: 'Email : ' ,
-             },
-             {
-               text: 'Contant No : ',
-             },
-             {
-               text: 'GitHub: ',
-               link: 'this.resume.socialProfile',
-               color: 'blue',
-             }
-             ],
-             [
+    return {
+      content: [
+        {
+          text: `INVOICE #+${this.data.code}`,
+          bold: true,
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 20]
+        },
+        {
+          columns: [
+            [{
+              text: `Bill To : ${this.data.studentName}`,
+            },
+            ],
+            [
               {
-                text: 'Hello'
+                text: `Date Issued : new Date(${this.billDate})`,
               },
               {
-                text: 'Email : ' ,
+                text: `Date Due : ${this.billDueDate}`,
               },
-              {
-                text: 'Contant No : ',
-              },
-              {
-                text: 'GitHub: ',
-                link: 'this.resume.socialProfile',
-                color: 'blue',
-              }
-             ]
-           ]
-         }],
-         styles: {
-           name: {
-             fontSize: 16,
-             bold: true
-           }
-         }
-     };
+              
+             
+            ]
+          ]
+        }],
+        styles: {
+          name: {
+            fontSize: 16,
+            bold: true
+          }
+        }
+    };
+    
    }
 
 }

@@ -45,11 +45,12 @@ export class StudentInvoiceComponent implements OnInit {
   }
 
 
-  viewStudent(id: Number): void {
+  viewStudent(invoice: any): void {
     console.log("hello")
     const dialogRef = this.dialog.open(ViewInvoiceComponent, {
       width: '920px',
-      height: '420px'
+      height: '420px',
+      data: invoice
     });
 
     dialogRef.afterClosed().subscribe(result => {
