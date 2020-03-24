@@ -18,14 +18,14 @@ export class StudentInvoiceComponent implements OnInit {
   showTable: boolean = false;
   studentID: any ;
   dataSource: any;
-  feeColumns = ['id', 'date', 'amount','action'];
+  feeColumns = ['id', 'date','code', 'amount','action'];
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   constructor(private route: ActivatedRoute, private router: Router, private _financeService: FinanceService, public dialog: MatDialog){}
 
-
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngOnInit() {
+    
     this.studentID = this.route.snapshot.paramMap.get('id');
     this._financeService.getStudentInvoice(this.studentID).subscribe(data=>{
 
@@ -34,9 +34,13 @@ export class StudentInvoiceComponent implements OnInit {
         this.dataSource = responseData.data;
 
         this.dataSource = new MatTableDataSource(responseData.data)
+        this.dataSource.paginator = this.paginator;
+        
 
         this.showTable = true;
       }
+
+      this.dataSource.paginator = this.paginator;
 
     
     }, error=>{

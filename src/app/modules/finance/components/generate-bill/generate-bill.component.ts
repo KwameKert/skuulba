@@ -56,7 +56,7 @@ export class GenerateBillComponent implements OnInit {
       name: '',
       quantity: '',
       rate: '',
-      amount: new FormControl({value:'', disabled: true}),
+      amount: '',
     })
   }
  

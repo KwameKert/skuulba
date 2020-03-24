@@ -36,30 +36,31 @@ export class ViewInvoiceComponent implements OnInit {
     return {
       content: [
         {
-          text: `INVOICE #+${this.data.code}`,
+          text: `INVOICE #${this.data.code}`,
           bold: true,
           fontSize: 20,
           alignment: 'center',
           margin: [0, 0, 0, 20]
         },
         {
-          columns: [
-            [{
-              text: `Bill To : ${this.data.studentName}`,
-            },
-            ],
-            [
-              {
-                text: `Date Issued : new Date(${this.billDate})`,
-              },
-              {
-                text: `Date Due : ${this.billDueDate}`,
-              },
-              
-             
-            ]
-          ]
-        }],
+        columns: [
+          [{
+            text: `Bill To  : ${this.data.studentName}` 
+          }],
+          [{
+            text: `Date Issued : ${this.billDate}`  
+          },
+          {
+            text: `Date Issued : ${this.billDate}`  
+          },
+          {
+            text: ''  
+          }] 
+         ]
+        },
+        this.getItemObject(this.data.invoiceItems)
+      ],
+    
         styles: {
           name: {
             fontSize: 16,
@@ -69,5 +70,38 @@ export class ViewInvoiceComponent implements OnInit {
     };
     
    }
+
+
+
+
+   getItemObject(items: any) {
+    return {
+      table: {
+        widths: ['*', '*', '*', '*'],
+        body: [
+          [{
+            text: 'Item',
+            style: 'tableHeader'
+          },
+          {
+            text: 'Quantity',
+            style: 'tableHeader'
+          },
+          {
+            text: 'Rate',
+            style: 'tableHeader'
+          },
+          {
+            text: 'Amount',
+            style: 'tableHeader'
+          },
+          ],
+          ...items.map(item => {
+            return [item.name,item.quantity,item.rate,item.amount];
+          })
+        ]
+      }
+    };
+  }
 
 }
