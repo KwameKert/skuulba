@@ -1,0 +1,473 @@
+
+<mat-card class="mat-elevation-z3" style="margin-bottom:300px">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex="20" class="text-center">
+            <img src="assets/images/headshot.png" class="img-rounded " height="100" />  
+        </div>
+
+        <div fxFlex="80" class="mb-5" *ngIf="studentData">
+            <div class="row">
+                <div class="col-md-4"><p class="">Surname:  {{ studentData.lastName}} </p></div>
+                <div class="col-md-4"> <p class="">Other Names:{{ studentData.otherNames}} </p></div>
+                <div class="col-md-4"><p class="">Religion:  {{ studentData.religion }} </p></div>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-4"> <p class="">Mother Tongue: {{ studentData.motherTongue}} </p></div>
+                <div class="col-md-4"><p class="">Hometown:  {{ studentData.homeTown}} </p></div>
+                <div class="col-md-4"> <p class="">Gender: {{ studentData.gender}} </p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4"><p class="">Living With:  {{ studentData.livingWith}} </p></div>
+                <div class="col-md-4"> <p class="">No. Sibblings: {{ studentData.numSiblings}} </p></div>
+                <div class="col-md-4"><p class="">Date Of Birth:  {{ studentData.dob}} </p></div>
+            </div>
+        </div>
+    </div >
+
+    <div class="row " style="margin-top:-40px">
+    </div>
+
+    <div fxLayout="row" fxLayoutAligin=" start">
+        
+        <div fxFlex="100">
+            <mat-tab-group color="primary" backgroundColor="primary">
+                <mat-tab label="Physical Development"> 
+                <div fxLayout="row" fxLayoutAlign="center space-evenly" class="mt-3"  >
+                        <form [formGroup]="studentPhysicalForm" >
+
+                            <div formArrayName="physicals">
+                                <div *ngFor="let physical of physicals.controls; let i=index">
+                                  <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px ">
+
+                                    <div fxFlex=25>
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Date </mat-label>
+                                            <input matInput [matDatepicker]="picker" placeholder="Enter Date" formControlName="date" required>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Weight</mat-label>
+                                            <input matInput placeholder="10"  formControlName="weight" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Height</mat-label>
+                                            <input matInput placeholder="10"  formControlName="height" >
+                                          </mat-form-field>
+                                   
+                                    </div>
+              
+                                    <div fxFlex=22>
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Remark</mat-label>
+                                            <input matInput placeholder="10"  formControlName="remark" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+              
+                                   <div fxFlex="1">
+                                    <button mat-icon-button color="warn"  (click)="removePhysical(i)">
+                                      <mat-icon>delete</mat-icon>
+                                    </button>
+                                    </div> 
+              
+                                  
+                                  
+                                
+                                  </div>
+                                </div>
+
+                                <div class="float-right">
+                                    <button mat-stroked-button color="accent"  (click)="addPhysical()" class="mr-2">Add Item</button>
+
+                                    <span  *ngIf="physicalsaveShow">
+                                        <button mat-stroked-button color="primary"  (click)="savePhysical()" class="float-right" [disabled]="!studentPhysicalForm.valid" disabled > Save</button>
+                                    </span>
+                                </div>
+              
+                                
+                              </div> 
+                        </form>
+                      
+                </div>    
+                </mat-tab>
+                <mat-tab label="Education Info"> 
+
+                    <div fxLayout="row" fxLayoutAlign="center " class="mt-3"  >
+
+                    <form [formGroup]="studentEducationForm" >
+
+                        <div formArrayName="educations">
+                            <div *ngFor="let education of educations.controls; let i=index">
+                              <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px ">
+
+                                <div fxFlex="25">
+                                    <mat-form-field  appearance="outline" >
+                                        <mat-label>School Name</mat-label>
+                                        <input matInput placeholder="Montesorri"  formControlName="schoolName" >
+                                      </mat-form-field>
+                                  
+                                </div>
+
+                                <div fxFlex="30">
+                                    <mat-form-field  appearance="outline" >
+                                        <mat-label>Admission Date</mat-label>
+                                        <input matInput [matDatepicker]="eduPicker" placeholder="Enter admission date" formControlName="admissionDate" >
+                                        <mat-datepicker-toggle matSuffix [for]="eduPicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #eduPicker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+
+
+                                <div fxFlex="30">
+                                    <mat-form-field  appearance="outline" >
+                                        <mat-label>Last Admission Date</mat-label>
+                                        <input matInput [matDatepicker]="eduPicker2" placeholder="Enter admission date" formControlName="lastAdmissionDate" >
+                                        <mat-datepicker-toggle matSuffix [for]="eduPicker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #eduPicker2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                               <div fxFlex="2">
+                                <button mat-icon-button color="warn"  (click)="removeEducation(i)">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                                </div> 
+                              </div>
+                            </div>
+
+                            <div class="float-right">
+                                <button mat-stroked-button color="accent"  (click)="addEducation()" class="mr-2">Add Item</button>
+
+                                <span  *ngIf="educationsaveShow">
+                                    <button mat-stroked-button color="primary"  (click)="saveEducation()" class="float-right" [disabled]="!studentEducationForm.valid" disabled > Save</button>
+                                </span>
+                            </div>
+          
+                            
+                          </div>     
+                    </form>
+
+                    </div>
+              
+                </mat-tab>
+                <mat-tab label="Personality Info">
+                    
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" class="mt-3">
+
+                        <form [formGroup]="studentPersonalityForm" >
+                            <div formArrayName="personalities">
+                                <div *ngFor="let personality of personalities.controls; let i=index">
+                                        <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px ">
+      
+                                      <div fxFlex="22">
+                                          <mat-form-field  appearance="outline" >
+                                            <mat-label>Trait</mat-label>
+                                              <input matInput placeholder="patient"  formControlName="trait" >
+                                            </mat-form-field>
+                                        
+                                      </div>
+
+                                      <div fxFlex="22">
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Student Class</mat-label>
+                                            <mat-select formControlName="studentClass" >
+                                                <mat-option value="nursery1">Nursery 1</mat-option>
+                                                <mat-option value="creche">Creche</mat-option>
+                                                <mat-option value="class1">class1</mat-option>
+                                              </mat-select>
+                                          </mat-form-field>
+                                      
+                                    </div>
+
+                                      
+                                      <div fxFlex="22">
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Score</mat-label>
+                                            <input matInput placeholder="10"  formControlName="score" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+
+                                     
+                                    <div fxFlex="22">
+                                        <mat-form-field  appearance="outline" >
+                                            <mat-label>Remark</mat-label>
+                                            <input matInput placeholder="10"  formControlName="remark" >
+                                          </mat-form-field>
+                                      
+                                    </div>
+
+      
+      
+                                     <div fxFlex="2">
+                                      <button mat-icon-button color="warn"  (click)="removePersonality(i)">
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                      </div> 
+                                    </div>
+                                  </div>
+
+                                  <div class="float-right">
+                                    <button mat-stroked-button color="accent"  (click)="addPersonality()" class="mr-2">Add Item</button>
+    
+                                    <span  *ngIf="personalitySaveShow">
+                                        <button mat-stroked-button color="primary"  (click)="savePersonality()" class="float-right" [disabled]="!studentPersonalityForm.valid" disabled > Save</button>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div> 
+                </mat-tab>
+
+                <mat-tab label="Health Info">
+                    <form  [formGroup]="studentHealthForm">
+                        <div fxLayout="row" fxLayoutAlign="space-around center" class="mt-4" >
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Primary Care Physician</mat-label>
+                                    <input matInput placeholder="John"  formControlName="primaryCarePhysician" >
+                                    <mat-error *ngIf="studentHealthForm.get('primaryCarePhysician').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+        
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Preffered Medical Facility</mat-label>
+                                    <input matInput placeholder="Holy Trinity"  formControlName="preferredMedicalFacility" >
+                                    <mat-error *ngIf="studentHealthForm.get('preferredMedicalFacility').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+                        </div>   
+
+                        <div fxLayout="row" fxLayoutAlign="space-around center"   >
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Insurance</mat-label>
+                                    <input matInput placeholder="Health Insurance"  formControlName="insuranceName" >
+                                    <mat-error *ngIf="studentHealthForm.get('insuranceName').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+        
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Insurance Number</mat-label>
+                                    <input matInput placeholder="123"  formControlName="insuranceNumber" >
+                                    <mat-error *ngIf="studentHealthForm.get('insuranceNumber').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+                        </div>  
+        
+        
+        
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Policy Holder Name</mat-label>
+                                    <input matInput placeholder="John"  formControlName="policyHolderName" >
+                                    <mat-error *ngIf="studentHealthForm.get('policyHolderName').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+        
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>Policy Number</mat-label>
+                                    <input matInput placeholder="8912312"  formControlName="policyNumber" >
+                                    <mat-error *ngIf="studentHealthForm.get('policyNumber').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+                        </div>  
+        
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                            <div fxFlex="30">
+                                <mat-form-field appearance="outline" style="width:300px"  >
+                                    <mat-label>PCP Number</mat-label>
+                                    <input matInput placeholder="John"  formControlName="pcpNumber" >
+                                    <mat-error *ngIf="studentHealthForm.get('pcpNumber').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+        
+                            <div fxFlex="30">
+                                <button mat-stroked-button color="primary"  (click)="saveHealth()" class="float-right" [disabled]="!studentHealthForm.valid" disabled > Save Student Health</button>
+                            </div>
+        
+                         
+                        </div> 
+                        
+                    </form>
+           
+
+                </mat-tab>
+            
+                <mat-tab label="Handicap Info">
+                    <form  [formGroup]="studentHandicapForm">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly " class="mt-4" >
+                        <div formArrayName="handicaps">
+                            <div *ngFor="let handicap of handicaps.controls; let i=index">
+                                    <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="10px ">
+  
+                                  <div fxFlex="50">
+                                      <mat-form-field  appearance="outline" >
+                                        <mat-label>Handicap Part</mat-label>
+                                          <input matInput placeholder="hand"  formControlName="handicapPart" >
+                                        </mat-form-field>
+                                    
+                                  </div>
+
+                                  <div fxFlex="40">
+                                    <mat-form-field  appearance="outline" >
+
+                                        <mat-label>Handicap Description</mat-label>
+                                        <textarea matInput formControlName="handicapDescription"></textarea>
+                                  
+                                      </mat-form-field>
+                                  
+                                </div>
+  
+                                 <div fxFlex="2">
+                                  <button mat-icon-button color="warn"  (click)="removeHandicap(i)">
+                                    <mat-icon>delete</mat-icon>
+                                  </button>
+                                  </div> 
+                                </div>
+                              </div>
+
+                              <div class="float-right">
+                                <button mat-stroked-button color="accent"  (click)="addHandicap()" class="mr-2">Add Item</button>
+
+                                <span  *ngIf="handicapSaveShow">
+                                    <button mat-stroked-button color="primary"  (click)="saveHandicap()" class="float-right" [disabled]="!studentHandicapForm.valid" disabled > Save</button>
+                                </span>
+                            </div>
+
+                        </div>
+                     
+                    </div> 
+                    </form>
+                </mat-tab>
+
+                <mat-tab label="Special Talents">
+                    <form [formGroup]="studentTalentForm">
+                        <div fxLayout="row" fxLayoutAlign="space-evenly " class="mt-4" >
+                            <div formArrayName="talents">
+                                <div *ngFor="let talents of talents.controls; let i=index">
+                                        <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="10px ">
+                                            <div fxFlex="50">
+                                                <mat-form-field  appearance="outline" >
+                                                    <mat-label>Date</mat-label>
+                                                    <input matInput [matDatepicker]="picker" placeholder="Enter Date" formControlName="date" required>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                  </mat-form-field>
+                                              
+                                            </div>
+          
+                                            <div fxFlex="40">
+                                              <mat-form-field  appearance="outline" >
+                                                  <mat-label>Particulars</mat-label>
+                                                  <textarea matInput formControlName="particulars"></textarea>
+                                            
+                                                </mat-form-field>
+                                            
+                                          </div>
+            
+                                           <div fxFlex="2">
+                                            <button mat-icon-button color="warn"  (click)="removeTalent(i)">
+                                              <mat-icon>delete</mat-icon>
+                                            </button>
+                                            </div> 
+
+                                </div>
+                                </div>
+
+                                <div class="float-right">
+                                    <button mat-stroked-button color="accent"  (click)="addTalent()" class="mr-2">Add Item</button>
+    
+                                    <span  *ngIf="talentSaveShow">
+                                        <button mat-stroked-button color="primary"  (click)="saveTalent()" class="float-right" [disabled]="!studentTalentForm.valid" disabled > Save</button>
+                                    </span>
+                                </div>
+                                </div>
+
+                         </div>
+                    </form>
+                    
+
+                </mat-tab>
+
+                <mat-tab label="Award">
+
+                    <form [formGroup]="studentAwardForm">
+                        <div fxLayout="row" fxLayoutAlign="center " class="mt-4" >
+                            <div formArrayName="awards">
+                                <div *ngFor="let award of awards.controls; let i=index">
+                                        <div [formGroupName]="i" class="row mb-2" fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px ">
+                                            <div fxFlex="32">
+                                                <mat-form-field  appearance="outline" >
+                                                    <mat-label>Date</mat-label>
+                                                    <input matInput [matDatepicker]="picker" placeholder="Enter Date" formControlName="date" required>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                  </mat-form-field>
+                                              
+                                            </div>
+          
+                                            <div fxFlex="28">
+                                                <mat-form-field  appearance="outline" >
+                                                    <mat-label>Award Name</mat-label>
+                                                    <input matInput placeholder="Best Student"  formControlName="awardName" >
+
+                                              
+                                                  </mat-form-field>
+                                              
+                                            </div>
+                                            <div fxFlex="25">
+                                              <mat-form-field  appearance="outline" >
+                                                  <mat-label>Remark</mat-label>
+                                                  <textarea matInput formControlName="remark"></textarea>
+                                            
+                                                </mat-form-field>
+                                            
+                                          </div>
+            
+                                           <div fxFlex="1">
+                                            <button mat-icon-button color="warn"  (click)="removeAward(i)">
+                                              <mat-icon>delete</mat-icon>
+                                            </button>
+                                            </div> 
+
+                                </div>
+                                </div>
+
+                                <div class="float-right">
+                                    <button mat-stroked-button color="accent"  (click)="addAward()" class="mr-2">Add Item</button>
+    
+                                    <span  *ngIf="awardsaveShow">
+                                        <button mat-stroked-button color="primary"  (click)="saveAward()" class="float-right" [disabled]="!studentAwardForm.valid" disabled > Save</button>
+                                    </span>
+                                </div>
+                                </div>
+
+                         </div>
+                    </form>
+
+
+
+
+                </mat-tab>    
+              </mat-tab-group>
+        </div>
+        
+    </div>
+
+</mat-card>

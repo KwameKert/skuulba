@@ -1,0 +1,100 @@
+
+<div class="container">
+    <h3 mat-dialog-title class="text-center">Invoice #{{data.code}}</h3>
+    <div mat-dialog-content>
+    <div class="row content-justify-between">
+        <div class="col-6 ">
+              Bill To : Kwame
+        </div>
+        <div class="col-6 text-right">
+            <p>Date Issued: {{ billDate | date:'mediumDate'}}</p> 
+            <p>Date Issued: {{ billDate | date:'mediumDate'}}</p> 
+        </div>
+    </div>
+
+
+    <div class="row">
+        <table class="table" >
+            <thead class="thead-dark" style="height: 40px;" >
+              <tr>
+                <th  scope="col" style="width:420px" class="text-center">Item</th>
+                <th scope="col" class="text-center" style="width:120px" >Quantity</th>
+                <th  scope="col" class="text-center" style="width:80px" >Rate</th>
+                <th  scope="col" class="" > <span style="margin-left:20px">Amount</span></th>
+              </tr>
+            </thead>        
+    </table>
+</div>
+
+
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px" *ngFor="let item of data.invoiceItems">
+
+        <div fxFlex="45" class="text-center" >
+            {{item.name}}
+        </div>
+        <div fxFlex="10"  class="text-center"  >
+            {{item.quantity}}
+        </div>
+        <div fxFlex="10" class="text-center" >
+            {{item.rate}}
+        </div>
+        <div fxFlex="20"  >
+            {{item.amount}}
+        </div>
+   
+  
+</div>
+
+
+
+<hr>
+
+
+<div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
+
+    <div fxFlex="70">
+        <h4><u>Notes</u></h4>
+        <blockquote class="blockquote">
+            <p class="mb-0">
+                {{data.notes}}</p>
+          </blockquote>
+       
+    </div>
+
+</div>
+
+<div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="10px">
+
+    <div fxFlex="70">
+        <h4><u>Terms</u></h4>
+        <blockquote class="blockquote">
+            <p class="mb-0">
+                {{data.terms}}</p>
+          </blockquote>
+    </div>
+
+</div>
+
+
+
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <div fxFlex="70">
+    </div>
+    <div fxFlex="20">
+        Total: {{data.amount}}
+    </div>
+
+    
+</div>
+
+
+</div>
+
+
+
+</div>
+<div mat-dialog-actions class="float-right">
+    <button mat-raised-button (click)="generatePdf()"  color="primary">Print</button>
+  </div>
+
+

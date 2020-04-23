@@ -1,0 +1,373 @@
+
+<mat-card class="mat-elevation-z3" style="margin-bottom:300px">
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <div *ngIf="previewUrl; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock> 
+                 <img [src]="studentImg" class="img-thumbnail mt-4" height="300" />   
+                <p class="lead">Student Image</p>         
+                <button mat-raised-button color="primary" (click)="editStudentDetails()">Edit Details</button>
+            </ng-template>
+            <ng-template #elseBlock>
+                <img [src]="studentImg" class="img-thumbnail mt-4" height="300" *ngIf="studentImg" />  
+                <button mat-raised-button color="primary" (click)="editStudentDetails()">Edit Details</button>
+            </ng-template>
+        </div>
+        <div class="col-md-9">
+            <mat-horizontal-stepper [linear]="false" #stepper>
+                <mat-step [stepControl]="studentForm">
+                  <form [formGroup]="studentForm">
+                    <ng-template matStepLabel>Fill out your name</ng-template>
+                    <div fxLayout="row" fxLayoutAlign=" center" >
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline" style="width:300px"  >
+                                <mat-label>Surname</mat-label>
+                                <input matInput placeholder="John"  formControlName="lastName" >
+                                <mat-error *ngIf="studentForm.get('lastName').invalid"> Invalid input </mat-error>
+                              </mat-form-field>
+                        </div>
+                
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline"  style="width:300px">
+                                <mat-label>Other Names</mat-label>
+                                <input matInput placeholder="Asante" value="" formControlName="otherNames">
+                                <mat-error *ngIf="studentForm.get('otherNames').invalid"> Invalid input </mat-error>
+                              </mat-form-field>
+                        </div>
+                        </div>
+                
+                
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                       
+                        <div fxFlex="50">
+                            <mat-form-field  appearance="outline" style="width:300px">
+                                <mat-label>
+                                    Religion </mat-label>
+                                <input matInput placeholder="Christian"  formControlName="religion">
+                                <mat-error *ngIf="studentForm.get('religion').invalid"> Invalid input </mat-error>
+                              </mat-form-field>
+                        </div>
+                
+                        <div fxFlex="50">
+                            <mat-form-field  appearance="outline" style="width:300px">
+                                <mat-label>Mother Tongue</mat-label>
+                                <input matInput placeholder="Twi" formControlName="motherTongue">
+                                <mat-error *ngIf="studentForm.get('motherTongue').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                        </div>
+                
+                       
+                        </div>
+                
+                
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline" style="width:300px">
+                                <mat-label>Hometown</mat-label>
+                                <input matInput placeholder="JamesTown" formControlName="homeTown">
+                                <mat-error *ngIf="studentForm.get('homeTown').invalid"> Invalid input </mat-error>
+                              </mat-form-field>
+                        </div>
+                
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline" style="width:300px" >
+                                <mat-label>Gender </mat-label>
+                                <mat-select formControlName="gender">
+                                    <mat-option value="MALE">Male</mat-option>
+                                    <mat-option value="FEMALE">Female</mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="studentForm.get('gender').invalid"> Select  gender</mat-error>
+                              </mat-form-field>
+                        </div>
+                        </div>
+                
+                
+                        <div fxLayout="row" fxLayoutAlign="start" >
+                            <div fxFlex="50">
+        
+                                <mat-form-field  appearance="outline" style="width:300px">
+                                    <mat-label>Living With</mat-label>
+                                    <mat-select formControlName="livingWith" >
+                                        <mat-option value="BOTH">Both</mat-option>
+                                        <mat-option value="MOTHER">Mother</mat-option>
+                                        <mat-option value="FATHER">Father</mat-option>
+                                      </mat-select>
+                                      <mat-error *ngIf="studentForm.get('livingWith').invalid"> Select  gender</mat-error>
+                                  </mat-form-field>
+                                
+                            </div>
+                
+                            <div fxFlex="50">
+                                <div class="form-group">
+                                    <mat-form-field  appearance="outline" style="width:300px">
+                                        <mat-label>Number of Sibblings</mat-label>
+                                        <input matInput placeholder="JamesTown" formControlName="noSiblings">
+                                          <mat-error *ngIf="studentForm.get('noSiblings').invalid"> Invalid Input</mat-error>
+                                      </mat-form-field>
+        
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <div fxLayout="row" fxLayoutAlign="start" >
+                            <div fxFlex="50">
+                                <mat-form-field  appearance="outline" style="width:300px">
+                                    <mat-label>Date Of Birth</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="studentForm.get('dob').invalid"> Invalid input</mat-error>
+                                  </mat-form-field>
+                            </div>
+                
+                            <div fxFlex="50">
+                                <mat-form-field  appearance="outline" style="width:300px">
+                                    <mat-label>Languages</mat-label>
+                                    <mat-select formControlName="languages"  multiple>
+                                        <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
+                                      </mat-select>
+                                      <mat-error *ngIf="studentForm.get('languages').invalid"> Invalid Input</mat-error>
+                                  </mat-form-field>
+                            </div>       
+                        </div>
+        
+                        <div class="row mb-4" style="margin-bottom:400px">
+                            <div class="col-md-6">
+                                <input type="file" class="ng-hide"  name="image" (change)="fileProgress($event)" required />
+                            </div>
+                        </div>
+                    <div>
+                      <button   mat-stroked-button color="primary" class="float-right" (click)="updateStudent(stepper)" >Update</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="studentMotherForm">
+                  <form [formGroup]="studentMotherForm">
+                      
+                   
+                    <ng-template matStepLabel>Fill out Mother Details</ng-template>
+                    
+                    <div fxLayout="row" fxLayoutAlign="space-around center" >
+                                  
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline" style="width:300px">
+                                <mat-label>Full name</mat-label>
+                                <input matInput placeholder="Mrs User" formControlName="fullName">
+                                <mat-error *ngIf="studentMotherForm.get('fullName').invalid"> Invalid input </mat-error>
+                              </mat-form-field>
+                        </div>
+                
+                        <div fxFlex="50">
+                            <mat-form-field appearance="outline" style="width:300px" >
+                                <mat-label>Address </mat-label>
+                                <input matInput placeholder="address" formControlName="address">
+                                  <mat-error *ngIf="studentMotherForm.get('address').invalid"> Invalid input</mat-error>
+                              </mat-form-field>
+                        </div>
+                        </div>
+        
+        
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width:300px">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="test@gmail.com" formControlName="email">
+                                    <mat-error *ngIf="studentMotherForm.get('email').invalid"> Invalid input </mat-error>
+                                  </mat-form-field>
+                            </div>
+                    
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width:300px" >
+                                    <mat-label>Occupation </mat-label>
+                                    <input matInput placeholder="trader" formControlName="occupation">
+                                      <mat-error *ngIf="studentMotherForm.get('occupation').invalid"> Invalid input</mat-error>
+                                  </mat-form-field>
+                            </div>
+                            </div>
+        
+                            <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          
+                                <div fxFlex="50">
+                                    <mat-form-field appearance="outline" style="width:300px">
+                                        <mat-label>Phone Number</mat-label>
+                                        <input matInput placeholder="020141100" formControlName="phoneNumber">
+                                        <mat-error *ngIf="studentMotherForm.get('phoneNumber').invalid"> Invalid input </mat-error>
+                                      </mat-form-field>
+                                </div>
+                        
+                                <div fxFlex="50">
+                                    <mat-form-field appearance="outline" style="width:300px" >
+                                        <mat-label>Education Status </mat-label>
+                                        <input matInput placeholder="degree" formControlName="educationStatus">
+                                          <mat-error *ngIf="studentMotherForm.get('educationStatus').invalid"> Invalid input</mat-error>
+                                      </mat-form-field>
+                                </div>
+                                </div>
+        
+        
+                                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          
+                                    <div fxFlex="50">
+                                        <mat-form-field appearance="outline" style="width:300px">
+                                            <mat-label>Religion </mat-label>
+                                            <input matInput placeholder="Christian" formControlName="religion">
+                                            <mat-error *ngIf="studentMotherForm.get('religion').invalid"> Invalid input </mat-error>
+                                          </mat-form-field>
+                                    </div>
+                            
+                                    <div fxFlex="50">
+                                        <mat-form-field appearance="outline" style="width:300px" >
+                                            <mat-label>Number of Spouse </mat-label>
+                                            <input matInput placeholder="1" formControlName="numSpouse">
+                                              <mat-error *ngIf="studentMotherForm.get('numSpouse').invalid"> Invalid input</mat-error>
+                                          </mat-form-field>
+                                    </div>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                                        <div fxFlex="50">
+                                          <mat-checkbox matInput formControlName="isDeceased">Deceased</mat-checkbox>
+                                        </div>
+                                      <div fxFlex="50">
+                                          <mat-form-field  appearance="outline" style="width:300px">
+                                              <mat-label>Date Deceased</mat-label>
+                                              <input matInput [matDatepicker]="picker1" formControlName="dateDeceased" >
+                                              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                              <mat-datepicker #picker1></mat-datepicker>
+                                            </mat-form-field>
+                                      </div>
+                                    </div>
+                   
+        
+        
+                    <div class="float-right">
+                      <button mat-stroked-button color="accent" matStepperPrevious  class="mr-2">Back</button>
+                      <button  mat-stroked-button color="primary" (click)="updateStudentMother(stepper)" >Update</button>
+                    </div>
+                  </form>
+                </mat-step>
+        
+        
+                <mat-step [stepControl]="studentFatherForm">
+                    <form [formGroup]="studentFatherForm">
+                      <ng-template matStepLabel>Fill Father Details</ng-template>
+                      
+                      <div fxLayout="row" fxLayoutAlign="space-around center" >
+                                    
+                          <div fxFlex="50">
+                              <mat-form-field appearance="outline" style="width:300px">
+                                  <mat-label>Full name</mat-label>
+                                  <input matInput placeholder="Mr User" formControlName="fullName">
+                                  <mat-error *ngIf="studentFatherForm.get('fullName').invalid"> Invalid input </mat-error>
+                                </mat-form-field>
+                          </div>
+                  
+                          <div fxFlex="50">
+                              <mat-form-field appearance="outline" style="width:300px" >
+                                  <mat-label>Address </mat-label>
+                                  <input matInput placeholder="address" formControlName="address">
+                                    <mat-error *ngIf="studentFatherForm.get('address').invalid"> Invalid input</mat-error>
+                                </mat-form-field>
+                          </div>
+                          </div>
+          
+          
+                          <div fxLayout="row" fxLayoutAlign="space-around center" >
+                            
+                              <div fxFlex="50">
+                                  <mat-form-field appearance="outline" style="width:300px">
+                                      <mat-label>Email</mat-label>
+                                      <input matInput placeholder="test@gmail.com" formControlName="email">
+                                      <mat-error *ngIf="studentFatherForm.get('email').invalid"> Invalid input </mat-error>
+                                    </mat-form-field>
+                              </div>
+                      
+                              <div fxFlex="50">
+                                  <mat-form-field appearance="outline" style="width:300px" >
+                                      <mat-label>Occupation </mat-label>
+                                      <input matInput placeholder="trader" formControlName="occupation">
+                                        <mat-error *ngIf="studentFatherForm.get('occupation').invalid"> Invalid input</mat-error>
+                                    </mat-form-field>
+                              </div>
+                              </div>
+          
+                              <div fxLayout="row" fxLayoutAlign="space-around center" >
+                            
+                                  <div fxFlex="50">
+                                      <mat-form-field appearance="outline" style="width:300px">
+                                          <mat-label>Phone Number</mat-label>
+                                          <input matInput placeholder="0241100000" formControlName="phoneNumber">
+                                          <mat-error *ngIf="studentFatherForm.get('phoneNumber').invalid"> Invalid input </mat-error>
+                                        </mat-form-field>
+                                  </div>
+                          
+                                  <div fxFlex="50">
+                                      <mat-form-field appearance="outline" style="width:300px" >
+                                          <mat-label>Education Status </mat-label>
+                                          <input matInput placeholder="degree" formControlName="educationStatus">
+                                            <mat-error *ngIf="studentFatherForm.get('educationStatus').invalid"> Invalid input</mat-error>
+                                        </mat-form-field>
+                                  </div>
+                                  </div>
+          
+          
+                                  <div fxLayout="row" fxLayoutAlign="space-around center" >
+                            
+                                      <div fxFlex="50">
+                                          <mat-form-field appearance="outline" style="width:300px">
+                                              <mat-label>Religion </mat-label>
+                                              <input matInput placeholder="Christian" formControlName="religion">
+                                              <mat-error *ngIf="studentFatherForm.get('religion').invalid"> Invalid input </mat-error>
+                                            </mat-form-field>
+                                      </div>
+                              
+                                      <div fxFlex="50">
+                                          <mat-form-field appearance="outline" style="width:300px" >
+                                              <mat-label>Number of Spouse </mat-label>
+                                              <input matInput placeholder="1" formControlName="numSpouse">
+                                                <mat-error *ngIf="studentFatherForm.get('numSpouse').invalid"> Invalid input</mat-error>
+                                            </mat-form-field>
+                                      </div>
+                                      </div>
+
+                                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                                        <div fxFlex="50">
+                                          <mat-checkbox matInput formControlName="isDeceased">Deceased</mat-checkbox>
+                                        </div>
+                                      <div fxFlex="50">
+                                          <mat-form-field  appearance="outline" style="width:300px">
+                                              <mat-label>Date Deceased</mat-label>
+                                              <input matInput [matDatepicker]="picker2" formControlName="dateDeceased" >
+                                              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                              <mat-datepicker #picker2></mat-datepicker>
+                                            </mat-form-field>
+                                      </div>
+                                    </div>
+                   
+                     
+          
+          
+                      <div class="float-right">
+                        <button mat-stroked-button color="accent" matStepperPrevious class="mr-2">Back</button>
+                        <button  mat-stroked-button color="primary" (click)="updateStudentFather(stepper)" >Update</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                <mat-step>
+                  <ng-template matStepLabel>Done</ng-template>
+                  <div class="alert alert-info" role="alert">
+                    <p class=""> Click on  <b>Edit Details</b> to edit academic, physical and  personality details</p>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="primary" (click)="editStudentDetails()">Edit Details</button>
+                  </div>
+                </mat-step>
+              </mat-horizontal-stepper>
+        
+        </div>
+    </div>
+  
+
+</mat-card>

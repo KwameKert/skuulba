@@ -1,0 +1,98 @@
+<mat-card class="mat-elevation-z3" style="margin-bottom:30px;padding-bottom:50px">
+
+  <div fxLayout="row"  fxLayoutAlign="center center">
+    <div fxFlex="15">
+
+    </div>
+    <div fxFlex="20">
+        <mat-form-field appearance="outline">
+            <mat-label>-- Select --</mat-label>
+            <mat-select  [(ngModel)] ="param" (selectionChange)="changeSearchField($event)">
+              <mat-option value="1">Class</mat-option>
+              <mat-option value="2">Student Name</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+          
+        <div fxFlex="50">
+            <div *ngIf="isClass; else elseBlock">
+                <mat-form-field appearance="outline" style="width:400px">
+                    <mat-label>-- Select --</mat-label>
+            
+                <mat-select  [(ngModel)] = "value" >
+                    <mat-option *ngFor="let class of classes" [value]="class">{{class}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+
+            <ng-template #elseBlock>
+            <mat-form-field appearance="outline" style="width:400px">
+                <mat-label>Student Last Name</mat-label>
+                <input matInput placeholder="Enter value"  [(ngModel)] = "value" >
+              </mat-form-field>
+            </ng-template>
+        
+        </div>
+         
+        <div fxFlex="25" class="mb-4">
+
+            <button mat-raised-button color="primary" (click)="searchStudents()"><mat-icon>search</mat-icon> Search</button>
+        </div>
+
+    
+
+</div>
+
+    
+    <div class="row">
+      <div class="col-md-12  example-container mat-elevation-z3 pt-3">
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource">
+        
+        
+          <ng-container matColumnDef="full name">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let student">{{student.lastName}}  {{student.otherNames}} </td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="class">
+            <th mat-header-cell *matHeaderCellDef> Class </th>
+            <td mat-cell *matCellDef="let student"> {{student.studentClass}} </td>
+          </ng-container>
+      
+   
+          <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let student"> {{student.age }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let student"> {{student.gender}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let student" >
+              <button mat-icon-button color="primary" (click)="makePayment(student)" >
+                <mat-icon>payment</mat-icon>
+              </button>
+            
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+
+    </mat-card>
+
+

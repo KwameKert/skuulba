@@ -1,0 +1,108 @@
+<mat-card class="mat-elevation-z3" style="margin-bottom:30px;padding-bottom:50px">
+
+    <div fxLayout="row"  fxLayoutAlign="center " [formGroup]="searchStudentForm">
+        <div fxFlex="15">
+
+        </div>
+        <div fxFlex="20">
+            <mat-form-field appearance="outline">
+                <mat-label>-- Select --</mat-label>
+                <mat-select  formControlName="param" >
+                  <mat-option value="1" >LastName</mat-option>
+                  <mat-option value="2">OtherNames</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              
+            <div fxFlex="50">
+                <mat-form-field appearance="outline" style="width:400px">
+                    <mat-label>Student Name</mat-label>
+                    <input matInput placeholder="Enter value" formControlName="value" >
+                  </mat-form-field>
+            </div>
+             
+            <div fxFlex="25" >
+
+                <button mat-raised-button color="primary" (click)="searchStudent()"  [disabled]="!searchStudentForm.valid" style="margin-top:5px"><mat-icon>search</mat-icon> Search</button>
+            </div>
+
+        
+
+    </div>
+
+
+    <div *ngIf="loading; else studentList">
+
+      <div class="text-center">
+        <img src="assets/loaders/loader.svg" alt="">
+      </div>
+    </div>
+
+<ng-template #studentList>
+  <div class="row">
+    <div class="col-md-12 ">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Kwame Manu">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource">
+      
+      
+        <ng-container matColumnDef="full name">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td mat-cell *matCellDef="let student">{{student.lastName | titlecase}}  {{student.otherNames | titlecase}} </td>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="class">
+          <th mat-header-cell *matHeaderCellDef> Class </th>
+          <td mat-cell *matCellDef="let student"> {{student.studentClass }} </td>
+        </ng-container>
+    
+ 
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let student"> {{student.age}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td mat-cell *matCellDef="let student"> {{student.gender | titlecase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let student" >
+            <button mat-icon-button color="primary" >
+              <mat-icon (click)="viewStudent(student.id)" >pageview icon</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="editStudent(student.id)">
+              <mat-icon>edit</mat-icon>
+            </button> 
+
+            <button mat-icon-button color="warn" (click)="deleteStudent(student.id)">
+              <mat-icon>delete</mat-icon>
+            </button> 
+          
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+    </mat-card>
+
+
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
