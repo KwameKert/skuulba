@@ -28,7 +28,7 @@
     "@angular/router": "~10.2.5",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
-    "highcharts": "^8.0.0",
+    "highcharts": "^9.0.0",
     "highcharts-angular": "^2.4.0",
     "jquery": "^3.4.1",
     "ngx-skeleton-loader": "^1.2.6",
