@@ -32,8 +32,6 @@
             "scripts": [
               "./src/assets/js/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-      
-
             ]
           },
           "configurations": {
@@ -136,5 +134,8 @@
     "@schematics/angular:component": {
       "style": "scss"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

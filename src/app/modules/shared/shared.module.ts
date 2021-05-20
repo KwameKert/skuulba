@@ -18,7 +18,10 @@ import {MatTabsModule} from '@angular/material/tabs';
  
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MatCardModule, MatDividerModule, MatNativeDateModule,MatSelectModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 //import { DialogContentComponent } from '../finance/components/dialog-content/dialog-content.component';
 
 @NgModule({

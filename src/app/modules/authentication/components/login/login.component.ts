@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
           timeOut:2000
         })
 
+        this.isLoading = false;
         this.router.navigate(['/student/dashboard']);
         
       }else{

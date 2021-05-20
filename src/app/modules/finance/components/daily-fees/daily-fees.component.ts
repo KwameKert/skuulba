@@ -6,7 +6,7 @@ import { Student} from '../../../student/components/student';
 import {FinanceService} from '../../service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogContentComponent } from '../../components/dialog-content/dialog-content.component';
-import { MatDialogConfig} from "@angular/material";
+import { MatDialogConfig} from "@angular/material/dialog";
 import {StudentService} from '../../../student/service/student.service';
 
 import {MatSnackBar} from '@angular/material/snack-bar';

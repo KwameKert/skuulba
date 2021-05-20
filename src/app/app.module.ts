@@ -7,15 +7,23 @@ import { HeaderComponent ,SidebarComponent,FooterComponent} from './layouts';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DefaultComponent } from './layouts/default/default.component';
-import {  MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, 
-  MatMenuModule, MatListModule, MatExpansionModule } from '@angular/material';
+
   import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatSidenavModule,  MatCardModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './modules/shared/shared.module';
 import { TableComponent } from './shared/widgets/table/table.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu'
+import {MatListModule} from '@angular/material/list'
+import {MatSidenavModule} from '@angular/material/sidenav'
 
 @NgModule({
   declarations: [
