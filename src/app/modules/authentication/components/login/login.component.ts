@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
           timeOut:2000
         })
 
-        this.isLoading = false;
+     
         this.router.navigate(['/student/dashboard']);
+        this.isLoading = false;
         
       }else{
         this._toastr.info("Invalid credentials. 🥺","",{
