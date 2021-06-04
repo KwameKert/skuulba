@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         })
       }
       
-     
+      this.isLoading = false;
           
      //  console.log(this._authService.isLoggedIn);
       
