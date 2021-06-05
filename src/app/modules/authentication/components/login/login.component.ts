@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     }, error=>{
       console.warn('An error occured');
     })
-   //this.isLoading = false; 
+   this.isLoading = false; 
   }
 
 }
